@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="list_items">
+        <item>Tickets</item>
+        <item>Modify Service</item>
+        <item>Doppler IM</item>
+        <item>Contact us</item>
+        <item>Logout</item>
+    </string-array>
+    
+    <array name="list_icons">
+        <item >@drawable/ic_tickets</item>
+        <item >@drawable/ic_modifyservice</item>
+        <item >@drawable/ic_dopplerim</item>
+        <item >@drawable/ic_contactus</item>
+        <item >@drawable/ic_logout</item>
+    </array>
+    
+</resources>

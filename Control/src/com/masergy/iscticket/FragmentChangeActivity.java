@@ -3,15 +3,15 @@ package com.masergy.iscticket;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.masergy.iscticket.slidermenu.ColorFragment;
-import com.masergy.iscticket.slidermenu.ColorMenuFragment;
+import com.masergy.iscticket.slidermenu.Activity_Fragment;
+import com.masergy.iscticket.slidermenu.ListMenuFragment;
 
 public class FragmentChangeActivity extends com.masergy.iscticket.slidermenu.BaseActivity {
 	
-	private Fragment mContent;
+	private Fragment mFragment;
 	
 	public FragmentChangeActivity() {
-		super(R.string.changing_fragments);
+		super(R.string.emptystring);
 	}
 	
 	@Override
@@ -19,22 +19,23 @@ public class FragmentChangeActivity extends com.masergy.iscticket.slidermenu.Bas
 		super.onCreate(savedInstanceState);
 		// set the Above View
 		if (savedInstanceState != null)
-			mContent = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
-		if (mContent == null)
-			mContent = new ColorFragment(R.color.red);	
+			mFragment = getSupportFragmentManager().getFragment(savedInstanceState, "mFragment");
+		
+		if (mFragment == null)
+			mFragment = new Activity_Fragment(R.color.red);	
 		
 		// set the Above View
 		setContentView(R.layout.content_frame);
 		getSupportFragmentManager()
 		.beginTransaction()
-		.replace(R.id.content_frame, mContent)
+		.replace(R.id.content_frame, mFragment)
 		.commit();
 		
 		// set the Behind View
 		setBehindContentView(R.layout.menu_frame);
 		getSupportFragmentManager()
 		.beginTransaction()
-		.replace(R.id.menu_frame, new ColorMenuFragment())
+		.replace(R.id.menu_frame, new ListMenuFragment())
 		.commit();
 		
 		// customize the SlidingMenu
@@ -44,11 +45,11 @@ public class FragmentChangeActivity extends com.masergy.iscticket.slidermenu.Bas
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		getSupportFragmentManager().putFragment(outState, "mContent", mContent);
+		getSupportFragmentManager().putFragment(outState, "mFragment", mFragment);
 	}
 	
 	public void switchContent(Fragment fragment) {
-		mContent = fragment;
+		mFragment = fragment;
 		getSupportFragmentManager()
 		.beginTransaction()
 		.replace(R.id.content_frame, fragment)

@@ -8,9 +8,6 @@
 package com.masergy.iscticket;
 
 public final class R {
-    public static final class array {
-        public static final int color_names=0x7f0b0000;
-    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1041,11 +1038,17 @@ containing a value of this type.
         public static final int abs__textfield_searchview_right_holo_dark=0x7f02006d;
         public static final int abs__textfield_searchview_right_holo_light=0x7f02006e;
         public static final int abs__toast_frame=0x7f02006f;
-        public static final int ic_launcher=0x7f020070;
-        public static final int img_btnlogin=0x7f020071;
-        public static final int img_logo_isc=0x7f020072;
-        public static final int shadow=0x7f020073;
-        public static final int shapeedittext=0x7f020074;
+        public static final int ic_contactus=0x7f020070;
+        public static final int ic_dopplerim=0x7f020071;
+        public static final int ic_launcher=0x7f020072;
+        public static final int ic_logout=0x7f020073;
+        public static final int ic_modifyservice=0x7f020074;
+        public static final int ic_tickets=0x7f020075;
+        public static final int img_btnlogin=0x7f020076;
+        public static final int img_logo_isc=0x7f020077;
+        public static final int img_menu=0x7f020078;
+        public static final int shadow=0x7f020079;
+        public static final int shapeedittext=0x7f02007a;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f060025;
@@ -1151,8 +1154,8 @@ containing a value of this type.
         public static final int slidingmenumain=0x7f03001d;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
-        public static final int menu=0x7f0c0001;
+        public static final int main=0x7f0b0000;
+        public static final int menu=0x7f0b0001;
     }
     public static final class string {
         public static final int Login=0x7f040010;
@@ -1200,9 +1203,11 @@ containing a value of this type.
         /**  Slider Menu 
          */
         public static final int changing_fragments=0x7f040013;
+        public static final int emptystring=0x7f040014;
         public static final int forgotpassword=0x7f040012;
         public static final int forgotusername=0x7f040011;
         public static final int hello_world=0x7f04000f;
+        public static final int textViewListHeaderMSG=0x7f040015;
     }
     public static final class style {
         /** 

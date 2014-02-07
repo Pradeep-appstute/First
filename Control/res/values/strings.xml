@@ -10,5 +10,6 @@
     
     <!-- Slider Menu -->
     <string name="changing_fragments">Changing Fragments</string>
-
+    <string name="emptystring">Control</string>
+    <string name="textViewListHeaderMSG">MASERGY</string>
 </resources>
