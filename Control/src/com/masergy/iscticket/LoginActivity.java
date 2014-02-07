@@ -1,8 +1,9 @@
 package com.masergy.iscticket;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 
 public class LoginActivity extends Activity {
 
@@ -12,11 +13,10 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
+	public void loginButtonTapped(View v)
+	{
+		Intent intentHome;
+		intentHome = new Intent(this, FragmentChangeActivity.class);
+		startActivity(intentHome);
 	}
-
 }
