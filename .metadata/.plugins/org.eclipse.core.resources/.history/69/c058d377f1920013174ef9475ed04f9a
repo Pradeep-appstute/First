@@ -1,0 +1,68 @@
+package com.masergy.iscticket;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.masergy.iscticket.slidermenu.RowItem;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class ListMenuFragment extends ListFragment implements OnClickListener {
+	
+	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
+	public static final Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
+	List<RowItem> rowItems;
+	
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.list, container, false);
+    }
+ 
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+ 	   TextView tv_listTitle = new TextView(getActivity());
+ 	   tv_listTitle.setText(getString(R.string.textViewListHeaderMSG));
+ 	   tv_listTitle.setTextSize(25);
+ 	   tv_listTitle.setTextColor(Color.WHITE);
+ 	   tv_listTitle.setTypeface(null, Typeface.BOLD);
+ 	   tv_listTitle.setBackgroundColor(Color.BLACK);
+ 	   tv_listTitle.setGravity(Gravity.CENTER_HORIZONTAL);
+// 	   tv_listTitle.setLayoutParams(new LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+ 	   getListView().addHeaderView(tv_listTitle);
+ 	   
+// 	   getListView().setBackgroundColor(Color.parseColor("#4E4E50"));
+ 		
+ 		//Create adaptor and set row title and icon
+ 		rowItems = new ArrayList<RowItem>();
+         for (int i = 0; i < titles.length; i++) {
+             RowItem item = new RowItem(images[i], titles[i]);
+             rowItems.add(item);
+         }
+         
+ 		AdapterForListMenuFragment listAdapter = new AdapterForListMenuFragment(getActivity(),rowItems);
+ 		
+ 		//set adapter to list view
+ 		setListAdapter(listAdapter);
+    }
+ 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.clickme) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slideinleft, R.anim.slideoutleft);
+        ft.replace(R.id.fragment_menu_container, new Menu2Fragment());
+        ft.commit();
+    }
+    }
+
+	
+}

@@ -1,0 +1,7 @@
+package com.masergy.iscticket;
+
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+
+public class SliderMenuActivity extends SlidingFragmentActivity {
+
+}

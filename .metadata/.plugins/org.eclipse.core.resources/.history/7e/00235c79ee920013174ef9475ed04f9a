@@ -1,0 +1,35 @@
+package com.masergy.iscticket;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public class Menu1Fragment extends Fragment implements OnClickListener {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.menu1, container, false);
+    }
+ 
+    @Override
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+        TextView tv = (TextView) view.findViewById(R.id.clickme);
+        tv.setOnClickListener(this);
+    }
+ 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.clickme) {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.anim.slideinleft, R.anim.slideoutleft);
+        ft.replace(R.id.fragment_menu_container, new Menu2Fragment());
+        ft.commit();
+    }
+    }
+
+	
+}

@@ -1,0 +1,7 @@
+package com.masergy.iscticket.slidermenu;
+
+import android.support.v4.app.Fragment;
+
+public class TicketFragment extends Fragment {
+
+}
