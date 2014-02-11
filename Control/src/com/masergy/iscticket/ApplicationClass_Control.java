@@ -1,9 +1,11 @@
 package com.masergy.iscticket;
+
 import android.app.Application;
 
 
 public class ApplicationClass_Control extends Application {
-
+	//public SlidingMenu slidingmenu;
+	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub

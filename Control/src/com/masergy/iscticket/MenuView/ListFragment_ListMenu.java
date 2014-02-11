@@ -3,16 +3,15 @@ package com.masergy.iscticket.MenuView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.RowItem;
-import com.masergy.iscticket.R.drawable;
-import com.masergy.iscticket.R.layout;
-import com.masergy.iscticket.R.string;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.Gravity;
@@ -65,8 +64,7 @@ public class ListFragment_ListMenu extends ListFragment {
 		position--;
 		switch (position) {
 		case 0:
-			//newContent = new Activity_Fragment(0);
-
+			newContent = new Fragment_Tickets();
 			break;
 		case 1:
 			//newContent = new Activity_Fragment(1);
@@ -81,19 +79,16 @@ public class ListFragment_ListMenu extends ListFragment {
 			//newContent = new Activity_Fragment(4);
 			break;
 		}
-		//if (newContent != null)
-			//switchFragment(newContent);
-	}
-
-//	// the meat of switching the above fragment
-//	private void switchFragment(Fragment fragment) {
-//		if (getActivity() == null)
-//			return;
-//		
-//		if (getActivity() instanceof FragmentChangeActivity) {
-//			FragmentChangeActivity fca = (FragmentChangeActivity) getActivity();
-//			fca.switchContent(fragment);
-//		} 
-//
-//	}
+		
+		if (newContent != null)
+		{
+		    FragmentTransaction ft = getFragmentManager().beginTransaction();
+		    ft.replace(R.id.activity_main_content_fragment, newContent);
+		    ft.commit();
+		    
+		    //Toggle sliding menu
+		    Activity_SliderMenu.slidingMenu.showContent();
+		}
+			
+	}//onListItemClick
 }
