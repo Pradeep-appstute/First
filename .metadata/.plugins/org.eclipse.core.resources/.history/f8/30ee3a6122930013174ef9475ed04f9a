@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lin_fragment_tickets"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px" >
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:measureWithLargestChild="true"
+        android:orientation="horizontal"
+         >
+
+        <Button
+            android:id="@+id/open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open" 
+            android:layout_weight="1"
+            >
+        </Button>
+
+        <Button
+            android:id="@+id/closed"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Closed" 
+            android:layout_weight="1">
+        </Button>
+
+        <Button
+            android:id="@+id/maint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Maint."
+            android:layout_weight="1"
+             >
+        </Button>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_weight="1"
+             >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>
