@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lin_fragment_tickets"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px" >
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+            android:background="@drawable/img_tickettypebg"
+         >
+
+        <ImageButton
+            android:id="@+id/open"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_open"
+            >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/closed"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_closed"
+            >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/maint"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_maint" >
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/submit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+           android:background="@drawable/button_submit">
+        </ImageButton>
+    </LinearLayout>
+
+</LinearLayout>

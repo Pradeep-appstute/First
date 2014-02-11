@@ -157,18 +157,31 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int slidingmenu_offset=0x7f090002;
     }
     public static final class drawable {
-        public static final int gradient_tabbar=0x7f020000;
-        public static final int ic_contactus=0x7f020001;
-        public static final int ic_dopplerim=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int ic_logout=0x7f020004;
-        public static final int ic_modifyservice=0x7f020005;
-        public static final int ic_tickets=0x7f020006;
-        public static final int img_btnlogin=0x7f020007;
-        public static final int img_logo_isc=0x7f020008;
-        public static final int img_menu=0x7f020009;
-        public static final int shadow=0x7f02000a;
-        public static final int shapeedittext=0x7f02000b;
+        public static final int button_closed=0x7f020000;
+        public static final int button_maint=0x7f020001;
+        public static final int button_open=0x7f020002;
+        public static final int button_submit=0x7f020003;
+        public static final int gradient_tabbar=0x7f020004;
+        public static final int ic_contactus=0x7f020005;
+        public static final int ic_dopplerim=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_logout=0x7f020008;
+        public static final int ic_modifyservice=0x7f020009;
+        public static final int ic_tickets=0x7f02000a;
+        public static final int img_btnlogin=0x7f02000b;
+        public static final int img_btnmclosed=0x7f02000c;
+        public static final int img_btnmclosedselected=0x7f02000d;
+        public static final int img_btnmmaint=0x7f02000e;
+        public static final int img_btnmmaintselected=0x7f02000f;
+        public static final int img_btnmopen=0x7f020010;
+        public static final int img_btnmopenselected=0x7f020011;
+        public static final int img_btnmsubmit=0x7f020012;
+        public static final int img_btnmsubmitselected=0x7f020013;
+        public static final int img_logo_isc=0x7f020014;
+        public static final int img_menu=0x7f020015;
+        public static final int img_tickettypebg=0x7f020016;
+        public static final int shadow=0x7f020017;
+        public static final int shapeedittext=0x7f020018;
     }
     public static final class id {
         public static final int activity_main_content_fragment=0x7f07000b;

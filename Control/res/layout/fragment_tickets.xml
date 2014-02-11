@@ -14,52 +14,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:gravity="center"
-        android:measureWithLargestChild="true"
         android:orientation="horizontal"
-            android:background="@drawable/gradient_tabbar"
+            android:background="@drawable/img_tickettypebg"
          >
 
-        <Button
+        <ImageButton
             android:id="@+id/open"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#0fff"
-            android:text="Open"
-            android:textColor="#fff" >
-        </Button>
+            android:background="@drawable/button_open"
+            >
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/closed"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#0fff"
-            android:text="Closed"
-            android:textColor="#fff" >
-        </Button>
+            android:background="@drawable/button_closed"
+            >
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/maint"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#0fff"
-            android:text="Maint."
-            android:textColor="#fff" >
-        </Button>
+            android:background="@drawable/button_maint" >
+        </ImageButton>
 
-        <Button
+        <ImageButton
             android:id="@+id/submit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#0fff"
-            android:text="Submit"
-            android:textColor="#fff" >
-        </Button>
+           android:background="@drawable/button_submit">
+        </ImageButton>
     </LinearLayout>
 
 </LinearLayout>
