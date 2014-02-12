@@ -17,15 +17,12 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import com.masergy.iscticket.Activity_SliderMenu;
 
 /*
  To edit data from sharedpreference
@@ -63,6 +60,9 @@ public class Send_to_Web {
 	String name,password;
 	Context mContext;
 	ProgressDialog mpProgress;
+	SharedPreferences sharedPreferences;
+	Editor editor;
+	
 
 	public Send_to_Web(Context context,String name,String password) {
 		this.name=name;
@@ -178,32 +178,29 @@ public class Send_to_Web {
 					String permViewVnoc = jObj.getString("permViewVnoc");
 					String custId = jObj.getString("custId");
 					String custName = jObj.getString("custName");
-					
+					/*
 					System.out.println(authToken);
 					System.out.println(contactId);
 					System.out.println(userId);
 					System.out.println(firstName);
+					*/
 					
+					editor.putString("authToken", authToken);
+					editor.putString("contactId", contactId);
+					editor.putString("userId", userId);
+					editor.putString("firstName", firstName);
+					editor.putString("lastName", lastName);
+					editor.putString("email", email);
+					editor.putString("phone", phone);
+					editor.putString("permViewTicket", permViewTicket);
+					editor.putString("permSubmitTicket", permSubmitTicket);
+					editor.putString("permViewServiceDetails", permViewServiceDetails);
+					editor.putString("permModifyTierNetworkAccess", permModifyTierNetworkAccess);
+					editor.putString("permViewVnoc", permViewVnoc);
+					editor.putString("custId", custId);
+					editor.putString("custName", custName);
+					editor.commit();
 					
-					sharedPrefEditor.putString("authToken", authToken);
-					sharedPrefEditor.putString("contactId", contactId);
-					sharedPrefEditor.putString("userId", userId);
-					sharedPrefEditor.putString("firstName", firstName);
-					sharedPrefEditor.putString("lastName", lastName);
-					sharedPrefEditor.putString("email", email);
-					sharedPrefEditor.putString("phone", phone);
-					sharedPrefEditor.putString("permViewTicket", permViewTicket);
-					sharedPrefEditor.putString("permSubmitTicket", permSubmitTicket);
-					sharedPrefEditor.putString("permViewServiceDetails", permViewServiceDetails);
-					sharedPrefEditor.putString("permModifyTierNetworkAccess", permModifyTierNetworkAccess);
-					sharedPrefEditor.putString("permViewVnoc", permViewVnoc);
-					sharedPrefEditor.putString("custId", custId);
-					sharedPrefEditor.putString("custName", custName);
-					sharedPrefEditor.commit();
-					
-					// Start Activity_SliderMenu activity
-					Intent intentHome; intentHome = new Intent(mContext, Activity_SliderMenu.class); 
-					mContext.startActivity(intentHome);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
