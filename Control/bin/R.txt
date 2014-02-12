@@ -88,10 +88,13 @@ int layout ticketfragment 0x7f030008
 int string Login 0x7f050002
 int string action_settings 0x7f050001
 int string app_name 0x7f050000
-int string emptystring 0x7f050005
+int string emptystring 0x7f050008
 int string forgotpassword 0x7f050004
 int string forgotusername 0x7f050003
-int string textViewListHeaderMSG 0x7f050006
+int string no 0x7f050007
+int string ok 0x7f050005
+int string textViewListHeaderMSG 0x7f050009
+int string yes 0x7f050006
 int style AppBaseTheme 0x7f060000
 int style AppTheme 0x7f060001
 int[] styleable ButtonBarContainerTheme { 0x7f01000e, 0x7f01000f }

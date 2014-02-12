@@ -7,6 +7,10 @@
     <string name="forgotusername">Forgot Username</string>
     <string name="forgotpassword">Forgot Password</string>
     
+    <!-- AlertDialog -->
+    <string name="ok">OK</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
     <!-- Slider Menu -->
     <string name="emptystring">Control</string>
     <string name="textViewListHeaderMSG">MASERGY</string>

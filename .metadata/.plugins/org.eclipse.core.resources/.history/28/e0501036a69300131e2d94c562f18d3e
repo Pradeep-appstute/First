@@ -1,0 +1,34 @@
+package com.masergy.iscticket;
+
+import com.masergy.iscticket.utility.Validation;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+public class Activity_Login extends Activity {
+
+	EditText edt_UserName, edt_Password;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_login);
+		
+		//Init
+		edt_UserName = (EditText) findViewById(R.id.editTextUserName);
+		edt_Password = (EditText) findViewById(R.id.editTextPassword);
+	}
+
+	public void loginButtonTapped(View v)
+	{
+		/*
+		Intent intentHome;
+		intentHome = new Intent(this, Activity_SliderMenu.class);
+		startActivity(intentHome);
+		*/
+		
+		if (Validation.validEmail(edt_UserName.getText()))
+	}
+}

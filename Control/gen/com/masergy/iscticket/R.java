@@ -224,10 +224,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int app_name=0x7f050000;
         /**  Slider Menu 
          */
-        public static final int emptystring=0x7f050005;
+        public static final int emptystring=0x7f050008;
         public static final int forgotpassword=0x7f050004;
         public static final int forgotusername=0x7f050003;
-        public static final int textViewListHeaderMSG=0x7f050006;
+        public static final int no=0x7f050007;
+        /**  AlertDialog 
+         */
+        public static final int ok=0x7f050005;
+        public static final int textViewListHeaderMSG=0x7f050009;
+        public static final int yes=0x7f050006;
     }
     public static final class style {
         /** 
