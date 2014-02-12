@@ -24,7 +24,36 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+/*
+ To edit data from sharedpreference
+
+ SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+ editor.putString("text", mSaved.getText().toString());
+ editor.putInt("selection-start", mSaved.getSelectionStart());
+ editor.putInt("selection-end", mSaved.getSelectionEnd());
+ editor.commit();
+
+To retrieve data from shared preference
+
+SharedPreferences prefs = getPreferences(MODE_PRIVATE); 
+String restoredText = prefs.getString("text", null);
+if (restoredText != null) 
+{
+  //mSaved.setText(restoredText, TextView.BufferType.EDITABLE);
+  int selectionStart = prefs.getInt("selection-start", -1);
+  int selectionEnd = prefs.getInt("selection-end", -1);
+  //if (selectionStart != -1 && selectionEnd != -1)
+  //{
+  //  mSaved.setSelection(selectionStart, selectionEnd);
+  //}
+}
+  
+ */
+
+
 public class Send_to_Web {
+	
+	SharedPreferences.Editor sharedPrefEditor;
 	
 	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
 	
@@ -36,12 +65,11 @@ public class Send_to_Web {
 	
 
 	public Send_to_Web(Context context,String name,String password) {
-		// TODO Auto-generated constructor stub
 		this.name=name;
 		this.password=password;
 		this.mContext=context;
-//		sharedPreferences = mContext.getSharedPreferences("com.example.secure_life", Context.MODE_PRIVATE);
-//		editor=sharedPreferences.edit();
+		String fileName = "Login";
+		sharedPrefEditor = ((Activity) context).getSharedPreferences(fileName, context.MODE_PRIVATE).edit();
 	}
 
 	public void postData() {	
@@ -75,17 +103,18 @@ public class Send_to_Web {
 		}
 		@Override
 		protected String doInBackground(Void... params) {
-
-
-			String responce = null;
+			//Variable declaration
+			StringBuilder sb = new StringBuilder();
+			
 			// Create a new HttpClient and Post Header
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(webServiceLink);
 			         httppost.setHeader("Content-Type", "application/json");
 			         
 			try {
-				
-				JSONObject jsonObj = new JSONObject();
+			
+				//Prepare string entity using JSON string to be posted to server	
+				      JSONObject jsonObj = new JSONObject();
 				           try {
 							jsonObj.put("username", name);
 							jsonObj.put("password", password);
@@ -93,26 +122,14 @@ public class Send_to_Web {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-				          
-				System.out.println("jsonObj.toString()="+jsonObj.toString());           
 				StringEntity strEntity = new StringEntity(jsonObj.toString());
 				strEntity.setContentType("application/json");
-				
-//				// Add your data
-//				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//				nameValuePairs.add(new BasicNameValuePair("Name", name));
-//				nameValuePairs.add(new BasicNameValuePair("Password", password));
-				
+				//Set string entity			
 				httppost.setEntity(strEntity);
 
 				// Execute HTTP Post Request
 				HttpResponse response = httpclient.execute(httppost);
-				System.out.println(response);
-				responce=response.toString();
-				
-				
-                 System.out.println("httpresponse" + response.getStatusLine().toString());
-				StringBuilder sb = new StringBuilder();
+                //Read server's response
 				InputStream in = response.getEntity().getContent();
 					    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 					    String line = null;
@@ -120,11 +137,6 @@ public class Send_to_Web {
 					        sb.append(line);
 
 					    }
-					    System.out.println("Response from server-"+sb.toString());
-					    
-					  //  return sb.toString();
-				return sb.toString();
-
 
 			} catch (ClientProtocolException e) {
 				if(mpProgress.isShowing())
@@ -135,9 +147,8 @@ public class Send_to_Web {
 					mpProgress.dismiss();
 				// TODO Auto-generated catch block
 			}
-
-			// TODO Auto-generated method stub
-			return responce;
+			
+			return sb.toString();
 		}
 
 		@Override
@@ -148,19 +159,58 @@ public class Send_to_Web {
 			super.onPostExecute(result);
 			if (result!=null) {
 
-//				editor.putString("Posedtoweb", "yes");
-//				editor.commit();
 				Toast.makeText(mContext, "Response-"+result, 1000).show();
 				System.out.println("Response="+result);
 				
-				
+				try {
+					JSONObject jObj = new JSONObject(result);
+					String authToken = jObj.getString("authToken");
+					String contactId = jObj.getString("contactId");
+					String userId = jObj.getString("userId");
+					String firstName = jObj.getString("firstName");
+					String lastName = jObj.getString("lastName");
+					String email = jObj.getString("email");
+					String phone = jObj.getString("phone");
+					String permViewTicket = jObj.getString("permViewTicket");
+					String permSubmitTicket = jObj.getString("permSubmitTicket");
+					String permViewServiceDetails = jObj.getString("permViewServiceDetails");
+					String permModifyTierNetworkAccess = jObj.getString("permModifyTierNetworkAccess");
+					String permViewVnoc = jObj.getString("permViewVnoc");
+					String custId = jObj.getString("custId");
+					String custName = jObj.getString("custName");
+					/*
+					System.out.println(authToken);
+					System.out.println(contactId);
+					System.out.println(userId);
+					System.out.println(firstName);
+					*/
+					
+					editor.putString("authToken", authToken);
+					editor.putString("contactId", contactId);
+					editor.putString("userId", userId);
+					editor.putString("firstName", firstName);
+					editor.putString("lastName", lastName);
+					editor.putString("email", email);
+					editor.putString("phone", phone);
+					editor.putString("permViewTicket", permViewTicket);
+					editor.putString("permSubmitTicket", permSubmitTicket);
+					editor.putString("permViewServiceDetails", permViewServiceDetails);
+					editor.putString("permModifyTierNetworkAccess", permModifyTierNetworkAccess);
+					editor.putString("permViewVnoc", permViewVnoc);
+					editor.putString("custId", custId);
+					editor.putString("custName", custName);
+					editor.commit();
+					
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			else
 			{
 				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
-			//((Activity)mContext).finish();
 		}
 
 	}
