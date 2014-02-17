@@ -1,0 +1,11 @@
+package com.example.testproject;
+
+public class Ticket {
+
+    int ticketId;
+    String subject;
+    String status;
+    long createDate;
+    long closeDate;
+
+}

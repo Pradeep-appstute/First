@@ -10,6 +10,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
+import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 public class Activity_SliderMenu extends SlidingFragmentActivity {
 
@@ -34,6 +35,9 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 	    ft.add(R.id.linlayout_menuview, new ListFragment_ListMenu());
 	    ft.commit();
+	    
+	    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.this);
+	    instance.postData();
 	}//onCreate
 }
 

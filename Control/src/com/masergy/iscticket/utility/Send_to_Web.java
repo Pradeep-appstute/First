@@ -59,7 +59,8 @@ public class Send_to_Web {
 	SharedPreferences.Editor sharedPrefEditor;
 	
 	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
-	
+//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/auth";
+	static String fileName = "Login";
 	String name,password;
 	Context mContext;
 	ProgressDialog mpProgress;
@@ -68,7 +69,7 @@ public class Send_to_Web {
 		this.name=name;
 		this.password=password;
 		this.mContext=context;
-		String fileName = "Login";
+		
 		sharedPrefEditor = ((Activity) context).getSharedPreferences(fileName, context.MODE_PRIVATE).edit();
 	}
 

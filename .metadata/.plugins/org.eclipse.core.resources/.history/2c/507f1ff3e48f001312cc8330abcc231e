@@ -1,7 +1,0 @@
-package com.masergy.iscticket.slidermenu;
-
-import android.widget.ArrayAdapter;
-
-public class ListAdapter extends ArrayAdapter {
-
-}

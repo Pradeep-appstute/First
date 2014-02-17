@@ -1,0 +1,111 @@
+package com.example.testproject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+
+public class MainActivity extends Activity {
+
+ArrayList<Ticket> ticketList;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		
+		InputStream is;
+		byte[] buffer = null;
+		try {
+			is = this.getApplicationContext().getAssets().open("tickets.json");
+			int size = is.available();
+			buffer = new byte[size];
+			is.read(buffer);
+			is.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String bufferString = new String(buffer);
+		Log.d("TAG", "bufferString="+bufferString);
+		
+        try {
+
+		     
+		    Log.d("TAG", "1>>>>>>>>>>>>>>>");
+		  //convert string to JSONArray
+		    JSONArray jsonArray = new JSONArray(bufferString);
+		    //parse an Object from a random index in the JSONArray
+		     
+		    //you can continue to set the different attributes of the Book object using key/value pairs from the Book class (e.g. setPageNum, setChapter, etc).
+		    
+		    Log.d("TAG", "2>>>>>>>>>>>>>>>");
+		    // Getting JSON Array node
+		    // looping through All Contacts
+		    Log.d("TAG", "jsonArray.length()="+jsonArray.length());
+		    for (int i = 0; i < jsonArray.length(); i++) {
+		    	Ticket ticket = new Ticket();
+		    	Log.d("TAG", i+">>>>>>>>>>>>>>>");
+		    	JSONObject c = jsonArray.getJSONObject(i);
+		    	
+//		           ticket.ticketId = c.get("ticketId");
+		    	
+		    	//if (c.get("subject")!=null)
+		    		ticket.subject = c.getString("subject");
+//		    	else
+//		    		ticket.subject = "";
+		    	
+//		    	if (c.get("status")!=null || c.get("status")!="")
+		    		ticket.status = c.getString("status");
+//		    	else
+//		    		ticket.status = "";
+		    	
+//		    	if (c.getString("createDate")!="null")
+//		    		ticket.createDate = c.getLong("createDate");
+//		    	else
+//		    		ticket.createDate = -1;
+		    	
+//		    	if (c.getString("closeDate")!="null")
+//		    		ticket.closeDate = c.getLong("closeDate");
+//		    	else
+//		    		ticket.closeDate = -1;
+
+//		        Log.d("tag", ""+ticket.ticketId);
+//		        Log.d("tag", ""+ticket.subject);
+//		        Log.d("tag", ""+ticket.status);
+//		        Log.d("tag", ""+ticket.createDate);
+//		        Log.d("tag", ""+ticket.closeDate);
+//		        
+		        // Phone node is JSON Object
+
+
+		        // adding each child node to HashMap key => value
+
+
+		        // adding contact to contact list
+//		        if (ticket!=null)
+//		        ticketList.add(ticket);
+		    }
+		} catch (JSONException e) {
+		    e.printStackTrace();
+		}
+		
+        
+        Log.d("TAG", "Size="+ticketList.size());
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}

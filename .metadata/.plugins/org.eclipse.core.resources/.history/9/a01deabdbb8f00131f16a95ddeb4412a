@@ -1,7 +1,0 @@
-package com.masergy.iscticket;
-
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-
-public class HomeActivity extends SlidingActivity {
-
-}

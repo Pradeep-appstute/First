@@ -1,0 +1,212 @@
+package com.example.testproject;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+public class MainActivity extends Activity {
+String json_text = "[
+  {
+    "ticketId": 189592,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392350746000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189589,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392210181000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189588,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392209829000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189587,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392120662000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189586,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Question",
+    "status": "Open",
+    "createDate": 1392120389000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189585,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392120302000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189584,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392120263000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189583,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392120009000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189582,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392119812000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189581,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392117972000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189580,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392111896000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189579,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392109037000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189578,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392108466000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189577,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392107746000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189576,
+    "subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+    "status": "Open",
+    "createDate": 1392104928000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189575,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392104575000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189574,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392104371000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189573,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392103616000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189572,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392101795000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189571,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392101646000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189570,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392101363000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189569,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392101113000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189568,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392100448000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189567,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392099385000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189566,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392098583000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189565,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392098494000,
+    "closeDate": null
+  },
+  {
+    "ticketId": 189564,
+    "subject": "MB095666 / Acme Labs / Irving, TX / Upgrade/Provisioning",
+    "status": "Open",
+    "createDate": 1392096506000,
+    "closeDate": null
+  }
+]";
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
