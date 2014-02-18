@@ -2,10 +2,17 @@ package com.example.testproject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +21,7 @@ import android.view.Menu;
 public class MainActivity extends Activity {
 
 ArrayList<Ticket> ticketList;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -106,40 +114,48 @@ ArrayList<Ticket> ticketList;
          * http://stackoverflow.com/questions/16388268/getting-current-week-days-with-dates
          * 
          * 
-         Calendar c = Calendar.getInstance();
-c.set(Calendar.DAY_OF_MONTH, 5);
-c.set(Calendar.MONTH, 7);
-c.set(Calendar.YEAR, 2013);
+         * */
+java.util.Date todaysDate=new java.util.Date((long)ticketList.get(0).createDate*1000);
+Calendar c = Calendar.getInstance();
+
+System.out.println("todaysDate time => " + todaysDate);
+System.out.println("Current time => " + c.getTime());
+c.setTime(todaysDate);
 
 int weekNo = c.get(Calendar.WEEK_OF_YEAR);
+Log.d("tag", "weekNo="+weekNo);
 c.set(Calendar.WEEK_OF_YEAR, weekNo);
-
-c.clear();
-
-c.set(Calendar.WEEK_OF_YEAR, weekNo);
-c.set(Calendar.YEAR, 2013);
-
+c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
 SimpleDateFormat formatter = new SimpleDateFormat("EEE dd/MM/yyyy"); 
-Date startDate = c.getTime();
-c.add(Calendar.DATE, 1);
-for (int i = 0; i < 5; i++) {
-    Log.d(formatter.format(c.getTime()));
+for (int i = 0; i < 7; i++) {
+    Log.d("Current Week","Date="+formatter.format(c.getTime()));
     c.add(Calendar.DATE, 1);
 }
-         */
-        for(int index=0; index<ticketList.size(); index++)
-        {
-        	java.util.Date time=new java.util.Date((long)ticketList.get(index).createDate*1000);
-        	Log.d("tag", "time="+time);
-        }
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
+//Previous week days
+for (int i = 0; i < 14; i++) {
+    c.add(Calendar.DATE, -1);
+}
+for (int i = 0; i < 7; i++) {
+    Log.d("Last Week","Date="+formatter.format(c.getTime()));
+    c.add(Calendar.DATE, 1);
+}
+
+Log.d("Month","MonthMonthMonthMonthMonthMonthMonthMonthMonth");
+//Find the month
+c.setTime(todaysDate);
+c.set(Calendar.DATE, 1);
+
+for (int i = 0; i < 100; i++) {
+	Log.d("Month","Date="+formatter.format(c.getTime()));
+	c.add(Calendar.DATE, 1);
+	
+	if(c.get(Calendar.DATE)==1) //break if we reach next month
+	break;
+}
+
+
+}//onCreate
 }
