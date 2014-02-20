@@ -1,0 +1,10 @@
+package com.masergy.iscticket.ContentView;
+
+public class Ticket {
+
+    public long ticketId;
+    public String subject;
+    public String status;
+    public long createDate;
+    public long closeDate;
+}
