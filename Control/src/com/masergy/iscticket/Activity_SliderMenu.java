@@ -30,14 +30,14 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    slidingMenu.setShadowDrawable(R.drawable.shadow);
 	    slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
 	    slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-	    
+	 
+	    //Custom settings
+	  
 	    
 	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 	    ft.add(R.id.linlayout_menuview, new ListFragment_ListMenu());
 	    ft.commit();
 	    
-	    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.this);
-	    instance.postData();
 	}//onCreate
 }
 

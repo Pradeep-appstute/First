@@ -41,6 +41,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.ContentView.Ticket;
 
 /*
@@ -300,6 +301,7 @@ public class Webservice_GetTicketsList {
 
 				// Toast.makeText(mContext, "Response-"+result, 1000).show();
 				// System.out.println("Response="+result);
+				Fragment_Tickets.imgButtonOpen.performClick();
 
 			} else {
 				Toast.makeText(mContext, "No response from server", 1000)

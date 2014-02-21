@@ -38,7 +38,7 @@ public class Fragment_Tickets extends Fragment {
 	// Constant variable declaration
 	final int OpenTab = 1, ClosedTab = 2, MaintTab = 3, SubmitTab = 4;
 	// Tickets Tab
-	ImageButton imgButtonOpen, imgButtonClosed, imgButtonMaint,
+	public static ImageButton imgButtonOpen, imgButtonClosed, imgButtonMaint,
 			imgButtonSubmit;
 
 	@Override
@@ -57,7 +57,8 @@ public class Fragment_Tickets extends Fragment {
 
 		// preparing list data
 		prepareListData(OpenTab);
-
+		
+		
 		listAdapter = new ExpandableListAdapter(Activity_SliderMenu.context,
 				listDataHeader, listDataChild);
 
@@ -82,10 +83,11 @@ public class Fragment_Tickets extends Fragment {
 
 			@Override
 			public void onGroupExpand(int groupPosition) {
-				Toast.makeText(
-						Activity_SliderMenu.context.getApplicationContext(),
-						listDataHeader.get(groupPosition) + " Expanded",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition) + " Expanded",
+//						Toast.LENGTH_SHORT).show();
+				Log.d("tag", "groupPosition="+groupPosition);
 			}
 		});
 
@@ -94,10 +96,10 @@ public class Fragment_Tickets extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				Toast.makeText(
-						Activity_SliderMenu.context.getApplicationContext(),
-						listDataHeader.get(groupPosition) + " Collapsed",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition) + " Collapsed",
+//						Toast.LENGTH_SHORT).show();
 
 			}
 		});
@@ -109,17 +111,19 @@ public class Fragment_Tickets extends Fragment {
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
 				// TODO Auto-generated method stub
-				Toast.makeText(
-						Activity_SliderMenu.context.getApplicationContext(),
-						listDataHeader.get(groupPosition)
-								+ " : "
-								+ listDataChild.get(
-										listDataHeader.get(groupPosition)).get(
-										childPosition), Toast.LENGTH_SHORT)
-						.show();
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition)
+//								+ " : "
+//								+ listDataChild.get(
+//										listDataHeader.get(groupPosition)).get(
+//										childPosition), Toast.LENGTH_SHORT)
+//						.show();
 				return false;
 			}
 		});
+		
+		
 		// ===========Tab Buttons===============
 		imgButtonOpen = (ImageButton) v.findViewById(R.id.imgButtonOpen);
 		imgButtonOpen.setOnClickListener(new OnClickListener() {
@@ -127,6 +131,15 @@ public class Fragment_Tickets extends Fragment {
 			public void onClick(View v) {
 				prepareListData(OpenTab);
 				listAdapter.notifyDataSetInvalidated();
+				//Expand the list view by default
+				if(!expListView.isGroupExpanded(0))
+				expListView.expandGroup(0);
+				if(!expListView.isGroupExpanded(1))
+				expListView.expandGroup(1);
+				if(!expListView.isGroupExpanded(2))
+				expListView.expandGroup(2);
+				if(!expListView.isGroupExpanded(3))
+				expListView.expandGroup(3);
 			}
 		});
 		imgButtonClosed = (ImageButton) v.findViewById(R.id.imgButtonClosed);
@@ -135,6 +148,14 @@ public class Fragment_Tickets extends Fragment {
 			public void onClick(View v) {
 				prepareListData(ClosedTab);
 				listAdapter.notifyDataSetInvalidated();
+				if(!expListView.isGroupExpanded(0))
+				expListView.expandGroup(0);
+				if(!expListView.isGroupExpanded(1))
+				expListView.expandGroup(1);
+				if(!expListView.isGroupExpanded(2))
+				expListView.expandGroup(2);
+				if(!expListView.isGroupExpanded(3))
+				expListView.expandGroup(3);
 			}
 		});
 		imgButtonMaint = (ImageButton) v.findViewById(R.id.imgButtonMaint);
@@ -143,6 +164,14 @@ public class Fragment_Tickets extends Fragment {
 			public void onClick(View v) {
 				prepareListData(MaintTab);
 				listAdapter.notifyDataSetInvalidated();
+				if(!expListView.isGroupExpanded(0))
+				expListView.expandGroup(0);
+				if(!expListView.isGroupExpanded(1))
+				expListView.expandGroup(1);
+				if(!expListView.isGroupExpanded(2))
+				expListView.expandGroup(2);
+				if(!expListView.isGroupExpanded(3))
+				expListView.expandGroup(3);
 			}
 		});
 		imgButtonSubmit = (ImageButton) v.findViewById(R.id.imgButtonSubmit);
@@ -150,6 +179,14 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public void onClick(View v) {
 				prepareListData(SubmitTab);
+				if(!expListView.isGroupExpanded(0))
+				expListView.expandGroup(0);
+				if(!expListView.isGroupExpanded(1))
+				expListView.expandGroup(1);
+				if(!expListView.isGroupExpanded(2))
+				expListView.expandGroup(2);
+				if(!expListView.isGroupExpanded(3))
+				expListView.expandGroup(3);
 			}
 		});
 		// =====================================

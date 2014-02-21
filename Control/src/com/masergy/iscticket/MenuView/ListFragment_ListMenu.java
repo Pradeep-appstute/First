@@ -66,6 +66,8 @@ public class ListFragment_ListMenu extends ListFragment {
 		position--;
 		switch (position) {
 		case 0:
+		    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
+		    instance.postData();
 			newContent = new Fragment_Tickets();
 			break;
 		case 1:
