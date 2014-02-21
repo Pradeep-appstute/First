@@ -61,10 +61,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 
 		Log.d("tag", "childPosition%2==0="+(childPosition%2==0));
-		if (childPosition%2==0)	
+		if (childPosition%2==0)
+		{
+			
 			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
-		else
-			convertView.setBackgroundColor(Color.WHITE);
+		}
 		
 		TextView txtTicketNum = (TextView) convertView
 				.findViewById(R.id.lblTicketNum);

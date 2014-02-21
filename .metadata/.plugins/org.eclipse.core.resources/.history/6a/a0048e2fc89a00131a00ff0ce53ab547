@@ -19,7 +19,6 @@
             android:paddingLeft="5dip"
             android:paddingTop="5dip"
             android:paddingRight="5dip"
-            android:paddingBottom="5dip"
             />
 
         <TextView
@@ -30,7 +29,6 @@
             android:textSize="12dip" 
             android:paddingTop="5dip"
             android:paddingRight="50dip"
-            android:paddingBottom="5dip"
             />
 
         <TextView
@@ -43,7 +41,6 @@
             android:paddingLeft="5dip"
             android:paddingTop="5dip"
             android:paddingRight="5dip"
-            android:paddingBottom="5dip"
             
             />
 
@@ -54,7 +51,6 @@
             android:textColor="#000000"
             android:textSize="12dip"
             android:paddingTop="5dip"
-            android:paddingBottom="5dip"
              />
     </LinearLayout>
 
