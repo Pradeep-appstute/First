@@ -79,22 +79,22 @@ public class Webservice_GetTicketsList {
 	ArrayList<Date> currentMonthList;
 
 	// Set of open tickets
-	ArrayList<Ticket> open_todaysTicketList;
-	ArrayList<Ticket> open_currentWeekTicketList;
-	ArrayList<Ticket> open_lastWeekTicketList;
-	ArrayList<Ticket> open_currentMonthTicketList;
+	public static ArrayList<Ticket> open_todaysTicketList;
+	public static ArrayList<Ticket> open_currentWeekTicketList;
+	public static ArrayList<Ticket> open_lastWeekTicketList;
+	public static ArrayList<Ticket> open_currentMonthTicketList;
 
 	// Set of closed tickets
-	ArrayList<Ticket> closed_todaysTicketList;
-	ArrayList<Ticket> closed_currentWeekTicketList;
-	ArrayList<Ticket> closed_lastWeekTicketList;
-	ArrayList<Ticket> closed_currentMonthTicketList;
+	public static ArrayList<Ticket> closed_todaysTicketList;
+	public static ArrayList<Ticket> closed_currentWeekTicketList;
+	public static ArrayList<Ticket> closed_lastWeekTicketList;
+	public static ArrayList<Ticket> closed_currentMonthTicketList;
 
 	// Set of maintenance tickets
-	ArrayList<Ticket> maint_todaysTicketList;
-	ArrayList<Ticket> maint_currentWeekTicketList;
-	ArrayList<Ticket> maint_lastWeekTicketList;
-	ArrayList<Ticket> maint_currentMonthTicketList;
+	public static ArrayList<Ticket> maint_todaysTicketList;
+	public static ArrayList<Ticket> maint_currentWeekTicketList;
+	public static ArrayList<Ticket> maint_lastWeekTicketList;
+	public static ArrayList<Ticket> maint_currentMonthTicketList;
 
 	SharedPreferences.Editor sharedPrefEditor;
 

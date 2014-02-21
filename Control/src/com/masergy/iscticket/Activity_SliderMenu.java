@@ -1,13 +1,10 @@
 package com.masergy.iscticket;
 
-import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
@@ -16,12 +13,15 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 
 	//Variable declaration
 	public static SlidingMenu slidingMenu;
+	public static Context context;
 
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);        
 	    setContentView(R.layout.contentview);
 	    setBehindContentView(R.layout.menuview);
 	 
+	    context = Activity_SliderMenu.this;
+	    
 	    slidingMenu = getSlidingMenu();
 	    slidingMenu.setMode(SlidingMenu.LEFT);
 	    slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
