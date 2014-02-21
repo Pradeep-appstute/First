@@ -4,29 +4,43 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.masergy.iscticket.Activity_SliderMenu;
-import com.masergy.iscticket.R;
-import com.masergy.iscticket.utility.Webservice_GetTicketsList;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 public class Fragment_Tickets extends Fragment {
-	
+
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
 	List<String> listDataHeader;
 	HashMap<String, List<Ticket>> listDataChild;
+	List<Ticket> today;
+	List<Ticket> thisWeek;
+	List<Ticket> lastWeek;
+	List<Ticket> last30Days;
+
+	// Constant variable declaration
+	final int OpenTab = 1, ClosedTab = 2, MaintTab = 3, SubmitTab = 4;
+	// Tickets Tab
+	ImageButton imgButtonOpen, imgButtonClosed, imgButtonMaint,
+			imgButtonSubmit;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -36,17 +50,16 @@ public class Fragment_Tickets extends Fragment {
 				R.layout.fragment_tickets, container, false);
 
 		// v.setBackgroundColor(Color.RED);
-		
-		
-		
-		//================================================================
+
+		// ================================================================
 		// get the listview
 		expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
 
 		// preparing list data
-		prepareListData();
+		prepareListData(OpenTab);
 
-		listAdapter = new ExpandableListAdapter(Activity_SliderMenu.context, listDataHeader, listDataChild);
+		listAdapter = new ExpandableListAdapter(Activity_SliderMenu.context,
+				listDataHeader, listDataChild);
 
 		// setting list adapter
 		expListView.setAdapter(listAdapter);
@@ -69,7 +82,8 @@ public class Fragment_Tickets extends Fragment {
 
 			@Override
 			public void onGroupExpand(int groupPosition) {
-				Toast.makeText(Activity_SliderMenu.context.getApplicationContext(),
+				Toast.makeText(
+						Activity_SliderMenu.context.getApplicationContext(),
 						listDataHeader.get(groupPosition) + " Expanded",
 						Toast.LENGTH_SHORT).show();
 			}
@@ -80,7 +94,8 @@ public class Fragment_Tickets extends Fragment {
 
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				Toast.makeText(Activity_SliderMenu.context.getApplicationContext(),
+				Toast.makeText(
+						Activity_SliderMenu.context.getApplicationContext(),
 						listDataHeader.get(groupPosition) + " Collapsed",
 						Toast.LENGTH_SHORT).show();
 
@@ -105,10 +120,39 @@ public class Fragment_Tickets extends Fragment {
 				return false;
 			}
 		});
-		//================================================================
-		
-		
-		
+		// ===========Tab Buttons===============
+		imgButtonOpen = (ImageButton) v.findViewById(R.id.imgButtonOpen);
+		imgButtonOpen.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				prepareListData(OpenTab);
+				listAdapter.notifyDataSetInvalidated();
+			}
+		});
+		imgButtonClosed = (ImageButton) v.findViewById(R.id.imgButtonClosed);
+		imgButtonClosed.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				prepareListData(ClosedTab);
+				listAdapter.notifyDataSetInvalidated();
+			}
+		});
+		imgButtonMaint = (ImageButton) v.findViewById(R.id.imgButtonMaint);
+		imgButtonMaint.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				prepareListData(MaintTab);
+				listAdapter.notifyDataSetInvalidated();
+			}
+		});
+		imgButtonSubmit = (ImageButton) v.findViewById(R.id.imgButtonSubmit);
+		imgButtonSubmit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				prepareListData(SubmitTab);
+			}
+		});
+		// =====================================
 
 		return v;
 	}
@@ -116,64 +160,176 @@ public class Fragment_Tickets extends Fragment {
 	/*
 	 * Preparing the list data
 	 */
-	private void prepareListData() {
-		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<Ticket>>();
+	private void prepareListData(int tabName) {
 
-		// Adding child data
-		listDataHeader.add("Today");
-		listDataHeader.add("This Week");
-		listDataHeader.add("Last Week");
-		listDataHeader.add("Last 30 days");
+		// start===initialization=================================
+		if (listDataHeader == null)
+			listDataHeader = new ArrayList<String>();
+		if (listDataChild == null)
+			listDataChild = new HashMap<String, List<Ticket>>();
 
-		// Adding child data
-		List<Ticket> today = new ArrayList<Ticket>();
-		
-		if (Webservice_GetTicketsList.open_todaysTicketList.size()>0)
-		{
-			int len = Webservice_GetTicketsList.open_todaysTicketList.size(); 
-			for(int i=0; i < len; i++)
+		if (listDataHeader != null && listDataChild != null) {
+			if (listDataHeader.size() == 0 && listDataChild.size() == 0)
 			{
-				today.add(Webservice_GetTicketsList.open_todaysTicketList.get(i));
-			}	
+				listDataHeader.clear();
+				// Adding child data
+		    listDataHeader.add("Today");
+			listDataHeader.add("This Week");
+			listDataHeader.add("Last Week");
+			listDataHeader.add("Last 30 days");
+			}
 		}
 		
+		if (today == null)
+			today = new ArrayList<Ticket>();
+		if (thisWeek == null)
+			thisWeek = new ArrayList<Ticket>();
+		if (lastWeek == null)
+			lastWeek = new ArrayList<Ticket>();
+		if (last30Days == null)
+			last30Days = new ArrayList<Ticket>();
+		// end===initialization=================================
 
-		List<Ticket> thisWeek = new ArrayList<Ticket>();
-		if (Webservice_GetTicketsList.open_currentWeekTicketList.size()>0)
-		{
-			int len = Webservice_GetTicketsList.open_currentWeekTicketList.size(); 
-			for(int i=0; i < len; i++)
-			{
-				today.add(Webservice_GetTicketsList.open_currentWeekTicketList.get(i));
-			}	
-		}
-		
-		
-		List<Ticket> lastWeek = new ArrayList<Ticket>();
-		if (Webservice_GetTicketsList.open_lastWeekTicketList.size()>0)
-		{
-			int len = Webservice_GetTicketsList.open_lastWeekTicketList.size(); 
-			for(int i=0; i < len; i++)
-			{
-				today.add(Webservice_GetTicketsList.open_lastWeekTicketList.get(i));
-			}	
-		}
-		
-		List<Ticket> last30Days = new ArrayList<Ticket>();
-		if (Webservice_GetTicketsList.open_currentMonthTicketList.size()>0)
-		{
-			int len = Webservice_GetTicketsList.open_currentMonthTicketList.size(); 
-			for(int i=0; i < len; i++)
-			{
-				today.add(Webservice_GetTicketsList.open_currentMonthTicketList.get(i));
-			}	
+		if (tabName == OpenTab) {
+			today.clear();
+			thisWeek.clear();
+			lastWeek.clear();
+			last30Days.clear();
+
+			if (Webservice_GetTicketsList.open_todaysTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.open_todaysTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					today.add(Webservice_GetTicketsList.open_todaysTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.open_currentWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.open_currentWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					thisWeek.add(Webservice_GetTicketsList.open_currentWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.open_lastWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.open_lastWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					lastWeek.add(Webservice_GetTicketsList.open_lastWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.open_currentMonthTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.open_currentMonthTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					last30Days
+							.add(Webservice_GetTicketsList.open_currentMonthTicketList
+									.get(i));
+				}
+			}
+		} else if (tabName == ClosedTab) {
+
+			today.clear();
+			thisWeek.clear();
+			lastWeek.clear();
+			last30Days.clear();
+
+			if (Webservice_GetTicketsList.closed_todaysTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.closed_todaysTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					today.add(Webservice_GetTicketsList.closed_todaysTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.closed_currentWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.closed_currentWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					thisWeek.add(Webservice_GetTicketsList.closed_currentWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.closed_lastWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.closed_lastWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					lastWeek.add(Webservice_GetTicketsList.closed_lastWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.closed_currentMonthTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.closed_currentMonthTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					last30Days
+							.add(Webservice_GetTicketsList.closed_currentMonthTicketList
+									.get(i));
+				}
+			}
+
+		} else if (tabName == MaintTab) {
+
+			today.clear();
+			thisWeek.clear();
+			lastWeek.clear();
+			last30Days.clear();
+
+			if (Webservice_GetTicketsList.maint_todaysTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.maint_todaysTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					today.add(Webservice_GetTicketsList.maint_todaysTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.maint_currentWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.maint_currentWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					thisWeek.add(Webservice_GetTicketsList.maint_currentWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.maint_lastWeekTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.maint_lastWeekTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					lastWeek.add(Webservice_GetTicketsList.maint_lastWeekTicketList
+							.get(i));
+				}
+			}
+
+			if (Webservice_GetTicketsList.maint_currentMonthTicketList.size() > 0) {
+				int len = Webservice_GetTicketsList.maint_currentMonthTicketList
+						.size();
+				for (int i = 0; i < len; i++) {
+					last30Days
+							.add(Webservice_GetTicketsList.maint_currentMonthTicketList
+									.get(i));
+				}
+			}
+		} else if (tabName == SubmitTab) {
+
 		}
 
-
+		listDataChild.clear();
 		listDataChild.put(listDataHeader.get(0), today); // Header, Child data
 		listDataChild.put(listDataHeader.get(1), thisWeek);
 		listDataChild.put(listDataHeader.get(2), lastWeek);
 		listDataChild.put(listDataHeader.get(3), last30Days);
+		
+//		Log.d("tag", "listDataChild size="+listDataChild.size());
+//		Log.d("tag", "listDataHeader size="+listDataHeader.size());
 	}
 }

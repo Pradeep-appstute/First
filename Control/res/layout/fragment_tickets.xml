@@ -19,7 +19,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/open"
+            android:id="@+id/imgButtonOpen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
         </ImageButton>
 
         <ImageButton
-            android:id="@+id/closed"
+            android:id="@+id/imgButtonClosed"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
         </ImageButton>
 
         <ImageButton
-            android:id="@+id/maint"
+            android:id="@+id/imgButtonMaint"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,7 +43,7 @@
         </ImageButton>
 
         <ImageButton
-            android:id="@+id/submit"
+            android:id="@+id/imgButtonSubmit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
