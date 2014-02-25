@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,14 +20,17 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 public class Fragment_Tickets extends Fragment {
 
+	LinearLayout lin_rootview;
+	ViewGroup viewgroup_submitview;
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
 	List<String> listDataHeader;
@@ -46,14 +51,14 @@ public class Fragment_Tickets extends Fragment {
 			Bundle savedInstanceState) {
 
 		// construct the RelativeLayout
-		LinearLayout v = (LinearLayout) inflater.inflate(
+		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_tickets, container, false);
 
 		// v.setBackgroundColor(Color.RED);
 
 		// ================================================================
 		// get the listview
-		expListView = (ExpandableListView) v.findViewById(R.id.lvExp);
+		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
 
 		// preparing list data
 		prepareListData(OpenTab);
@@ -125,7 +130,7 @@ public class Fragment_Tickets extends Fragment {
 		
 		
 		// ===========Tab Buttons===============
-		imgButtonOpen = (ImageButton) v.findViewById(R.id.imgButtonOpen);
+		imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
 		imgButtonOpen.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -142,7 +147,7 @@ public class Fragment_Tickets extends Fragment {
 				expListView.expandGroup(3);
 			}
 		});
-		imgButtonClosed = (ImageButton) v.findViewById(R.id.imgButtonClosed);
+		imgButtonClosed = (ImageButton) lin_rootview.findViewById(R.id.imgButtonClosed);
 		imgButtonClosed.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -158,7 +163,7 @@ public class Fragment_Tickets extends Fragment {
 				expListView.expandGroup(3);
 			}
 		});
-		imgButtonMaint = (ImageButton) v.findViewById(R.id.imgButtonMaint);
+		imgButtonMaint = (ImageButton) lin_rootview.findViewById(R.id.imgButtonMaint);
 		imgButtonMaint.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -174,24 +179,52 @@ public class Fragment_Tickets extends Fragment {
 				expListView.expandGroup(3);
 			}
 		});
-		imgButtonSubmit = (ImageButton) v.findViewById(R.id.imgButtonSubmit);
+		imgButtonSubmit = (ImageButton) lin_rootview.findViewById(R.id.imgButtonSubmit);
 		imgButtonSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				prepareListData(SubmitTab);
-				if(!expListView.isGroupExpanded(0))
-				expListView.expandGroup(0);
-				if(!expListView.isGroupExpanded(1))
-				expListView.expandGroup(1);
-				if(!expListView.isGroupExpanded(2))
-				expListView.expandGroup(2);
-				if(!expListView.isGroupExpanded(3))
-				expListView.expandGroup(3);
+	
+				// Remove expandable list view
+				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
+				
+				// Add submitview
+				viewgroup_submitview = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.submit_view, (ViewGroup) lin_rootview,false);
+				((ViewGroup) lin_rootview).addView(viewgroup_submitview);
+				
+				SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.context.MODE_PRIVATE);    
+		        
+		        String firstName = prefs.getString("firstName", "");
+		        if (firstName != null) 
+		        {
+		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewNameValue);
+		        	         name.setText(firstName);
+		        }
+		        
+		        String email = prefs.getString("email", "");
+		        if (email != null) 
+		        {
+		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewEmailValue);
+		        	         name.setText(email);
+		        }
+		       
+		        
+		        String phone = prefs.getString("phone", "");
+		        if (email != null) 
+		        {
+		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewPhoneValue);
+		        	         name.setText(phone);
+		        }
+		        
 			}
 		});
 		// =====================================
 
-		return v;
+		return lin_rootview;
+	}
+
+	private void init() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*

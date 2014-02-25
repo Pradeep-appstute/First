@@ -186,58 +186,76 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class id {
         public static final int activity_main_content_fragment=0x7f07000b;
         public static final int buttonLogin=0x7f070008;
+        public static final int editTextDescription=0x7f070021;
         public static final int editTextPassword=0x7f070007;
         public static final int editTextUserName=0x7f070006;
         public static final int fullscreen=0x7f070003;
+        public static final int imageButton1=0x7f07000c;
         public static final int imageViewMasergy=0x7f070005;
-        public static final int imgButtonClosed=0x7f07000f;
-        public static final int imgButtonMaint=0x7f070010;
-        public static final int imgButtonOpen=0x7f07000e;
-        public static final int imgButtonSubmit=0x7f070011;
-        public static final int lblDateCreated=0x7f070015;
-        public static final int lblListHeader=0x7f070013;
-        public static final int lblSubject=0x7f070016;
-        public static final int lblTicketNum=0x7f070014;
+        public static final int imgButtonClosed=0x7f070010;
+        public static final int imgButtonMaint=0x7f070011;
+        public static final int imgButtonOpen=0x7f07000f;
+        public static final int imgButtonSubmit=0x7f070012;
+        public static final int lblDateCreated=0x7f070016;
+        public static final int lblListHeader=0x7f070014;
+        public static final int lblSubject=0x7f070017;
+        public static final int lblTicketNum=0x7f070015;
         public static final int left=0x7f070000;
-        public static final int lin_fragment_tickets=0x7f07000c;
-        public static final int linlayout_menuview=0x7f070017;
-        public static final int lvExp=0x7f070012;
+        public static final int lin_fragment_tickets=0x7f07000d;
+        public static final int linlayout_menuview=0x7f070018;
+        public static final int lvExp=0x7f070013;
         public static final int margin=0x7f070002;
-        public static final int pager=0x7f07000d;
+        public static final int pager=0x7f07000e;
         public static final int right=0x7f070001;
-        public static final int row_icon=0x7f070018;
-        public static final int row_title=0x7f070019;
+        public static final int row_icon=0x7f070019;
+        public static final int row_title=0x7f07001a;
         public static final int selected_view=0x7f070004;
-        public static final int slidingmenumain=0x7f07001a;
+        public static final int slidingmenumain=0x7f07001b;
+        public static final int spinnerBundle=0x7f070020;
+        public static final int spinnerSubject=0x7f07001f;
+        public static final int textViewEmailValue=0x7f07001d;
         public static final int textViewForgotPassword=0x7f07000a;
         public static final int textViewForgotUserName=0x7f070009;
+        public static final int textViewNameValue=0x7f07001c;
+        public static final int textViewPhoneValue=0x7f07001e;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
         public static final int contentview=0x7f030001;
-        public static final int fragment_tickets=0x7f030002;
-        public static final int list_group=0x7f030003;
-        public static final int list_item=0x7f030004;
-        public static final int listfragment_listmenu=0x7f030005;
-        public static final int menuview=0x7f030006;
-        public static final int row=0x7f030007;
-        public static final int slidingmenu=0x7f030008;
-        public static final int slidingmenumain=0x7f030009;
-        public static final int ticketfragment=0x7f03000a;
+        public static final int custom_title=0x7f030002;
+        public static final int fragment_tickets=0x7f030003;
+        public static final int list_group=0x7f030004;
+        public static final int list_item=0x7f030005;
+        public static final int listfragment_listmenu=0x7f030006;
+        public static final int menuview=0x7f030007;
+        public static final int row=0x7f030008;
+        public static final int slidingmenu=0x7f030009;
+        public static final int slidingmenumain=0x7f03000a;
+        public static final int submit_view=0x7f03000b;
+        public static final int ticketfragment=0x7f03000c;
     }
     public static final class string {
         public static final int Login=0x7f050002;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int bundle=0x7f05000e;
+        public static final int createticket=0x7f050010;
+        public static final int description=0x7f05000f;
+        public static final int email=0x7f05000b;
         /**  Slider Menu 
          */
         public static final int emptystring=0x7f050008;
         public static final int forgotpassword=0x7f050004;
         public static final int forgotusername=0x7f050003;
+        /**  Submit Screen 
+         */
+        public static final int name=0x7f05000a;
         public static final int no=0x7f050007;
         /**  AlertDialog 
          */
         public static final int ok=0x7f050005;
+        public static final int phone=0x7f05000c;
+        public static final int subject=0x7f05000d;
         public static final int textViewListHeaderMSG=0x7f050009;
         public static final int yes=0x7f050006;
     }

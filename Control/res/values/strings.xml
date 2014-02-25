@@ -14,4 +14,13 @@
     <!-- Slider Menu -->
     <string name="emptystring">Control</string>
     <string name="textViewListHeaderMSG">MASERGY</string>
+    
+   <!-- Submit Screen -->
+   <string name="name">Name:</string>
+   <string name="email">Email:</string>
+   <string name="phone">Phone:</string>
+   <string name="subject">Subject:</string>
+   <string name="bundle">Bundle:</string>
+   <string name="description">Description:</string>
+   <string name="createticket">Create Tciket</string>
 </resources>

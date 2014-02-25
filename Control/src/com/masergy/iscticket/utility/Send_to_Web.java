@@ -60,7 +60,7 @@ public class Send_to_Web {
 	
 	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
 //	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/auth";
-	static String fileName = "Login";
+	public static String fileName = "Login";
 	String name,password;
 	Context mContext;
 	ProgressDialog mpProgress;
@@ -97,7 +97,7 @@ public class Send_to_Web {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					mpProgress= ProgressDialog.show(mContext, "Logging in", "Please wait for a moment...");
+					mpProgress= ProgressDialog.show(mContext, "Alert!", "Please wait for a moment...");
 				}
 			});
 			

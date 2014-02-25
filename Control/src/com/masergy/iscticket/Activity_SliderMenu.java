@@ -3,11 +3,11 @@ package com.masergy.iscticket;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Window;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
-import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 public class Activity_SliderMenu extends SlidingFragmentActivity {
 
@@ -16,10 +16,21 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	public static Context context;
 
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);        
+	    super.onCreate(savedInstanceState); 
+	    //Remove title bar
+	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//	    requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+//	    requestWindowFeature(Window.FEATURE_LEFT_ICON); 
 	    setContentView(R.layout.contentview);
+	    //Set the layout resource to use for the custom title
+//	     
+	    
+	    
 	    setBehindContentView(R.layout.menuview);
 	 
+//	    setFeatureDrawableResource(Window.FEATURE_LEFT_ICON, R.drawable.img_menu);
+//	    getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.custom_title);
+	    
 	    context = Activity_SliderMenu.this;
 	    
 	    slidingMenu = getSlidingMenu();
@@ -30,14 +41,16 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    slidingMenu.setShadowDrawable(R.drawable.shadow);
 	    slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
 	    slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-	 
-	    //Custom settings
-	  
+	    slidingMenu.setBehindOffset(150);
+//	    slidingMenu.setBehindWidth(800);
+//	    slidingMenu.setBehindWidth(480); //Give it equal to screen width
 	    
+	   
 	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 	    ft.add(R.id.linlayout_menuview, new ListFragment_ListMenu());
 	    ft.commit();
 	    
+//	    slidingMenu.toggle();
 	}//onCreate
 }
 

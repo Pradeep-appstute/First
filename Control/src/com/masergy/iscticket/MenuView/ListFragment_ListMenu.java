@@ -7,6 +7,7 @@ import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.RowItem;
+import com.masergy.iscticket.utility.Webservice_GetSubmitData;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 import android.graphics.Color;
@@ -66,6 +67,8 @@ public class ListFragment_ListMenu extends ListFragment {
 		position--;
 		switch (position) {
 		case 0:
+		    Webservice_GetSubmitData instance_submit = new Webservice_GetSubmitData(Activity_SliderMenu.context);
+		    instance_submit.postData();
 		    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
 		    instance.postData();
 			newContent = new Fragment_Tickets();
