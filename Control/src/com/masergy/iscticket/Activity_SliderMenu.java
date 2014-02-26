@@ -2,12 +2,16 @@ package com.masergy.iscticket;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
+import com.masergy.iscticket.utility.Webservice_GetSubmitData;
+import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
 public class Activity_SliderMenu extends SlidingFragmentActivity {
 
@@ -41,14 +45,31 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    slidingMenu.setShadowDrawable(R.drawable.shadow);
 	    slidingMenu.setShadowWidthRes(R.dimen.shadow_width);
 	    slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-	    slidingMenu.setBehindOffset(150);
+	    slidingMenu.setBehindOffset(100);
 //	    slidingMenu.setBehindWidth(800);
 //	    slidingMenu.setBehindWidth(480); //Give it equal to screen width
 	    
-	   
 	    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 	    ft.add(R.id.linlayout_menuview, new ListFragment_ListMenu());
 	    ft.commit();
+	    
+	    Bundle bundle=this.getIntent().getExtras();
+	    String selectedlistitem=bundle.getString("selectedlistitem");
+	    if(selectedlistitem.equalsIgnoreCase("Tickets"))
+	    {
+	    	Webservice_GetSubmitData instance_submit = new Webservice_GetSubmitData(Activity_SliderMenu.context);
+		    instance_submit.postData();
+		    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
+		    instance.postData();
+		    ft = getSupportFragmentManager().beginTransaction();
+		    Fragment_Tickets newContent = new Fragment_Tickets();
+		    ft.replace(R.id.activity_main_content_fragment, newContent);
+		    ft.commit();
+		    
+		    //Toggle sliding menu
+		    Activity_SliderMenu.slidingMenu.showContent();
+	    }
+
 	    
 //	    slidingMenu.toggle();
 	}//onCreate

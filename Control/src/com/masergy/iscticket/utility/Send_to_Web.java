@@ -19,13 +19,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.Activity_Home;
 
 /*
  To edit data from sharedpreference
@@ -97,7 +96,7 @@ public class Send_to_Web {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					mpProgress= ProgressDialog.show(mContext, "Alert!", "Please wait for a moment...");
+					mpProgress= ProgressDialog.show(mContext, "Login In", "Please wait for a moment...");
 				}
 			});
 			
@@ -203,7 +202,7 @@ public class Send_to_Web {
 					sharedPrefEditor.commit();
 					
 					// Start Activity_SliderMenu activity
-					Intent intentHome; intentHome = new Intent(mContext, Activity_SliderMenu.class); 
+					Intent intentHome; intentHome = new Intent(mContext, Activity_Home.class); 
 					mContext.startActivity(intentHome);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

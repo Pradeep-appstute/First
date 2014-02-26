@@ -135,7 +135,7 @@ public class Webservice_GetSubmitData {
 				public void run() {
 					// TODO Auto-generated method stub
 					mpProgress = ProgressDialog.show(mContext,
-							"Alert!",
+							"Downloading data",
 							"Please wait for a moment...");
 				}
 			});
@@ -177,23 +177,31 @@ public class Webservice_GetSubmitData {
 
 					JSONObject jsonObj = new JSONObject(result);//;/jsonArray.getJSONObject(i)
 					JSONArray bundle_JsonArray = jsonObj.getJSONArray("bundles");
-					// Getting JSON Array node
-					for (int i = 0; i < bundle_JsonArray.length(); i++) {
-
-					     String bundle = (String) bundle_JsonArray.get(i);
-					      // loop and add it to array or arraylist
-						  Log.d("tag", "" + bundle);
-					}
 					
+					
+					sharedPrefEditor.putString("bundles", bundle_JsonArray.toString());
+					sharedPrefEditor.commit();
+//					Log.d("tag", "bundle_JsonArray="+bundle_JsonArray.toString());
+//					// Getting JSON Array node
+//					for (int i = 0; i < bundle_JsonArray.length(); i++) {
+//
+//					     String bundle = (String) bundle_JsonArray.get(i);
+//					      // loop and add it to array or arraylist
+//						  Log.d("tag", "" + bundle);
+//					}
+						
 					bundle_JsonArray = jsonObj.getJSONArray("subjects");
-					// Getting JSON Array node
-					for (int i = 0; i < bundle_JsonArray.length(); i++) {
-
-					     String subject = (String) bundle_JsonArray.get(i);
-					      // loop and add it to array or arraylist
-						  Log.d("tag", "" + subject);
-		 
-					}					
+					sharedPrefEditor.putString("subjects", bundle_JsonArray.toString());
+					sharedPrefEditor.commit();
+//					Log.d("tag", "bundle_JsonArray="+bundle_JsonArray.toString());
+//					// Getting JSON Array node
+//					for (int i = 0; i < bundle_JsonArray.length(); i++) {
+//
+//					     String subject = (String) bundle_JsonArray.get(i);
+//					      // loop and add it to array or arraylist
+//						  Log.d("tag", "" + subject);
+//		 
+//					}					
 				}// if
 
 			} catch (JSONException e) {

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="android.support.v4.app.FragmentTransaction"/>
-<fullyQualifiedTypeName name="android.support.v4.app.ListFragment"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.RowItem"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.MenuView.ListFragment_ListMenu"/>
-<fullyQualifiedTypeName name="android.support.v4.app.Fragment"/>
-<fullyQualifiedTypeName name="android.view.View"/>
 <fullyQualifiedTypeName name="android.app.Application"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ApplicationClass_Control"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.R"/>
@@ -17,7 +11,6 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_Login"/>
 <fullyQualifiedTypeName name="org.apache.http.entity.StringEntity"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-<fullyQualifiedTypeName name="android.content.Intent"/>
 <fullyQualifiedTypeName name="org.apache.http.client.methods.HttpGet"/>
 <fullyQualifiedTypeName name="org.apache.http.HttpEntity"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetTicketsList"/>
@@ -44,20 +37,27 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="org.joda.time.DateTime"/>
 <fullyQualifiedTypeName name="android.widget.ImageButton"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="android.util.Log"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets"/>
 <fullyQualifiedTypeName name="android.view.Window"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.R.drawable"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.R.layout"/>
 <fullyQualifiedTypeName name="android.view.LayoutInflater"/>
 <fullyQualifiedTypeName name="com.jeremyfeinstein.slidingmenu.lib.SlidingMenu"/>
 <fullyQualifiedTypeName name="com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity"/>
 <fullyQualifiedTypeName name="android.widget.LinearLayout"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Send_to_Web"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.R.id"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetSubmitData"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
+<fullyQualifiedTypeName name="android.widget.Spinner"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemSelectedListener"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.R.layout"/>
+<fullyQualifiedTypeName name="android.widget.ListView"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.R.id"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.Activity_Home"/>
 </qualifiedTypeNameHistroy>

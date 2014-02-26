@@ -134,7 +134,7 @@ public class Webservice_GetTicketsList {
 				public void run() {
 					// TODO Auto-generated method stub
 					mpProgress = ProgressDialog.show(mContext,
-							"Alert!",
+							"Downloading data",
 							"Please wait for a moment...");
 				}
 			});

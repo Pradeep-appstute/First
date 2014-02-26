@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -20,14 +26,16 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 
-public class Fragment_Tickets extends Fragment {
+public class Fragment_Tickets extends Fragment implements OnItemSelectedListener{
 
 	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview;
@@ -127,7 +135,19 @@ public class Fragment_Tickets extends Fragment {
 				return false;
 			}
 		});
-		
+		// ==========Menu Title============
+		TextView menu_title = ((TextView) lin_rootview.findViewById(R.id.activity_main_content_title));
+			menu_title.setText("Tickets");
+			
+		// ===========Menu Button===============
+		Button toggleMenuButton = ((Button) lin_rootview.findViewById(R.id.activity_main_content_button_menu));
+		       toggleMenuButton.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+						Activity_SliderMenu.slidingMenu.toggle();
+				}
+			});
 		
 		// ===========Tab Buttons===============
 		imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
@@ -196,32 +216,46 @@ public class Fragment_Tickets extends Fragment {
 		        String firstName = prefs.getString("firstName", "");
 		        if (firstName != null) 
 		        {
-		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewNameValue);
-		        	         name.setText(firstName);
+		        	TextView tv_name = (TextView)viewgroup_submitview.findViewById(R.id.textViewNameValue);
+		        	         tv_name.setText(firstName);
 		        }
 		        
 		        String email = prefs.getString("email", "");
 		        if (email != null) 
 		        {
-		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewEmailValue);
-		        	         name.setText(email);
+		        	TextView tv_email = (TextView)viewgroup_submitview.findViewById(R.id.textViewEmailValue);
+		        	         tv_email.setText(email);
 		        }
 		       
 		        
 		        String phone = prefs.getString("phone", "");
 		        if (email != null) 
 		        {
-		        	TextView name = (TextView)viewgroup_submitview.findViewById(R.id.textViewPhoneValue);
-		        	         name.setText(phone);
+		        	TextView tv_phone = (TextView)viewgroup_submitview.findViewById(R.id.textViewPhoneValue);
+		        	         tv_phone.setText(phone);
 		        }
-		        
+		        else{
+		        	TextView tv_phone = (TextView)viewgroup_submitview.findViewById(R.id.textViewPhoneValue);
+		        	tv_phone.setText("");
+		        }
+   	         
+		        //Read JSON string array and populate spinner
+		        Spinner spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);
+		        addItemsOnSpinnerBundle(spinner_bundle, prefs);
+		        spinner_bundle.setOnItemSelectedListener(Fragment_Tickets.this);
+		        Spinner spinner_subject = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerSubject);
+		        addItemsOnSpinnerSubject(spinner_subject, prefs);	
+		        spinner_subject.setOnItemSelectedListener(Fragment_Tickets.this);
 			}
+
+
 		});
 		// =====================================
 
 		return lin_rootview;
 	}
 
+	 
 	private void init() {
 		// TODO Auto-generated method stub
 		
@@ -401,5 +435,51 @@ public class Fragment_Tickets extends Fragment {
 		
 //		Log.d("tag", "listDataChild size="+listDataChild.size());
 //		Log.d("tag", "listDataHeader size="+listDataHeader.size());
+	}
+
+    private void addItemsOnSpinnerSubject(Spinner subject_spinner, SharedPreferences prefs) {
+		
+    	
+		List<String> list = new ArrayList<String>();
+        try {
+            JSONArray jsonArraySubject = new JSONArray(prefs.getString("subjects", "[]"));
+            for (int i = 0; i < jsonArraySubject.length(); i++) {
+            	list.add((String) jsonArraySubject.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		subject_spinner.setAdapter(dataAdapter);
+	}
+
+	private void addItemsOnSpinnerBundle(Spinner bundle_spinner, SharedPreferences prefs) {
+		List<String> list = new ArrayList<String>();
+        try {
+            JSONArray jsonArraySubject = new JSONArray(prefs.getString("bundles", "[]"));
+            for (int i = 0; i < jsonArraySubject.length(); i++) {
+            	list.add((String) jsonArraySubject.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		bundle_spinner.setAdapter(dataAdapter);
+		
+	}
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+	
+		Toast.makeText(parent.getContext(), 
+				"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+				Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+
+		
 	}
 }
