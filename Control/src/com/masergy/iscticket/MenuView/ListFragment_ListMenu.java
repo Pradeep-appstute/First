@@ -9,6 +9,7 @@ import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.RowItem;
 import com.masergy.iscticket.utility.Webservice_GetSubmitData;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
+import com.masergy.iscticket.utility.Webservice_Logout;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -39,7 +40,7 @@ public class ListFragment_ListMenu extends ListFragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
  	   TextView tv_listTitle = new TextView(getActivity());
  	   tv_listTitle.setText(getString(R.string.textViewListHeaderMSG));
- 	   tv_listTitle.setTextSize(25);
+ 	   tv_listTitle.setTextSize(30);
  	   tv_listTitle.setTextColor(Color.WHITE);
  	   tv_listTitle.setTypeface(null, Typeface.BOLD);
  	   tv_listTitle.setBackgroundColor(Color.BLACK);
@@ -66,24 +67,31 @@ public class ListFragment_ListMenu extends ListFragment {
 		//Hack
 		position--;
 		switch (position) {
-		case 0:
+		case 0:{
 		    Webservice_GetSubmitData instance_submit = new Webservice_GetSubmitData(Activity_SliderMenu.context);
 		    instance_submit.postData();
 		    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
 		    instance.postData();
 			newContent = new Fragment_Tickets();
+			}
 			break;
-		case 1:
+		case 1:{
 			//newContent = new Activity_Fragment(1);
+			   }
 			break;
-		case 2:
+		case 2:{
 			//newContent = new Activity_Fragment(2);
+			   }
 			break;
-		case 3:
+		case 3:{
 			//newContent = new Activity_Fragment(3);
+			}
 			break;
-		case 4:
+		case 4:{
 			//newContent = new Activity_Fragment(4);
+		    Webservice_Logout instance = new Webservice_Logout(Activity_SliderMenu.context);
+		    instance.postData();
+		    }
 			break;
 		}
 		

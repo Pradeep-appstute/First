@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.masergy.iscticket.MenuView.RowItem;
+import com.masergy.iscticket.utility.Webservice_Logout;
 
 public class Activity_Home extends Activity {
 	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
@@ -53,6 +54,36 @@ public class Activity_Home extends Activity {
 			    		  startActivity(intent);
 			    		  Activity_Home.this.finish();
 			    	  }
+			    	  else if(titles[position].equalsIgnoreCase("Modify Service"))
+			    	  {
+			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
+			    		  intent.putExtra("selectedlistitem", "Modify Service");
+			    		  startActivity(intent);
+			    		  Activity_Home.this.finish();
+			    	  }
+			    	  else if(titles[position].equalsIgnoreCase("Doppler IM"))
+			    	  {
+			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
+			    		  intent.putExtra("selectedlistitem", "Doppler IM");
+			    		  startActivity(intent);
+			    		  Activity_Home.this.finish();
+			    	  }
+			    	  else if(titles[position].equalsIgnoreCase("Contact us"))
+			    	  {
+			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
+			    		  intent.putExtra("selectedlistitem", "Contact us");
+			    		  startActivity(intent);
+			    		  Activity_Home.this.finish();
+			    	  }
+			    	  else if(titles[position].equalsIgnoreCase("Logout"))
+			    	  {
+//			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
+//			    		  intent.putExtra("selectedlistitem", "Logout");
+//			    		  startActivity(intent);
+//			    		  Activity_Home.this.finish();
+			  		    Webservice_Logout instance = new Webservice_Logout(Activity_Home.this);
+					    instance.postData();
+			    	  }			    	  
 			      }
 
 			    });

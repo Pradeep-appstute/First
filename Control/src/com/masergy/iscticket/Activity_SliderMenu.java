@@ -2,7 +2,6 @@ package com.masergy.iscticket;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 
@@ -12,6 +11,7 @@ import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
 import com.masergy.iscticket.utility.Webservice_GetSubmitData;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
+import com.masergy.iscticket.utility.Webservice_Logout;
 
 public class Activity_SliderMenu extends SlidingFragmentActivity {
 
@@ -65,13 +65,26 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 		    Fragment_Tickets newContent = new Fragment_Tickets();
 		    ft.replace(R.id.activity_main_content_fragment, newContent);
 		    ft.commit();
-		    
+
 		    //Toggle sliding menu
 		    Activity_SliderMenu.slidingMenu.showContent();
 	    }
+	    else if(selectedlistitem.equalsIgnoreCase("Modify Service"))
+	    {
 
-	    
-//	    slidingMenu.toggle();
+	    }
+	    else if(selectedlistitem.equalsIgnoreCase("Doppler IM"))
+	    {
+
+	    }
+	    else if(selectedlistitem.equalsIgnoreCase("Contact us"))
+	    {
+
+	    }
+	    else if(selectedlistitem.equalsIgnoreCase("Logout"))
+	    {
+	    	//This will never happen because on tap of logout on Activity_Home, application will logout
+	    }
 	}//onCreate
 }
 
