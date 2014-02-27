@@ -4,7 +4,7 @@
 		<item value="263" key="DIALOG_WIDTH"/>
 		<item value="330" key="DIALOG_Y_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
-		<item value="871" key="DIALOG_X_ORIGIN"/>
+		<item value="1009" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="Alert!" key="selection"/>
+		<item value="isNetworkAvailable" key="selection"/>
 		<list key="findhistory">
+			<item value="isNetworkAvailable"/>
+			<item value="mpProgress"/>
+			<item value="lin_fragment_tickets"/>
 			<item value="Alert!"/>
 			<item value="prefs"/>
 			<item value="sharedPrefEditor"/>
 			<item value="todaysDate"/>
 			<item value="post"/>
-			<item value="ticketList"/>
-			<item value="!="/>
-			<item value="editor"/>
 		</list>
 		<list key="replacehistory">
 			<item value="=="/>

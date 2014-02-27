@@ -28,7 +28,9 @@
             </intent-filter>
         </activity>
         <activity android:name="Activity_Home"></activity>
-        <activity android:name="Activity_SliderMenu"></activity>
+        <activity android:name="Activity_SliderMenu"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
     </application>
 
 </manifest>

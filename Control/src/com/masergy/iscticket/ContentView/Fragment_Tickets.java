@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -30,10 +32,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
+import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 
 public class Fragment_Tickets extends Fragment implements OnItemSelectedListener{
 
@@ -54,6 +58,10 @@ public class Fragment_Tickets extends Fragment implements OnItemSelectedListener
 	public static ImageButton imgButtonOpen, imgButtonClosed, imgButtonMaint,
 			imgButtonSubmit;
 
+	//Submit
+	String txt_subject, txt_bundleid, txt_description;
+	Spinner spinner_bundle, spinner_subject;
+	EditText editTextDescription;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -240,12 +248,23 @@ public class Fragment_Tickets extends Fragment implements OnItemSelectedListener
 		        }
    	         
 		        //Read JSON string array and populate spinner
-		        Spinner spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);
+		        spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);
 		        addItemsOnSpinnerBundle(spinner_bundle, prefs);
 		        spinner_bundle.setOnItemSelectedListener(Fragment_Tickets.this);
-		        Spinner spinner_subject = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerSubject);
+		        spinner_subject = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerSubject);
 		        addItemsOnSpinnerSubject(spinner_subject, prefs);	
 		        spinner_subject.setOnItemSelectedListener(Fragment_Tickets.this);
+		        
+		        editTextDescription = (EditText) viewgroup_submitview.findViewById(R.id.editTextDescription);
+		        ImageButton btnCreateTicket = (ImageButton) viewgroup_submitview.findViewById(R.id.btnCreateTicket);
+		               btnCreateTicket.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							txt_description = editTextDescription.getText().toString();
+							Webservice_PostSubmitData webservicePostSubmitData = new Webservice_PostSubmitData(Activity_SliderMenu.context, txt_subject, txt_bundleid, txt_description);
+							webservicePostSubmitData.postData();
+						}
+					});
 			}
 
 
@@ -472,6 +491,28 @@ public class Fragment_Tickets extends Fragment implements OnItemSelectedListener
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
 	
+		switch(view.getId())
+		{
+			case R.id.spinnerBundle:
+				Toast.makeText(parent.getContext(), 
+						"spinner Bundle",
+						Toast.LENGTH_SHORT).show();
+				txt_bundleid = spinner_bundle.getSelectedItem().toString();
+				Toast.makeText(parent.getContext(), 
+						"txt_bundleid="+txt_bundleid,
+						Toast.LENGTH_SHORT).show();
+				break;
+			case R.id.spinnerSubject:
+				Toast.makeText(parent.getContext(), 
+						"spinner Subject",
+						Toast.LENGTH_SHORT).show();
+				txt_subject = spinner_subject.getSelectedItem().toString();
+				Toast.makeText(parent.getContext(), 
+						"txt_subject="+txt_subject,
+						Toast.LENGTH_SHORT).show();
+				break;
+		}
+		
 		Toast.makeText(parent.getContext(), 
 				"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
 				Toast.LENGTH_SHORT).show();

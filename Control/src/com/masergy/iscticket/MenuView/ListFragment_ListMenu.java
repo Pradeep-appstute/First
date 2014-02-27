@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.Fragment_ContactUs;
 import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.RowItem;
 import com.masergy.iscticket.utility.Webservice_GetSubmitData;
@@ -85,6 +86,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			break;
 		case 3:{
 			//newContent = new Activity_Fragment(3);
+			newContent = new Fragment_ContactUs();
 			}
 			break;
 		case 4:{
