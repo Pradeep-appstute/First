@@ -8630,3 +8630,13 @@ Java Model Exception: Java Model Status [Timed out while retrieving the attached
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
 !SUBENTRY 1 org.eclipse.jdt.core 4 1012 2014-02-27 11:38:10.762
 !MESSAGE Timed out while retrieving the attached javadoc for ViewGroup [in ViewGroup.class [in android.view [in /Data/Software/adt-bundle-mac-x86_64-20130729/sdk/platforms/android-18/android.jar]]] 
+!SESSION 2014-02-28 10:19:14.825 -----------------------------------------------
+eclipse.buildId=v22.0.5-757759
+java.version=1.7.0_51
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -keyring /Users/AppstuteMac5/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -keyring /Users/AppstuteMac5/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2014-02-28 10:19:25.847
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

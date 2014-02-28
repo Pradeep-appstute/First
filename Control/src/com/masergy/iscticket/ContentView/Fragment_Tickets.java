@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,7 +40,7 @@ import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 
-public class Fragment_Tickets extends Fragment implements OnItemSelectedListener{
+public class Fragment_Tickets extends Fragment {
 
 	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview;
@@ -249,11 +250,44 @@ public class Fragment_Tickets extends Fragment implements OnItemSelectedListener
    	         
 		        //Read JSON string array and populate spinner
 		        spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);
+		        
 		        addItemsOnSpinnerBundle(spinner_bundle, prefs);
-		        spinner_bundle.setOnItemSelectedListener(Fragment_Tickets.this);
+		        spinner_bundle.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent, View view,
+							int pos, long id) {
+						// TODO Auto-generated method stub
+						//Toast.makeText(parent.getContext(), "spinner Bundle", Toast.LENGTH_SHORT).show();
+						txt_bundleid = spinner_bundle.getSelectedItem().toString();
+						//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+
 		        spinner_subject = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerSubject);
 		        addItemsOnSpinnerSubject(spinner_subject, prefs);	
-		        spinner_subject.setOnItemSelectedListener(Fragment_Tickets.this);
+		        spinner_subject.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent, View view,
+							int pos, long id) {
+						//Toast.makeText(parent.getContext(), "spinner Subject",Toast.LENGTH_SHORT).show();
+						txt_subject = spinner_subject.getSelectedItem().toString();
+						//Toast.makeText(parent.getContext(), "txt_subject="+txt_subject,Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					});
 		        
 		        editTextDescription = (EditText) viewgroup_submitview.findViewById(R.id.editTextDescription);
 		        ImageButton btnCreateTicket = (ImageButton) viewgroup_submitview.findViewById(R.id.btnCreateTicket);
@@ -486,41 +520,6 @@ public class Fragment_Tickets extends Fragment implements OnItemSelectedListener
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		bundle_spinner.setAdapter(dataAdapter);
-		
-	}
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-	
-		switch(view.getId())
-		{
-			case R.id.spinnerBundle:
-				Toast.makeText(parent.getContext(), 
-						"spinner Bundle",
-						Toast.LENGTH_SHORT).show();
-				txt_bundleid = spinner_bundle.getSelectedItem().toString();
-				Toast.makeText(parent.getContext(), 
-						"txt_bundleid="+txt_bundleid,
-						Toast.LENGTH_SHORT).show();
-				break;
-			case R.id.spinnerSubject:
-				Toast.makeText(parent.getContext(), 
-						"spinner Subject",
-						Toast.LENGTH_SHORT).show();
-				txt_subject = spinner_subject.getSelectedItem().toString();
-				Toast.makeText(parent.getContext(), 
-						"txt_subject="+txt_subject,
-						Toast.LENGTH_SHORT).show();
-				break;
-		}
-		
-		Toast.makeText(parent.getContext(), 
-				"OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
-				Toast.LENGTH_SHORT).show();
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-
 		
 	}
 }
