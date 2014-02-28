@@ -6,7 +6,7 @@
     <string name="Login">Login</string>
     <string name="forgotusername">Forgot Username</string>
     <string name="forgotpassword">Forgot Password</string>
-    
+
     <!-- AlertDialog -->
     <string name="ok">OK</string>
     <string name="yes">YES</string>
@@ -14,13 +14,24 @@
     <!-- Slider Menu -->
     <string name="emptystring">Control</string>
     <string name="textViewListHeaderMSG">MASERGY</string>
-    
-   <!-- Submit Screen -->
-   <string name="name">Name:</string>
-   <string name="email">Email:</string>
-   <string name="phone">Phone:</string>
-   <string name="subject">Subject:</string>
-   <string name="bundle">Bundle:</string>
-   <string name="description">Description:</string>
-   <string name="createticket">Create Tciket</string>
+
+    <!-- Submit Screen -->
+    <string name="name">Name:</string>
+    <string name="email">Email:</string>
+    <string name="phone">Phone:</string>
+    <string name="subject">Subject:</string>
+    <string name="bundle">Bundle:</string>
+    <string name="description">Description:</string>
+    <string name="createticket">Create Tciket</string>
+
+    <!-- Ticket Detail Screen -->
+    <string name="ticketdetails_subject">Subject:</string>
+    <string name="ticketdetails_submittedby">Submitted by:</string>
+    <string name="ticketdetails_lastupdated">Last Updated:</string>
+    <string name="ticketdetails_comments">Comments</string>
+     <string name="ticketdetails_ticketsId">ticketsId</string>
+      <string name="ticketdetails_status">Status</string>
+    <string name="ticketdetails_next">Next</string>
+    <string name="ticketdetails_prev">Prev</string>
+
 </resources>

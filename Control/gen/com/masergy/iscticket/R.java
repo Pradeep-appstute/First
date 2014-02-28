@@ -207,8 +207,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int lblTicketNum=0x7f070019;
         public static final int left=0x7f070000;
         public static final int lin_fragment_tickets=0x7f070011;
+        public static final int linbottombar=0x7f07002b;
         public static final int linlayout_menuview=0x7f07001c;
         public static final int listView=0x7f070006;
+        public static final int listViewComment=0x7f07002a;
         public static final int lvExp=0x7f070017;
         public static final int margin=0x7f070002;
         public static final int pager=0x7f070012;
@@ -222,8 +224,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textViewEmailValue=0x7f070021;
         public static final int textViewForgotPassword=0x7f07000c;
         public static final int textViewForgotUserName=0x7f07000b;
+        public static final int textViewLastUpdatedValue=0x7f070029;
         public static final int textViewNameValue=0x7f070020;
         public static final int textViewPhoneValue=0x7f070022;
+        public static final int textViewStatusValue=0x7f07002d;
+        public static final int textViewSubjectValue=0x7f070027;
+        public static final int textViewSubmittedByValue=0x7f070028;
+        public static final int textViewticketsIdValue=0x7f07002c;
+        public static final int txtVieTimeStamp=0x7f07002e;
+        public static final int txtVieUserName=0x7f07002f;
+        public static final int txtViewDetail=0x7f070030;
         public static final int webViewContactUs=0x7f070010;
     }
     public static final class layout {
@@ -241,7 +251,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int slidingmenu=0x7f03000b;
         public static final int slidingmenumain=0x7f03000c;
         public static final int submit_view=0x7f03000d;
-        public static final int ticketfragment=0x7f03000e;
+        public static final int ticketdetails_view=0x7f03000e;
+        public static final int ticketdetails_view_list_item=0x7f03000f;
+        public static final int ticketfragment=0x7f030010;
     }
     public static final class string {
         public static final int Login=0x7f050002;
@@ -266,6 +278,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int phone=0x7f05000c;
         public static final int subject=0x7f05000d;
         public static final int textViewListHeaderMSG=0x7f050009;
+        public static final int ticketdetails_comments=0x7f050014;
+        public static final int ticketdetails_lastupdated=0x7f050013;
+        public static final int ticketdetails_next=0x7f050017;
+        public static final int ticketdetails_prev=0x7f050018;
+        public static final int ticketdetails_status=0x7f050016;
+        /**  Ticket Detail Screen 
+         */
+        public static final int ticketdetails_subject=0x7f050011;
+        public static final int ticketdetails_submittedby=0x7f050012;
+        public static final int ticketdetails_ticketsId=0x7f050015;
         public static final int yes=0x7f050006;
     }
     public static final class style {

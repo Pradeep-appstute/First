@@ -37,12 +37,14 @@ import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Send_to_Web;
+import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 
 public class Fragment_Tickets extends Fragment {
 
-	boolean isSubmitTapped;
+	//To resolve issue of changing tabs
+	static boolean isSubmitTapped;//Temporary declared static, later save in shared pref. 
 	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview;
 	ExpandableListAdapter listAdapter;
@@ -315,7 +317,6 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public boolean onChildClick(ExpandableListView parent, View v,
 					int groupPosition, int childPosition, long id) {
-				// TODO Auto-generated method stub
 //				Toast.makeText(
 //						Activity_SliderMenu.context.getApplicationContext(),
 //						listDataHeader.get(groupPosition)
@@ -324,7 +325,15 @@ public class Fragment_Tickets extends Fragment {
 //										listDataHeader.get(groupPosition)).get(
 //										childPosition), Toast.LENGTH_SHORT)
 //						.show();
-				return false;
+				
+				// Fetching ticket id
+//				Toast.makeText(Activity_SliderMenu.context, "ticketId="+listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId, Toast.LENGTH_SHORT).show();
+				new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId).postData();
+				
+				Log.d("tag", ""+Webservice_GetTicketDetails.response);
+				
+				
+				return true;
 			}
 		});
 		
