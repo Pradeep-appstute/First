@@ -42,6 +42,7 @@ import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 
 public class Fragment_Tickets extends Fragment {
 
+	boolean isSubmitTapped;
 	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview;
 	ExpandableListAdapter listAdapter;
@@ -66,84 +67,21 @@ public class Fragment_Tickets extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		isSubmitTapped =false;
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_tickets, container, false);
 
 		// v.setBackgroundColor(Color.RED);
-
-		// ================================================================
+		
 		// get the listview
 		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
 
 		// preparing list data
 		prepareListData(OpenTab);
+		// load list view
+		initExpandableListView();		
 		
-		
-		listAdapter = new ExpandableListAdapter(Activity_SliderMenu.context,
-				listDataHeader, listDataChild);
-
-		// setting list adapter
-		expListView.setAdapter(listAdapter);
-
-		// Listview Group click listener
-		expListView.setOnGroupClickListener(new OnGroupClickListener() {
-
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v,
-					int groupPosition, long id) {
-				// Toast.makeText(getApplicationContext(),
-				// "Group Clicked " + listDataHeader.get(groupPosition),
-				// Toast.LENGTH_SHORT).show();
-				return false;
-			}
-		});
-
-		// Listview Group expanded listener
-		expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-			@Override
-			public void onGroupExpand(int groupPosition) {
-//				Toast.makeText(
-//						Activity_SliderMenu.context.getApplicationContext(),
-//						listDataHeader.get(groupPosition) + " Expanded",
-//						Toast.LENGTH_SHORT).show();
-				Log.d("tag", "groupPosition="+groupPosition);
-			}
-		});
-
-		// Listview Group collasped listener
-		expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-			@Override
-			public void onGroupCollapse(int groupPosition) {
-//				Toast.makeText(
-//						Activity_SliderMenu.context.getApplicationContext(),
-//						listDataHeader.get(groupPosition) + " Collapsed",
-//						Toast.LENGTH_SHORT).show();
-
-			}
-		});
-
-		// Listview on child click listener
-		expListView.setOnChildClickListener(new OnChildClickListener() {
-
-			@Override
-			public boolean onChildClick(ExpandableListView parent, View v,
-					int groupPosition, int childPosition, long id) {
-				// TODO Auto-generated method stub
-//				Toast.makeText(
-//						Activity_SliderMenu.context.getApplicationContext(),
-//						listDataHeader.get(groupPosition)
-//								+ " : "
-//								+ listDataChild.get(
-//										listDataHeader.get(groupPosition)).get(
-//										childPosition), Toast.LENGTH_SHORT)
-//						.show();
-				return false;
-			}
-		});
 		// ==========Menu Title============
 		TextView menu_title = ((TextView) lin_rootview.findViewById(R.id.activity_main_content_title));
 			menu_title.setText("Tickets");
@@ -156,7 +94,7 @@ public class Fragment_Tickets extends Fragment {
 				public void onClick(View v) {
 						Activity_SliderMenu.slidingMenu.toggle();
 				}
-			});
+		});
 		
 		// ===========Tab Buttons===============
 		imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
@@ -164,7 +102,8 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public void onClick(View v) {
 				prepareListData(OpenTab);
-				listAdapter.notifyDataSetInvalidated();
+				initExpandableListView();
+				//listAdapter.notifyDataSetInvalidated();
 				//Expand the list view by default
 				if(!expListView.isGroupExpanded(0))
 				expListView.expandGroup(0);
@@ -181,7 +120,8 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public void onClick(View v) {
 				prepareListData(ClosedTab);
-				listAdapter.notifyDataSetInvalidated();
+				initExpandableListView();
+				//listAdapter.notifyDataSetInvalidated();
 				if(!expListView.isGroupExpanded(0))
 				expListView.expandGroup(0);
 				if(!expListView.isGroupExpanded(1))
@@ -197,7 +137,8 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public void onClick(View v) {
 				prepareListData(MaintTab);
-				listAdapter.notifyDataSetInvalidated();
+				initExpandableListView();
+				//listAdapter.notifyDataSetInvalidated();
 				if(!expListView.isGroupExpanded(0))
 				expListView.expandGroup(0);
 				if(!expListView.isGroupExpanded(1))
@@ -212,7 +153,7 @@ public class Fragment_Tickets extends Fragment {
 		imgButtonSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-	
+				isSubmitTapped=true;
 				// Remove expandable list view
 				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
 				
@@ -309,10 +250,85 @@ public class Fragment_Tickets extends Fragment {
 	}
 
 	 
-	private void init() {
-		// TODO Auto-generated method stub
+	private void initExpandableListView() {
 		
-	}
+		if(isSubmitTapped==true)
+		{
+			isSubmitTapped=false;
+		// Remove submit view
+		((LinearLayout) lin_rootview).removeView(viewgroup_submitview);
+		
+		// Add list view
+		((ViewGroup) lin_rootview).addView(expListView);
+		
+		}
+		
+		
+		listAdapter = new ExpandableListAdapter(Activity_SliderMenu.context,
+				listDataHeader, listDataChild);
+
+		// setting list adapter
+		expListView.setAdapter(listAdapter);
+
+		// Listview Group click listener
+		expListView.setOnGroupClickListener(new OnGroupClickListener() {
+
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				// Toast.makeText(getApplicationContext(),
+				// "Group Clicked " + listDataHeader.get(groupPosition),
+				// Toast.LENGTH_SHORT).show();
+				return false;
+			}
+		});
+
+		// Listview Group expanded listener
+		expListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+
+			@Override
+			public void onGroupExpand(int groupPosition) {
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition) + " Expanded",
+//						Toast.LENGTH_SHORT).show();
+				Log.d("tag", "groupPosition="+groupPosition);
+			}
+		});
+
+		// Listview Group collasped listener
+		expListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
+
+			@Override
+			public void onGroupCollapse(int groupPosition) {
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition) + " Collapsed",
+//						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+
+		// Listview on child click listener
+		expListView.setOnChildClickListener(new OnChildClickListener() {
+
+			@Override
+			public boolean onChildClick(ExpandableListView parent, View v,
+					int groupPosition, int childPosition, long id) {
+				// TODO Auto-generated method stub
+//				Toast.makeText(
+//						Activity_SliderMenu.context.getApplicationContext(),
+//						listDataHeader.get(groupPosition)
+//								+ " : "
+//								+ listDataChild.get(
+//										listDataHeader.get(groupPosition)).get(
+//										childPosition), Toast.LENGTH_SHORT)
+//						.show();
+				return false;
+			}
+		});
+		
+	}//init()
 
 	/*
 	 * Preparing the list data

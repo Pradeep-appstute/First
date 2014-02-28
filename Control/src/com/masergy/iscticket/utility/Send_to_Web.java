@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
@@ -169,8 +170,9 @@ public class Send_to_Web {
 					String userId = jObj.getString("userId");
 					String firstName = jObj.getString("firstName");
 					String lastName = jObj.getString("lastName");
-					String email = jObj.getString("email");
-					String phone = jObj.getString("phone");
+					String email = (jObj.getString("email")==null||jObj.getString("email").equalsIgnoreCase("null"))?"":jObj.getString("email");
+					String phone = (jObj.getString("phone")==null||jObj.getString("phone").equalsIgnoreCase("null"))?"":jObj.getString("phone");
+					
 					String permViewTicket = jObj.getString("permViewTicket");
 					String permSubmitTicket = jObj.getString("permSubmitTicket");
 					String permViewServiceDetails = jObj.getString("permViewServiceDetails");
