@@ -6,8 +6,10 @@ import java.util.List;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.ContentView.Fragment_ContactUs;
+import com.masergy.iscticket.ContentView.Fragment_ModifyService;
 import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.RowItem;
+import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
 import com.masergy.iscticket.utility.Webservice_GetSubmitData;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_Logout;
@@ -76,8 +78,13 @@ public class ListFragment_ListMenu extends ListFragment {
 			newContent = new Fragment_Tickets();
 			}
 			break;
-		case 1:{
-			//newContent = new Activity_Fragment(1);
+		case 1:
+		{
+			Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
+		    instance_submit.postData();
+		   
+		    newContent = new Fragment_ModifyService();
+
 			   }
 			break;
 		case 2:{
@@ -85,7 +92,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			   }
 			break;
 		case 3:{
-			//newContent = new Activity_Fragment(3);
+			
 			newContent = new Fragment_ContactUs();
 			}
 			break;

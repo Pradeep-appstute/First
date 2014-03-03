@@ -1,0 +1,57 @@
+package com.masergy.iscticket.ContentView;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
+
+public class Fragment_ModifyService extends Fragment {
+ 
+	LinearLayout lin_rootview;
+	ViewGroup viewgroup_servicedetails_view;
+	static ListAdapter listAdapter;
+	ListView listView;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		// construct the RelativeLayout
+		lin_rootview = (LinearLayout) inflater.inflate(
+				R.layout.fragment_modifyservice, container, false);
+		
+		// get the listview
+		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
+
+		// load list view
+		initListView();		
+		
+		return lin_rootview;
+	}
+
+	public static void initListView() {
+		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
+		 String modifyJSONStr = prefs.getString("modifyservice", null);
+		 if (modifyJSONStr != null) 
+		 {
+			 Log.d("tag", "modifyJSONStr"+modifyJSONStr);
+			 
+			 listAdapter = new ModifyServiceListAdapter(); 
+		 }
+	}//initListView
+}
+
+
+
+

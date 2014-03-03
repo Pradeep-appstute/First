@@ -78,10 +78,6 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(titles[position].equalsIgnoreCase("Logout"))
 			    	  {
-//			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
-//			    		  intent.putExtra("selectedlistitem", "Logout");
-//			    		  startActivity(intent);
-//			    		  Activity_Home.this.finish();
 			  		    Webservice_Logout instance = new Webservice_Logout(Activity_Home.this);
 					    instance.postData();
 			    	  }			    	  

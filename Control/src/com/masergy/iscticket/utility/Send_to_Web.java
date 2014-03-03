@@ -97,7 +97,7 @@ public class Send_to_Web {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					mpProgress= ProgressDialog.show(mContext, "Login In", "Please wait for a moment...");
+					mpProgress= ProgressDialog.show(mContext, "Logging in", "Please wait for a moment...");
 				}
 			});
 			

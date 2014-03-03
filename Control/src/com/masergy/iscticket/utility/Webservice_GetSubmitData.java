@@ -66,8 +66,7 @@ import com.masergy.iscticket.ContentView.Ticket;
  //{
  //  mSaved.setSelection(selectionStart, selectionEnd);
  //}
-  * 
-  * 
+
   
 You can try using JSONArray as JSON is light-weight also, you can create a JSONArray and write it to SharedPreference as String.
 

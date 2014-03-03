@@ -1,0 +1,450 @@
+package com.masergy.iscticket.utility;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EncodingUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeComparator;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
+import com.masergy.iscticket.ContentView.Ticket;
+
+
+public class Webservice_GetModifyServiceList {
+	SharedPreferences.Editor sharedPrefEditor;
+	ArrayList<Date> currentWeekDatesList;
+	//String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/bundle/modify/list";
+	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/bundle/modify/list";
+	Context mContext;
+	ProgressDialog mpProgress;
+
+	public Webservice_GetModifyServiceList(Context context) {
+		this.mContext = context;
+		String fileName = "Login";
+		sharedPrefEditor = ((Activity) context).getSharedPreferences(fileName,
+				context.MODE_PRIVATE).edit();
+	}
+
+	public void postData() {
+		if (isNetworkAvailable()) {
+			post_data post = new post_data();
+			post.execute();
+		} else {
+			Toast.makeText(mContext, "No network availble", 1000).show();
+		}
+	}
+
+	// =========================class post_data ========================
+	class post_data extends AsyncTask<Void, Void, String> {
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+
+			((Activity) mContext).runOnUiThread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					mpProgress = ProgressDialog.show(mContext,
+							"Downloading data",
+							"Please wait for a moment...");
+				}
+			});
+
+			// Init
+			currentWeekDatesList = new ArrayList<Date>();
+			lastWeekDatesList = new ArrayList<Date>();
+			currentMonthList = new ArrayList<Date>();
+			fillUpDatesArray(); //Fill up current, last and current months value in ArrayList
+
+			open_todaysTicketList = new ArrayList<Ticket>();
+			open_currentWeekTicketList = new ArrayList<Ticket>();
+			open_lastWeekTicketList = new ArrayList<Ticket>();
+			open_currentMonthTicketList = new ArrayList<Ticket>();
+
+			closed_todaysTicketList = new ArrayList<Ticket>();
+			closed_currentWeekTicketList = new ArrayList<Ticket>();
+			closed_lastWeekTicketList = new ArrayList<Ticket>();
+			closed_currentMonthTicketList = new ArrayList<Ticket>();
+
+			maint_todaysTicketList = new ArrayList<Ticket>();
+			maint_currentWeekTicketList = new ArrayList<Ticket>();
+			maint_lastWeekTicketList = new ArrayList<Ticket>();
+			maint_currentMonthTicketList = new ArrayList<Ticket>();
+		}
+
+		@Override
+		protected String doInBackground(Void... params) {
+			// Variable declaration
+			String result = null;
+
+			// Create http client object to send request to server
+			HttpClient httpclient = new DefaultHttpClient();
+			// Create Request to server and get response
+			HttpGet httpget = new HttpGet(webServiceLink);
+			httpget.setHeader("Content-Type", "application/json");
+			httpget.setHeader(
+					"Authorization",
+					mContext.getSharedPreferences(Send_to_Web.fileName,
+							mContext.MODE_PRIVATE).getString("authToken", null));
+			HttpResponse response;
+			try {
+
+				response = httpclient.execute(httpget);
+				HttpEntity entity = response.getEntity();
+				if (entity != null) {
+
+					// Read JSON Response
+					InputStream instream = entity.getContent();
+					StringWriter writer = new StringWriter();
+					IOUtils.copy(instream, writer);
+					result = writer.toString();
+					Log.d("tag", "theString=" + result);
+					instream.close();
+
+					// Convert string to JSONArray
+					JSONArray jsonArray = new JSONArray(result);
+
+					// Getting JSON Array node
+					for (int i = 0; i < jsonArray.length(); i++) {
+
+						JSONObject jsonObj = jsonArray.getJSONObject(i);
+						Ticket ticket = new Ticket();
+						/*
+						 * Log.d("tag", "" + jsonObj.get("ticketId"));
+						 * Log.d("tag", "" + jsonObj.get("subject"));
+						 * Log.d("tag", "" + jsonObj.get("status"));
+						 * Log.d("tag", "" + jsonObj.get("createDate"));
+						 * Log.d("tag", "" + jsonObj.get("closeDate"));
+						 */
+						if (!(jsonObj.get("ticketId").equals(JSONObject.NULL)))
+							ticket.ticketId = jsonObj.getString("ticketId");
+						else
+							ticket.ticketId = "-1";
+
+						if (!(jsonObj.get("subject").equals(JSONObject.NULL)))
+							ticket.subject = jsonObj.getString("subject");
+						else
+							ticket.subject = "";
+
+						if (!(jsonObj.get("createDate").equals(JSONObject.NULL)))
+							ticket.createDate = jsonObj.getString("createDate");
+						else
+							ticket.createDate = "-1";
+
+						
+						if (!(jsonObj.get("closeDate").equals(JSONObject.NULL)))
+							ticket.closeDate = jsonObj.getString("closeDate");
+						else
+							ticket.closeDate = "-1";
+						
+						
+						if (!(jsonObj.get("status").equals(JSONObject.NULL))) {
+							ticket.status = jsonObj.getString("status");
+
+							if (ticket.status.equalsIgnoreCase("Open")) {
+//								open_ticketList.add(ticket);
+
+//								String timeStamp = new String(""+ticket.createDate);
+//								Log.d("tag", "timeStamp="+timeStamp);
+//								DateTime t = new DateTime(Long.parseLong(timeStamp));
+//								Log.d("tag", "B4 filter="+ t);
+//								
+								filter("OpenTicket", ticket);
+								
+							} else if (ticket.status.equalsIgnoreCase("Closed")) {
+//								closed_ticketList.add(ticket);
+								filter("ClosedTicket", ticket);
+							} else if (ticket.status.equalsIgnoreCase("Maint")
+									|| ticket.status.equalsIgnoreCase("Maint.")
+									|| ticket.status
+											.equalsIgnoreCase("Maintenance")) {
+//								maint_ticketList.add(ticket);
+								filter("MaintTicket", ticket);
+							}
+						} else
+							ticket.status = "";
+					}// for
+
+					Log.d("TAG", "open_todaysTicketList Size="+open_todaysTicketList.size());
+					Log.d("TAG", "open_currentWeekTicketList Size="+open_currentWeekTicketList.size());
+					Log.d("TAG", "open_lastWeekTicketList Size="+open_lastWeekTicketList.size());
+					Log.d("TAG", "open_currentMonthTicketList Size="+open_currentMonthTicketList.size());
+					
+					
+
+					Log.d("TAG", "closed_todaysTicketList Size="+closed_todaysTicketList.size());
+					Log.d("TAG", "closed_currentWeekTicketList Size="+closed_currentWeekTicketList.size());
+					Log.d("TAG", "closed_lastWeekTicketList Size="+closed_lastWeekTicketList.size());
+					Log.d("TAG", "closed_currentMonthTicketList Size="+closed_currentMonthTicketList.size());
+					
+					
+
+					Log.d("TAG", "maint_todaysTicketList Size="+maint_todaysTicketList.size());
+					Log.d("TAG", "maint_currentWeekTicketList Size="+maint_currentWeekTicketList.size());
+					Log.d("TAG", "maint_lastWeekTicketList Size="+maint_lastWeekTicketList.size());
+					Log.d("TAG", "maint_currentMonthTicketList Size="+maint_currentMonthTicketList.size());
+					
+				}// if
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				if (mpProgress.isShowing())
+					mpProgress.dismiss();
+				// TODO Auto-generated catch block
+			} catch (IOException e) {
+				if (mpProgress.isShowing())
+					mpProgress.dismiss();
+				// TODO Auto-generated catch block
+			}
+			return result;
+		}
+
+
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			if (mpProgress.isShowing())
+				mpProgress.dismiss();
+			super.onPostExecute(result);
+			if (result != null) {
+
+				// Toast.makeText(mContext, "Response-"+result, 1000).show();
+				// System.out.println("Response="+result);
+				Fragment_Tickets.imgButtonOpen.performClick();
+
+			} else {
+				Toast.makeText(mContext, "No response from server", 1000)
+						.show();
+				System.out.println("No response from server");
+			}
+		}
+
+	}
+
+	// =================================================================
+
+	// To check network connectivity
+	private boolean isNetworkAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) mContext
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = connectivityManager
+				.getActiveNetworkInfo();
+		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+	}
+
+	// =================================================================
+	private void fillUpDatesArray() {
+		Calendar c = Calendar.getInstance();
+
+		todaysDate = c.getTime();
+		SimpleDateFormat formatter = new SimpleDateFormat("EEE dd/MM/yyyy");
+
+		int weekNo = c.get(Calendar.WEEK_OF_YEAR);
+		c.set(Calendar.WEEK_OF_YEAR, weekNo);
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+		// Current week days
+		formatter = new SimpleDateFormat("EEE dd/MM/yyyy");
+		for (int i = 0; i < 7; i++) {
+			Log.d("Current Week", "Date=" + formatter.format(c.getTime()));
+			currentWeekDatesList.add(c.getTime());
+			c.add(Calendar.DATE, 1);
+		}
+		Log.d("TAG", "currentWeekDatesList Size=" + currentWeekDatesList.size());
+
+		// last week days
+		for (int i = 0; i < 14; i++) {
+			c.add(Calendar.DATE, -1);
+		}
+		for (int i = 0; i < 7; i++) {
+			Log.d("Last Week", "Date=" + formatter.format(c.getTime()));
+			lastWeekDatesList.add(c.getTime());
+			c.add(Calendar.DATE, 1);
+		}
+		Log.d("TAG", "lastWeekDatesList Size=" + lastWeekDatesList.size());
+
+		// current month
+		Log.d("Month", "Finding dates of curent month");
+		c.setTime(todaysDate);
+		c.set(Calendar.DATE, 1);
+
+		for (int i = 0; i < 100; i++) {
+			Log.d("Month", "Date=" + formatter.format(c.getTime()));
+			currentMonthList.add(c.getTime());
+			c.add(Calendar.DATE, 1);
+
+			if (c.get(Calendar.DATE) == 1) // break if we reach next month
+				break;
+		}
+		Log.d("TAG", "currentMonthList Size=" + currentMonthList.size());
+	}// fillUpDatesArray()
+//======================================================================================
+	private void filter(String string, Ticket ticket) {			
+		if (string.equals("OpenTicket"))
+		{	
+			switch(filter(new DateTime(Long.parseLong(""+ticket.createDate))))
+			{
+			case Today:
+				open_todaysTicketList.add(ticket);
+				break;
+				
+			case CurrentWeek:
+				open_currentWeekTicketList.add(ticket);
+				break;
+				
+			case LastWeek:
+				open_lastWeekTicketList.add(ticket);
+				break;
+				
+			case CurrentMonth:
+				open_currentMonthTicketList.add(ticket);
+				break;
+				
+			case -1:
+				//Don't add this ticket to list
+				break;
+			}//switch
+		}
+		else if (string.equals("ClosedTicket"))
+		{
+			switch(filter(new DateTime(Long.parseLong(""+ticket.createDate))))
+			{
+			case Today:
+				closed_todaysTicketList.add(ticket);
+				break;
+				
+			case CurrentWeek:
+				closed_currentWeekTicketList.add(ticket);
+				break;
+				
+			case LastWeek:
+				closed_lastWeekTicketList.add(ticket);
+				break;
+				
+			case CurrentMonth:
+				closed_currentMonthTicketList.add(ticket);
+				break;
+				
+			case -1:
+				//Don't add this ticket to list
+				break;
+			}//switch
+		}
+		else if (string.equals("MaintTicket"))
+		{
+			switch(filter(new DateTime(Long.parseLong(""+ticket.createDate))))
+			{
+			case Today:
+				maint_todaysTicketList.add(ticket);
+				break;
+				
+			case CurrentWeek:
+				maint_currentWeekTicketList.add(ticket);
+				break;
+				
+			case LastWeek:
+				maint_lastWeekTicketList.add(ticket);
+				break;
+				
+			case CurrentMonth:
+				maint_currentMonthTicketList.add(ticket);
+				break;
+				
+			case -1:
+				//Don't add this ticket to list
+				break;
+			}//switch
+		}
+	}//filter(String string, Ticket ticket)
+
+	private int filter(DateTime dateTime) {
+		//Log.d("tag", "Inside filter()");
+		//Log.d("tag", "ticket_createdDate="+dateTime);
+		
+		DateTime datetime_created = dateTime;
+		Log.d("tag", "datetime_created="+datetime_created);
+		DateTime datetime_today = DateTime.now();
+		Log.d("tag", "datetime_today="+datetime_today);
+		
+		if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, datetime_today)==0)
+		{
+			Log.d("tag", "Today");
+			//Log.d("tag", "createdDate.compareTo(todaysDate)==0");
+			return Today;
+		}
+		else if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, datetime_today)<0)
+		{
+			Log.d("tag", "LastWeek");
+			for(int i=0; i<lastWeekDatesList.size(); i++)
+			{	
+				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(lastWeekDatesList.get(i).getTime()))==0)
+					return LastWeek;
+				
+			}
+			
+			Log.d("tag", "LastWeek->CurrentMonth");
+			for(int i=0; i<currentMonthList.size(); i++)
+			{				
+				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentMonthList.get(i).getTime()))==0)
+					return CurrentMonth;
+			}
+		}
+		else if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, datetime_today)>0)
+		{
+			Log.d("tag", "CurrentWeek");
+			for(int i=0; i<currentWeekDatesList.size(); i++)
+			{
+				
+				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentWeekDatesList.get(i).getTime()))==0)
+					return CurrentWeek;
+			}
+			
+			Log.d("tag", "CurrentWeek->CurrentMonth");
+			for(int i=0; i<currentMonthList.size(); i++)
+			{				
+				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentMonthList.get(i).getTime()))==0)
+					return CurrentMonth;
+			}
+		}
+		return -1;
+	}
+}

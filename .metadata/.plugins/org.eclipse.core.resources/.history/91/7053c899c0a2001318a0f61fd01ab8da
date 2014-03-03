@@ -1,0 +1,58 @@
+package com.masergy.iscticket.ContentView;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.R;
+
+public class Fragment_ModifyService extends Fragment {
+ 
+	LinearLayout lin_rootview;
+	ViewGroup viewgroup_servicedetails_view;
+	ListAdapter listAdapter;
+	ListView listView;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		// construct the RelativeLayout
+		lin_rootview = (LinearLayout) inflater.inflate(
+				R.layout.fragment_modifyservice, container, false);
+		
+		// get the listview
+		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
+
+		// load list view
+		initListView();		
+		
+		return lin_rootview;
+	}
+
+	void initListView() {
+		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences("",MODE_PRIVATE); 
+		 String restoredText = prefs.getString("text", null);
+		 if (restoredText != null) 
+		 {
+		 //mSaved.setText(restoredText, TextView.BufferType.EDITABLE);
+		 int selectionStart = prefs.getInt("selection-start", -1);
+		 int selectionEnd = prefs.getInt("selection-end", -1);
+		 //if (selectionStart != -1 && selectionEnd != -1)
+		 //{
+		 //  mSaved.setSelection(selectionStart, selectionEnd);
+		 //}
+	}
+}
+
+
+
+

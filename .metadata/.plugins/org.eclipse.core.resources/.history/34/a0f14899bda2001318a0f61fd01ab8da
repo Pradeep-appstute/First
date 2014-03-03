@@ -1,0 +1,8 @@
+package com.masergy.iscticket.ContentView;
+
+public class Service {
+    public String bundleId;
+    public String bundleAlias;
+    public String currentBandwidth;
+    public String location;
+}

@@ -7,8 +7,11 @@ import android.view.Window;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.masergy.iscticket.ContentView.Fragment_ContactUs;
+import com.masergy.iscticket.ContentView.Fragment_ModifyService;
 import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
+import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
 import com.masergy.iscticket.utility.Webservice_GetSubmitData;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_Logout;
@@ -71,7 +74,15 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    }
 	    else if(selectedlistitem.equalsIgnoreCase("Modify Service"))
 	    {
+	    	Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
+		    instance_submit.postData();
+		    ft = getSupportFragmentManager().beginTransaction();
+		    Fragment_ModifyService newContent = new Fragment_ModifyService();
+		    ft.replace(R.id.activity_main_content_fragment, newContent);
+		    ft.commit();
 
+		    //Toggle sliding menu
+		    Activity_SliderMenu.slidingMenu.showContent();
 	    }
 	    else if(selectedlistitem.equalsIgnoreCase("Doppler IM"))
 	    {
@@ -79,7 +90,13 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    }
 	    else if(selectedlistitem.equalsIgnoreCase("Contact us"))
 	    {
+		    ft = getSupportFragmentManager().beginTransaction();
+		    Fragment_ContactUs newContent = new Fragment_ContactUs();;
+		    ft.replace(R.id.activity_main_content_fragment, newContent);
+		    ft.commit();
 
+		    //Toggle sliding menu
+		    Activity_SliderMenu.slidingMenu.showContent();
 	    }
 	    else if(selectedlistitem.equalsIgnoreCase("Logout"))
 	    {
