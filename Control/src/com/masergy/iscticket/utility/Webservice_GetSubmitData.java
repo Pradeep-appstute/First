@@ -157,12 +157,11 @@ public class Webservice_GetSubmitData {
 					"Authorization",
 					mContext.getSharedPreferences(Send_to_Web.fileName,
 							mContext.MODE_PRIVATE).getString("authToken", null));
-			HttpResponse response;
 			HttpResponse response_submit;
 			try {
 
-				response = httpclient.execute(httpget);
-				HttpEntity entity = response.getEntity();
+				response_submit = httpclient.execute(httpget);
+				HttpEntity entity = response_submit.getEntity();
 				
 				
 				if (entity != null) {

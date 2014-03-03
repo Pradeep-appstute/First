@@ -67,7 +67,7 @@ public class Webservice_GetTicketDetails {
 	public void postData() {
 		if (isNetworkAvailable()) {
 			post_data post = new post_data();
-			post.executeOnExecutor(, params)();
+			post.execute();
 		} else {
 			Toast.makeText(mContext, "No network availble", 1000).show();
 		}
@@ -148,6 +148,8 @@ public class Webservice_GetTicketDetails {
 				// Toast.makeText(mContext, "Response-"+result, 1000).show();
 				// System.out.println("Response="+result);
 				response=result;
+				
+				Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
 
 			} else {
 				Toast.makeText(mContext, "No response from server", 1000)

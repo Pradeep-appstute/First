@@ -82,7 +82,10 @@ public class Webservice_PostSubmitData {
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(webServiceLink);
 			         httppost.setHeader("Content-Type", "application/json");
-			         
+			         httppost.setHeader(
+								"Authorization",
+								mContext.getSharedPreferences(Send_to_Web.fileName,
+										mContext.MODE_PRIVATE).getString("authToken", null));
 			try {
 			
 				//Prepare string entity using JSON string to be posted to server	

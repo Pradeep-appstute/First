@@ -1,28 +1,48 @@
 package com.masergy.iscticket.ContentView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
@@ -31,22 +51,21 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Send_to_Web;
-import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
+//import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_PostSubmitData;
+//import com.masergy.iscticket.utility.Webservice_GetTicketDetails.post_data;
 
 public class Fragment_Tickets extends Fragment {
 
 	//To resolve issue of changing tabs
 	static boolean isSubmitTapped;//Temporary declared static, later save in shared pref. 
 	LinearLayout lin_rootview;
-	ViewGroup viewgroup_submitview;
+	ViewGroup viewgroup_submitview,viewgroup_ticketdetails_view;
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
 	List<String> listDataHeader;
@@ -66,9 +85,15 @@ public class Fragment_Tickets extends Fragment {
 	String txt_subject, txt_bundleid, txt_description;
 	Spinner spinner_bundle, spinner_subject;
 	EditText editTextDescription;
+	
+	public static Handler tickets_handler;
+	public static Runnable tickets_runnable;
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+				
 		isSubmitTapped =false;
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
@@ -326,12 +351,99 @@ public class Fragment_Tickets extends Fragment {
 //										childPosition), Toast.LENGTH_SHORT)
 //						.show();
 				
-				// Fetching ticket id
+				// 1. Fetching ticket id
 //				Toast.makeText(Activity_SliderMenu.context, "ticketId="+listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId, Toast.LENGTH_SHORT).show();
 				new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId).postData();
 				
-				Log.d("tag", ""+Webservice_GetTicketDetails.response);
+//					Log.d("tag", ""+Webservice_GetTicketDetails.response);
 				
+				// 2. Prepare ticket view
+				   /*
+				    {
+  						"ticketId": 207935,
+  						"subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+  						"status": "Open",
+  						"createDate": 1393823842000,
+  						"closeDate": null,
+  						"lastUpdateDate": 1393823844000,
+  						"comments": [
+    									{
+      										"timestamp": 1393823844000,
+      										"userName": "Portal User",
+      										"detail": "Name: Road Runner\nPhone: null\nEmail: acmelabs.roadrunner@gmail.com\n\nTest"
+    									}
+  									]
+					}
+				    * */
+//				 //a. Read received JSON response 
+//				try {
+//				// Convert string to JSONArray
+//				JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.response);
+//				
+//				String ticketId = new String(ticketdetails_JsonObj.getString("ticketId")); 
+//				String subject = new String(ticketdetails_JsonObj.getString("subject")); 
+//				String status = new String(ticketdetails_JsonObj.getString("status"));
+//				String createDate;
+//				if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
+//					createDate = ticketdetails_JsonObj.getString("createDate");
+//				else
+//					createDate = "-1";
+//				
+//				String closeDate;
+//				if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
+//					closeDate = ticketdetails_JsonObj.getString("closeDate");
+//				else
+//					closeDate = "-1";
+//				
+//				String lastUpdateDate;
+//				if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
+//					lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
+//				else
+//					lastUpdateDate = "-1";
+//				
+//				JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
+//				ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
+//				// Getting JSON Array node
+//				for (int i = 0; i < comments_JsonArray.length(); i++) {
+//						JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
+//						Comment comment = new Comment();
+//						        comment.timestamp = comments_JsonObj.getString("comment");
+//						        comment.userName = comments_JsonObj.getString("userName");
+//						        comment.detail = comments_JsonObj.getString("detail");
+//						        commentsList.add(comment);
+//				}
+//				
+//				//b. Prepare view
+//				// Remove expandable list view
+//				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
+//				
+//				// Add ticketdetails_view
+//				viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
+//				((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
+//				
+//					//subject
+//		        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
+//		        	tv_subject.setText(subject);
+//		        	//Submitted by
+////		        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
+////		        	tv_submittedby.setText();
+//		        	//Last updated
+//		        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
+//		        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+//		        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
+//		        	//ticket id
+//		        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
+//		        	tv_ticketid.setText(ticketId);
+//		        	//status
+//		        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
+//		        	tv_status.setText(status);
+//				}
+//				catch (JSONException e)
+//				{
+//					
+//				}
+//				
+
 				
 				return true;
 			}
@@ -339,6 +451,12 @@ public class Fragment_Tickets extends Fragment {
 		
 	}//init()
 
+	
+	class Comment
+	{
+		String timestamp, userName, detail; 
+	}
+	
 	/*
 	 * Preparing the list data
 	 */
@@ -547,4 +665,207 @@ public class Fragment_Tickets extends Fragment {
 		bundle_spinner.setAdapter(dataAdapter);
 		
 	}
+	
+	
+	//-----------------Get Ticket Details-------------------
+	class Webservice_GetTicketDetails {
+
+		SharedPreferences.Editor sharedPrefEditor;
+//		String webServiceLinkForSubmit = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/ticket/";
+		String webServiceLinkForTicketDetails = "https://webservice.masergy.com/webservices_mobile/rest/v1/ticket/";
+		Context mContext;
+		String ticketId;
+		ProgressDialog mpProgress;
+		public String response;
+
+		public Webservice_GetTicketDetails(Context context, String ticketId) {
+			this.mContext = context;
+			this.ticketId = ticketId;
+			webServiceLinkForTicketDetails = webServiceLinkForTicketDetails+ticketId;
+			String fileName = "Login";
+			sharedPrefEditor = ((Activity) context).getSharedPreferences(fileName,
+					context.MODE_PRIVATE).edit();
+		}
+
+		public void postData() {
+			if (isNetworkAvailable()) {
+				post_data post = new post_data();
+				post.execute();
+			} else {
+				Toast.makeText(mContext, "No network availble", 1000).show();
+			}
+		}
+
+		// =========================class post_data ========================
+		class post_data extends AsyncTask<Void, Void, String> {
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				((Activity) mContext).runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						mpProgress = ProgressDialog.show(mContext,
+								"Downloading data",
+								"Please wait for a moment...");
+					}
+				});
+			}//onPreExecute()
+
+			@Override
+			protected String doInBackground(Void... params) {
+				//Local variable declaration
+				String result=null;
+				// Create http client object to send request to server
+				HttpClient httpclient = new DefaultHttpClient();
+				// Create Request to server and get response
+				HttpGet httpget = new HttpGet(webServiceLinkForTicketDetails);
+				httpget.setHeader("Content-Type", "application/json");
+				httpget.setHeader(
+						"Authorization",
+						mContext.getSharedPreferences(Send_to_Web.fileName,
+								mContext.MODE_PRIVATE).getString("authToken", null));
+				HttpResponse response;
+				try {
+					
+					response = httpclient.execute(httpget);
+					HttpEntity entity = response.getEntity();
+					
+					
+					if (entity != null) {
+
+						// Read JSON Response
+						InputStream instream = entity.getContent();
+						StringWriter writer = new StringWriter();
+						IOUtils.copy(instream, writer);
+						result = writer.toString();
+						Log.d("tag", "ticketDetails=" + result);
+						instream.close();					
+					}// if
+
+				} catch (ClientProtocolException e) {
+					if (mpProgress.isShowing())
+						mpProgress.dismiss();
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					if (mpProgress.isShowing())
+						mpProgress.dismiss();
+					// TODO Auto-generated catch block
+				}
+				return result;
+			}
+
+
+
+			@Override
+			protected void onPostExecute(String result) {
+				// TODO Auto-generated method stub
+				if (mpProgress.isShowing())
+					mpProgress.dismiss();
+				super.onPostExecute(result);
+				if (result != null) {
+
+					// Toast.makeText(mContext, "Response-"+result, 1000).show();
+					// System.out.println("Response="+result);
+					response=result;
+					
+					//Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
+					
+					//a. Read received JSON response 
+					try {
+					// Convert string to JSONArray
+					JSONObject ticketdetails_JsonObj = new JSONObject(response);
+					
+					String ticketId = new String(ticketdetails_JsonObj.getString("ticketId")); 
+					String subject = new String(ticketdetails_JsonObj.getString("subject")); 
+					String status = new String(ticketdetails_JsonObj.getString("status"));
+					String createDate;
+					if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
+						createDate = ticketdetails_JsonObj.getString("createDate");
+					else
+						createDate = "-1";
+					
+					String closeDate;
+					if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
+						closeDate = ticketdetails_JsonObj.getString("closeDate");
+					else
+						closeDate = "-1";
+					
+					String lastUpdateDate;
+					if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
+						lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
+					else
+						lastUpdateDate = "-1";
+					
+					JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
+					ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
+					// Getting JSON Array node
+					for (int i = 0; i < comments_JsonArray.length(); i++) {
+							JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
+							Comment comment = new Comment();
+							        comment.timestamp = comments_JsonObj.getString("comment");
+							        comment.userName = comments_JsonObj.getString("userName");
+							        comment.detail = comments_JsonObj.getString("detail");
+							        commentsList.add(comment);
+					}
+					Log.d("tag-tag-tag", "I am here");
+					//b. Prepare view
+					// Remove expandable list view
+					((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
+					
+					// Add ticketdetails_view
+					viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
+					((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
+					
+						//subject
+			        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
+			        	tv_subject.setText(subject);
+			        	//Submitted by
+//			        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
+//			        	tv_submittedby.setText();
+			        	//Last updated
+			        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
+			        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+			        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
+			        	//ticket id
+			        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
+			        	tv_ticketid.setText(ticketId);
+			        	//status
+			        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
+			        	tv_status.setText(status);
+					}
+					catch (JSONException e)
+					{
+						
+					}
+					
+
+				} else {
+					Toast.makeText(mContext, "No response from server", 1000)
+							.show();
+					System.out.println("No response from server");
+				}
+			}
+
+		}
+
+		// =================================================================
+
+		// To check network connectivity
+		private boolean isNetworkAvailable() {
+			ConnectivityManager connectivityManager = (ConnectivityManager) mContext
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo activeNetworkInfo = connectivityManager
+					.getActiveNetworkInfo();
+			return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+		}
+	}
+	//------------------------------------------------------	
 }
+
+
+
+

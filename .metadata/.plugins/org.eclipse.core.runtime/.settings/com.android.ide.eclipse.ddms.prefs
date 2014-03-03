@@ -11,4 +11,4 @@ logcat.view.colsize.TID=46
 logcat.view.colsize.Tag=171
 logcat.view.colsize.Text=545
 logcat.view.colsize.Time=87
-logcat.view.filters.list=name\: 'Position', tag\: 'TAG', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'Webservice', tag\: 'tag', text\: '', pid\: '', app\: '', level\: 'verbose', 
+logcat.view.filters.list=name\: 'Position', tag\: 'TAG', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'Webservice', tag\: 'tag', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'Masergy', tag\: 'login', text\: '', pid\: '', app\: '', level\: 'verbose', 
