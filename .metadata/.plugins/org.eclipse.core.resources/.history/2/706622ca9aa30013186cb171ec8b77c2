@@ -291,15 +291,25 @@ public class Fragment_ModifyService extends Fragment {
 						// Remove modify service details
 						((LinearLayout) lin_rootview).removeView(viewgroup_modifyserviceview);
 						
+						//lin_rootview = (LinearLayout) inflater.inflate( R.layout.fragment_modifyservice, container, false);
+						
+						// get the listview
+						//listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
+						//searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
+						
 						// load list view
 						initListView();		
+
+						
+						
+						
+						// get the listview
+						
+						listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
 						
 						// Add search view and list view
 						((ViewGroup) lin_rootview).addView(searchView);
 						((ViewGroup) lin_rootview).addView(listView);
-						
-						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
-					    instance_submit.postData();
 					}
 				});
 		 }

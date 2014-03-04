@@ -28,7 +28,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -46,16 +45,11 @@ public class Fragment_ModifyService extends Fragment {
 	ViewGroup viewgroup_servicedetails_view;
 	static ListAdapter listAdapter;
 	static ListView listView;
-	static SearchView searchView;
-	static LayoutInflater inflater;
-	static ViewGroup container;
 	static ArrayList<ModifyService> serviceList;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		this.inflater = inflater;
-		this.container = container;
 		
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
@@ -63,8 +57,7 @@ public class Fragment_ModifyService extends Fragment {
 		
 		// get the listview
 		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
-		searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
-		
+
 		// load list view
 		initListView();		
 
@@ -288,18 +281,16 @@ public class Fragment_ModifyService extends Fragment {
 					
 					@Override
 					public void onClick(View v) {
+						
 						// Remove modify service details
-						((LinearLayout) lin_rootview).removeView(viewgroup_modifyserviceview);
+						((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lin_fragment_modifyservicedetails));
 						
-						// load list view
-						initListView();		
-						
+						// get the listview
+						listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
 						// Add search view and list view
+						viewgroup_modifyserviceview = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.modifyservicedetail, (ViewGroup) lin_rootview,false);
 						((ViewGroup) lin_rootview).addView(searchView);
-						((ViewGroup) lin_rootview).addView(listView);
-						
-						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
-					    instance_submit.postData();
+						((ViewGroup) lin_rootview).addView(lvExp);
 					}
 				});
 		 }

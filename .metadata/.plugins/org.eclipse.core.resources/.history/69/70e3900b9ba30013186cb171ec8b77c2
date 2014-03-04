@@ -293,13 +293,17 @@ public class Fragment_ModifyService extends Fragment {
 						
 						// load list view
 						initListView();		
+
+						
+						
+						
+						// get the listview
+						
+						//listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
 						
 						// Add search view and list view
 						((ViewGroup) lin_rootview).addView(searchView);
 						((ViewGroup) lin_rootview).addView(listView);
-						
-						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
-					    instance_submit.postData();
 					}
 				});
 		 }
