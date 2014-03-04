@@ -1,34 +1,47 @@
 package com.masergy.iscticket.ContentView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
 
 public class Fragment_ModifyService extends Fragment {
  
-	LinearLayout lin_rootview;
+	static LinearLayout lin_rootview;
+	static ViewGroup viewgroup_modifyserviceview;
+	static Spinner spinner_changeto;
+	
 	ViewGroup viewgroup_servicedetails_view;
 	static ListAdapter listAdapter;
 	static ListView listView;
@@ -121,11 +134,150 @@ public class Fragment_ModifyService extends Fragment {
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					//Toast.makeText(Activity_SliderMenu.context, ""+serviceList.get(position).bundleId, Toast.LENGTH_SHORT).show();
-					
+					Webservice_GetModifyServiceDetails instance = new Webservice_GetModifyServiceDetails(Activity_SliderMenu.context,  ""+serviceList.get(position).bundleId);
+					instance.postData();
 				}
 			});
 		 }
 	}//initListView
+	
+	
+	public static void initServiceDetailsView() {
+		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
+		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
+		 if (modifyJSONStr != null) 
+		 {
+			 //Log.d("tag", "modifyJSONStr="+modifyJSONStr);
+			 /*
+			  {
+  "bundleId": "MB098596",
+  "prodType": "NxT3",
+  "location": "Plano, TX",
+  "currentBandwidth": "42 Mbps",
+  "contractBandwidth": "7.5 Mbps",
+  "bandwidthOptions": [
+    {
+      "value": "171",
+      "label": "33 Mbps"
+    },
+    {
+      "value": "1074",
+      "label": "35 Mbps"
+    },
+    {
+      "value": "172",
+      "label": "36 Mbps"
+    },
+    {
+      "value": "173",
+      "label": "39 Mbps"
+    },
+    {
+      "value": "1075",
+      "label": "40 Mbps"
+    },
+    {
+      "value": "175",
+      "label": "45 Mbps"
+    }
+  ]
+}
+			  */
+			 
+			 String bundleId = null, prodType=null, location=null, currentBandwidth=null, contractBandwidth=null;
+			 HashMap bandwidthOptions = new HashMap();
+			 ArrayList<String> list = new ArrayList<String>();         
+				// Convert string to JSONArray
+				JSONObject jsonRootObj;
+				try {
+					jsonRootObj = new JSONObject(modifyJSONStr);
+					
+					bundleId = jsonRootObj.getString("bundleId");
+					prodType = jsonRootObj.getString("prodType");
+					location = jsonRootObj.getString("location");
+				    currentBandwidth = jsonRootObj.getString("currentBandwidth");
+				    contractBandwidth = jsonRootObj.getString("contractBandwidth");
+				    JSONArray jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
+				    
+					// Getting JSON Array node
+					for (int i = 0; i < jsonArray.length(); i++) {
+
+						JSONObject jsonObj = jsonArray.getJSONObject(i);
+						bandwidthOptions.put(""+jsonObj.getString("value").toString(), ""+jsonObj.getString("label").toString());
+						list.add(jsonObj.getString("label").toString());
+					}// for	
+					
+					  // Get a set of the entries
+				      Set set = bandwidthOptions.entrySet();
+				      // Get an iterator
+				      Iterator i = set.iterator();
+				      // Display elements
+				      while(i.hasNext()) {
+				         Map.Entry me = (Map.Entry)i.next();
+				         System.out.print(me.getKey() + ": ");
+				         System.out.println(me.getValue());
+				      }
+				      
+				     
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			 
+				//Add modify service detail view 
+				// Remove expandable searchview and list view
+				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.searchView));
+				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
+				
+				// Add submitview
+				viewgroup_modifyserviceview = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.modifyservicedetail, (ViewGroup) lin_rootview,false);
+				((ViewGroup) lin_rootview).addView(viewgroup_modifyserviceview);
+				
+//				lin_fragment_modifyservicedetails
+				
+				TextView tv_bundleid = (TextView)viewgroup_modifyserviceview.findViewById(R.id.txtview_bundleid);
+				tv_bundleid.setText(tv_bundleid.getText() + bundleId);
+				
+
+				TextView tv_services = (TextView)viewgroup_modifyserviceview.findViewById(R.id.txtview_services);
+				tv_services.setText(tv_services.getText() + prodType);
+				
+
+				TextView tv_site = (TextView)viewgroup_modifyserviceview.findViewById(R.id.txtview_site);
+				tv_site.setText(tv_site.getText() + location);
+				
+
+				TextView tv_contract = (TextView)viewgroup_modifyserviceview.findViewById(R.id.txtView_contract);
+				tv_contract.setText(contractBandwidth);
+				
+				TextView tv_current = (TextView)viewgroup_modifyserviceview.findViewById(R.id.txtView_current);
+				tv_current.setText(currentBandwidth);
+				
+		        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
+			 
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
+				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				spinner_changeto.setAdapter(dataAdapter);
+		        spinner_changeto.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> parent, View view,
+							int pos, long id) {
+						// TODO Auto-generated method stub
+						//Toast.makeText(parent.getContext(), "spinner Bundle", Toast.LENGTH_SHORT).show();
+						//txt_bundleid = spinner_changeto.getSelectedItem().toString();
+						//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
+
+		 }
+	}//initServiceDetailsView
 }
 
 

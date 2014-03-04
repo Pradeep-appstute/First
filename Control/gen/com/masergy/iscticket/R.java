@@ -209,6 +209,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int lblSubject=0x7f07001c;
         public static final int lblTicketNum=0x7f07001a;
         public static final int left=0x7f070000;
+        public static final int lin_fragment_modifyservicedetails=0x7f07001e;
         public static final int lin_fragment_tickets=0x7f070011;
         public static final int linbottombar=0x7f070035;
         public static final int linlayout_menuview=0x7f07001d;
@@ -241,10 +242,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txtViewDetail=0x7f07003a;
         public static final int txtView_contract=0x7f070022;
         public static final int txtView_current=0x7f070023;
-        public static final int txtview_bandwidth=0x7f070021;
-        public static final int txtview_bundleid=0x7f07001e;
-        public static final int txtview_services=0x7f07001f;
-        public static final int txtview_site=0x7f070020;
+        public static final int txtview_bundleid=0x7f07001f;
+        public static final int txtview_services=0x7f070020;
+        public static final int txtview_site=0x7f070021;
         public static final int webViewContactUs=0x7f070010;
     }
     public static final class layout {
@@ -259,14 +259,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_item=0x7f030008;
         public static final int listfragment_listmenu=0x7f030009;
         public static final int menuview=0x7f03000a;
-        public static final int modifyservicedetail=0x7f03000b;
-        public static final int row=0x7f03000c;
-        public static final int slidingmenu=0x7f03000d;
-        public static final int slidingmenumain=0x7f03000e;
-        public static final int submit_view=0x7f03000f;
-        public static final int ticketdetails_view=0x7f030010;
-        public static final int ticketdetails_view_list_item=0x7f030011;
-        public static final int ticketfragment=0x7f030012;
+        public static final int modifyservice_spinner_item=0x7f03000b;
+        public static final int modifyservicedetail=0x7f03000c;
+        public static final int row=0x7f03000d;
+        public static final int slidingmenu=0x7f03000e;
+        public static final int slidingmenumain=0x7f03000f;
+        public static final int submit_view=0x7f030010;
+        public static final int ticketdetails_view=0x7f030011;
+        public static final int ticketdetails_view_list_item=0x7f030012;
+        public static final int ticketfragment=0x7f030013;
     }
     public static final class string {
         public static final int Login=0x7f050002;
@@ -289,19 +290,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int ok=0x7f050005;
         public static final int phone=0x7f05000c;
-        public static final int servicedetails_back=0x7f050022;
-        public static final int servicedetails_bandwidth=0x7f05001d;
-        public static final int servicedetails_bundleid=0x7f05001a;
-        public static final int servicedetails_changeto=0x7f050020;
-        public static final int servicedetails_contract=0x7f05001e;
-        public static final int servicedetails_current=0x7f05001f;
-        public static final int servicedetails_services=0x7f05001b;
-        public static final int servicedetails_site=0x7f05001c;
-        public static final int servicedetails_submit=0x7f050023;
+        public static final int servicedetails_back=0x7f050023;
+        public static final int servicedetails_bandwidth=0x7f05001e;
+        public static final int servicedetails_bundleid=0x7f05001b;
+        public static final int servicedetails_changeto=0x7f050021;
+        public static final int servicedetails_contract=0x7f05001f;
+        public static final int servicedetails_current=0x7f050020;
         /**  Service Detail Screen 
          */
-        public static final int servicedetails_title=0x7f050019;
-        public static final int servicedetails_title2=0x7f050021;
+        public static final int servicedetails_headertitle=0x7f050019;
+        public static final int servicedetails_services=0x7f05001c;
+        public static final int servicedetails_site=0x7f05001d;
+        public static final int servicedetails_submit=0x7f050024;
+        public static final int servicedetails_title=0x7f05001a;
+        public static final int servicedetails_title2=0x7f050022;
         public static final int subject=0x7f05000d;
         public static final int textViewListHeaderMSG=0x7f050009;
         public static final int ticketdetails_comments=0x7f050014;

@@ -35,7 +35,7 @@ public final class R {
 		public static final int slidingmenumain = 0x7f070029;
 	}
 	public static final class layout {
-		public static final int slidingmenumain = 0x7f03000e;
+		public static final int slidingmenumain = 0x7f03000f;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f050000;
