@@ -3,7 +3,6 @@ package com.masergy.iscticket.ContentView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,6 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -36,13 +37,14 @@ import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
+import com.masergy.iscticket.utility.Webservice_PostModifyDetails;
 
 public class Fragment_ModifyService extends Fragment {
- 
+
 	static LinearLayout lin_rootview;
 	static ViewGroup viewgroup_modifyserviceview;
 	static Spinner spinner_changeto;
-	
+
 	ViewGroup viewgroup_servicedetails_view;
 	static ListAdapter listAdapter;
 	static ListView listView;
@@ -50,105 +52,113 @@ public class Fragment_ModifyService extends Fragment {
 	static LayoutInflater inflater;
 	static ViewGroup container;
 	static ArrayList<ModifyService> serviceList;
-	
+	static String bundleId = null, prodType = null, location = null,
+			currentBandwidth = null, contractBandwidth = null;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		this.inflater = inflater;
 		this.container = container;
-		
+
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_modifyservice, container, false);
-		
+
 		// get the listview
 		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
 		searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
-		
+
 		// load list view
-		initListView();		
+		initListView();
 
 		// ===========Menu Button===============
-				Button toggleMenuButton = ((Button) lin_rootview
-						.findViewById(R.id.activity_main_content_button_menu));
-				toggleMenuButton.setOnClickListener(new OnClickListener() {
+		Button toggleMenuButton = ((Button) lin_rootview
+				.findViewById(R.id.activity_main_content_button_menu));
+		toggleMenuButton.setOnClickListener(new OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						Activity_SliderMenu.slidingMenu.toggle();
-					}
-				});
+			@Override
+			public void onClick(View v) {
+				Activity_SliderMenu.slidingMenu.toggle();
+			}
+		});
 		return lin_rootview;
 	}
 
 	public static void initListView() {
-		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
-		 String modifyJSONStr = prefs.getString("modifyservice", null);
-		 serviceList = new ArrayList<ModifyService>();
-		 serviceList.clear();
-		 if (modifyJSONStr != null) 
-		 {
-			 Log.d("tag", "modifyJSONStr"+modifyJSONStr);
-			 
-				// Convert string to JSONArray
-				JSONArray jsonArray;
-				try {
-					jsonArray = new JSONArray(modifyJSONStr);
-					// Getting JSON Array node
-					for (int i = 0; i < jsonArray.length(); i++) {
+		SharedPreferences prefs = Activity_SliderMenu.context
+				.getSharedPreferences(Webservice_GetModifyServiceList.fileName,
+						Activity_SliderMenu.context.MODE_PRIVATE);
+		String modifyJSONStr = prefs.getString("modifyservice", null);
+		serviceList = new ArrayList<ModifyService>();
+		serviceList.clear();
+		if (modifyJSONStr != null) {
+			Log.d("tag", "modifyJSONStr" + modifyJSONStr);
 
-						JSONObject jsonObj = jsonArray.getJSONObject(i);
-						ModifyService service = new ModifyService();
-						/*
-						 * Log.d("tag", "" + jsonObj.get("bundleId"));
-						 * Log.d("tag", "" + jsonObj.get("bundleAlias"));
-						 * Log.d("tag", "" + jsonObj.get("currentBandwidth"));
-						 * Log.d("tag", "" + jsonObj.get("location"));
-						 */
-						if (!(jsonObj.get("bundleId").equals(JSONObject.NULL)))
-							service.bundleId = jsonObj.getString("bundleId");
-						else
-							service.bundleId = "-1";
+			// Convert string to JSONArray
+			JSONArray jsonArray;
+			try {
+				jsonArray = new JSONArray(modifyJSONStr);
+				// Getting JSON Array node
+				for (int i = 0; i < jsonArray.length(); i++) {
 
-						if (!(jsonObj.get("bundleAlias").equals(JSONObject.NULL)))
-							service.bundleAlias = jsonObj.getString("bundleAlias");
-						else
-							service.bundleAlias = "";
+					JSONObject jsonObj = jsonArray.getJSONObject(i);
+					ModifyService service = new ModifyService();
+					/*
+					 * Log.d("tag", "" + jsonObj.get("bundleId")); Log.d("tag",
+					 * "" + jsonObj.get("bundleAlias")); Log.d("tag", "" +
+					 * jsonObj.get("currentBandwidth")); Log.d("tag", "" +
+					 * jsonObj.get("location"));
+					 */
+					if (!(jsonObj.get("bundleId").equals(JSONObject.NULL)))
+						service.bundleId = jsonObj.getString("bundleId");
+					else
+						service.bundleId = "-1";
 
-						if (!(jsonObj.get("currentBandwidth").equals(JSONObject.NULL)))
-							service.currentBandwidth = jsonObj.getString("currentBandwidth");
-						else
-							service.currentBandwidth = "-1";
+					if (!(jsonObj.get("bundleAlias").equals(JSONObject.NULL)))
+						service.bundleAlias = jsonObj.getString("bundleAlias");
+					else
+						service.bundleAlias = "";
 
-						
-						if (!(jsonObj.get("location").equals(JSONObject.NULL)))
-							service.location = jsonObj.getString("location");
-						else
-							service.location = "-1";
-						
-						serviceList.add(service);
-						
-					}// for	
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			 listAdapter = new ModifyServiceListAdapter(Activity_SliderMenu.context, serviceList); 
-			 listView.setAdapter(listAdapter);
-			 listView.setOnItemClickListener(new OnItemClickListener() {
+					if (!(jsonObj.get("currentBandwidth")
+							.equals(JSONObject.NULL)))
+						service.currentBandwidth = jsonObj
+								.getString("currentBandwidth");
+					else
+						service.currentBandwidth = "-1";
+
+					if (!(jsonObj.get("location").equals(JSONObject.NULL)))
+						service.location = jsonObj.getString("location");
+					else
+						service.location = "-1";
+
+					serviceList.add(service);
+
+				}// for
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			listAdapter = new ModifyServiceListAdapter(
+					Activity_SliderMenu.context, serviceList);
+			listView.setAdapter(listAdapter);
+			listView.setOnItemClickListener(new OnItemClickListener() {
 
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					//Toast.makeText(Activity_SliderMenu.context, ""+serviceList.get(position).bundleId, Toast.LENGTH_SHORT).show();
-					Webservice_GetModifyServiceDetails instance = new Webservice_GetModifyServiceDetails(Activity_SliderMenu.context,  ""+serviceList.get(position).bundleId);
+					// Toast.makeText(Activity_SliderMenu.context,
+					// ""+serviceList.get(position).bundleId,
+					// Toast.LENGTH_SHORT).show();
+					Webservice_GetModifyServiceDetails instance = new Webservice_GetModifyServiceDetails(
+							Activity_SliderMenu.context, ""
+									+ serviceList.get(position).bundleId);
 					instance.postData();
 				}
 			});
-		 }
-	}//initListView
-	
-	
+		}
+	}// initListView
+
 	public static void initServiceDetailsView() {
 		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
 		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
@@ -191,8 +201,8 @@ public class Fragment_ModifyService extends Fragment {
 }
 			  */
 			 
-			 String bundleId = null, prodType=null, location=null, currentBandwidth=null, contractBandwidth=null;
-			 HashMap bandwidthOptions = new HashMap();
+			 
+			 final HashMap bandwidthOptions = new HashMap();
 			 ArrayList<String> list = new ArrayList<String>();         
 				// Convert string to JSONArray
 				JSONObject jsonRootObj;
@@ -210,7 +220,7 @@ public class Fragment_ModifyService extends Fragment {
 					for (int i = 0; i < jsonArray.length(); i++) {
 
 						JSONObject jsonObj = jsonArray.getJSONObject(i);
-						bandwidthOptions.put(""+jsonObj.getString("value").toString(), ""+jsonObj.getString("label").toString());
+						bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
 						list.add(jsonObj.getString("label").toString());
 					}// for	
 					
@@ -302,10 +312,64 @@ public class Fragment_ModifyService extends Fragment {
 					    instance_submit.postData();
 					}
 				});
+		        
+		       
+		        Button btn_submit = (Button)viewgroup_modifyserviceview.findViewById(R.id.btn_submit);
+		        btn_submit.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						
+						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+				 
+							// set title
+							alertDialogBuilder.setTitle("Alert!");
+				 
+							// set dialog message
+							alertDialogBuilder
+								.setMessage("Are you sure, you want to submit?")
+								.setCancelable(false)
+								.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,int id) {
+										// if this button is clicked, close current activity
+//										TextView tv = (TextView)spinner_changeto.getSelectedView();
+//										bandwidthOptions.get(tv.getText().toString());
+//										Log.d("tag", ""+bandwidthOptions.get(tv.getText().toString()));
+										Log.d("tag", ""+bandwidthOptions.get(((TextView)spinner_changeto.getSelectedView()).getText().toString()).toString());
+										Webservice_PostModifyDetails instance_submit = new Webservice_PostModifyDetails(Activity_SliderMenu.context, bundleId, (bandwidthOptions.get(((TextView)spinner_changeto.getSelectedView()).getText().toString())).toString() );
+									    instance_submit.postData();
+									    
+//										// Remove modify service details
+//										((LinearLayout) lin_rootview).removeView(viewgroup_modifyserviceview);
+//										
+//										// load list view
+//										initListView();		
+//										
+//										// Add search view and list view
+//										((ViewGroup) lin_rootview).addView(searchView);
+//										((ViewGroup) lin_rootview).addView(listView);
+										
+										
+									}
+								  })
+								.setNegativeButton("No",new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,int id) {
+										// if this button is clicked, just close
+										// the dialog box and do nothing
+										dialog.cancel();
+									}
+								});
+				 
+								// create alert dialog
+								AlertDialog alertDialog = alertDialogBuilder.create();
+				 
+								// show it
+								alertDialog.show();
+						 //Webservice_PostModifyDetails
+						
+
+					}
+				});
 		 }
 	}//initServiceDetailsView
 }
-
-
-
-

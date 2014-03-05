@@ -58,8 +58,8 @@ public class Send_to_Web {
 	
 	SharedPreferences.Editor sharedPrefEditor;
 	
-//	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
-	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/auth";
+	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
+//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/auth";
 	public static String fileName = "Login";
 	String name,password;
 	Context mContext;
