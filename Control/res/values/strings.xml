@@ -48,4 +48,6 @@
     <string name="servicedetails_back">Back</string>
     <string name="servicedetails_submit">Submit</string>
 
+     <!-- Doppler IM Screen -->
+    <string name="dopplerim_headertitle">Doppler IM</string>
 </resources>

@@ -3,17 +3,6 @@ package com.masergy.iscticket.MenuView;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.masergy.iscticket.Activity_SliderMenu;
-import com.masergy.iscticket.R;
-import com.masergy.iscticket.ContentView.Fragment_ContactUs;
-import com.masergy.iscticket.ContentView.Fragment_ModifyService;
-import com.masergy.iscticket.ContentView.Fragment_Tickets;
-import com.masergy.iscticket.MenuView.RowItem;
-import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
-import com.masergy.iscticket.utility.Webservice_GetSubmitData;
-import com.masergy.iscticket.utility.Webservice_GetTicketsList;
-import com.masergy.iscticket.utility.Webservice_Logout;
-
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -27,6 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.Fragment_ContactUs;
+import com.masergy.iscticket.ContentView.Fragment_DopplerIM;
+import com.masergy.iscticket.ContentView.Fragment_ModifyService;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
+import com.masergy.iscticket.utility.Webservice_GetDopplerIMList;
+import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
+import com.masergy.iscticket.utility.Webservice_GetSubmitData;
+import com.masergy.iscticket.utility.Webservice_GetTicketsList;
+import com.masergy.iscticket.utility.Webservice_Logout;
 
 public class ListFragment_ListMenu extends ListFragment {
 	
@@ -88,7 +89,10 @@ public class ListFragment_ListMenu extends ListFragment {
 			   }
 			break;
 		case 2:{
-			//newContent = new Activity_Fragment(2);
+			Webservice_GetDopplerIMList instance_submit = new Webservice_GetDopplerIMList(Activity_SliderMenu.context);
+		    instance_submit.postData();
+		   
+		    newContent = new Fragment_DopplerIM();
 			   }
 			break;
 		case 3:{
