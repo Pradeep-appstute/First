@@ -36,6 +36,7 @@ import android.widget.TextView;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Webservice_GetDopplerIMList;
+import com.masergy.iscticket.utility.Webservice_GetDopplerIMNodeDetails;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
 import com.masergy.iscticket.utility.Webservice_PostModifyDetails;
@@ -162,8 +163,25 @@ public class Fragment_DopplerIM extends Fragment {
 					// Toast.makeText(Activity_SliderMenu.context,
 					// ""+serviceList.get(position).bundleId,
 					// Toast.LENGTH_SHORT).show();
-//					Webservice_GetDopplerIMListItemDetail instance = new Webservice_GetDopplerIMListItemDetail(Activity_SliderMenu.context, ""+ dopplerimList.get(position).name);
-//					instance.postData();
+					Webservice_GetDopplerIMNodeDetails instance = new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, ""+ dopplerimList.get(position).id);
+					instance.postData();
+					
+					/*
+{
+  "id": "953",
+  "name": "Accounting",
+  "alarmState": "3",
+  "type": "Server",
+  "createDate": 1376480376000,
+  "cloudId": "MS079631",
+  "cloudName": null,
+  "ipAddress": "10.0.20.100",
+  "site": "Plano, TX",
+  "creditPointsUsed": "2",
+  "assetManufacturer": "Unknown",
+  "assetModel": "Unknown"
+}
+					 */
 				}
 			});
 		}

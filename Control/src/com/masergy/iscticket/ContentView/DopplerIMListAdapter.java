@@ -1,5 +1,7 @@
 package com.masergy.iscticket.ContentView;
 
+import in.appstute.androidlibrary.R;
+
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -51,7 +53,7 @@ public class DopplerIMListAdapter extends BaseAdapter implements
 			}
 		((TextView)convertView).setText(dopplerIMList.get(position).name);
 		((TextView)convertView).setTextSize(16);
-		
+//		((TextView)convertView).setBackgroundResource(mContext.getResources().getDrawable(R.drawable.));
 //		Log.d("tag", "item="+dopplerIMList.get(position).name);
 		return ((TextView)convertView);
 	}

@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.joda.time.DateTimeComparator"/>
-<fullyQualifiedTypeName name="java.io.StringWriter"/>
-<fullyQualifiedTypeName name="org.apache.commons.io.IOUtils"/>
-<fullyQualifiedTypeName name="org.apache.http.util.EncodingUtils"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Ticket"/>
-<fullyQualifiedTypeName name="java.text.DateFormat"/>
-<fullyQualifiedTypeName name="java.util.TimeZone"/>
 <fullyQualifiedTypeName name="java.text.ParseException"/>
 <fullyQualifiedTypeName name="org.joda.time.DateTime"/>
 <fullyQualifiedTypeName name="android.widget.ImageButton"/>
@@ -40,7 +33,6 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets.Comment"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Service"/>
 <fullyQualifiedTypeName name="android.content.SharedPreferences"/>
-<fullyQualifiedTypeName name="android.util.Log"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetModifyServiceList"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_ModifyService"/>
 <fullyQualifiedTypeName name="android.widget.ListAdapter"/>
@@ -60,4 +52,12 @@
 <fullyQualifiedTypeName name="android.widget.SearchView"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.R.id"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.DopplerIM"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.DopplerIMListAdapter"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_DopplerIM"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetDopplerIMList"/>
+<fullyQualifiedTypeName name="in.appstute.androidlibrary.R"/>
+<fullyQualifiedTypeName name="in.appstute.androidlibrary.R.drawable"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetDopplerIMNodeDetails"/>
 </qualifiedTypeNameHistroy>
