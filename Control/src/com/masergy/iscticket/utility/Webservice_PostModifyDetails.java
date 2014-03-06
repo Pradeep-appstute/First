@@ -29,8 +29,7 @@ import com.masergy.iscticket.Activity_Home;
 public class Webservice_PostModifyDetails {	
 	SharedPreferences.Editor sharedPrefEditor;
 	
-	String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/bundle/";
-//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/bundle/";
+	String webServiceLink = CommonResources.prefixLink+"bundle/";
 
 	Context mContext;
 	ProgressDialog mpProgress;

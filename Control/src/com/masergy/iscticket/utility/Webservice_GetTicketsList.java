@@ -99,8 +99,8 @@ public class Webservice_GetTicketsList {
 
 	SharedPreferences.Editor sharedPrefEditor;
 
-	String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/ticket/list";
-//	 String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/ticket/list";
+	String webServiceLink = CommonResources.prefixLink+"ticket/list";
+
 	Context mContext;
 	ProgressDialog mpProgress;
 

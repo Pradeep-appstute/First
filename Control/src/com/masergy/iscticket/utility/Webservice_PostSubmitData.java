@@ -30,8 +30,8 @@ public class Webservice_PostSubmitData {
 	
 	SharedPreferences.Editor sharedPrefEditor;
 	
-	String webServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/ticket/submit";
-//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/ticket/submit";
+	String webServiceLink =CommonResources.prefixLink+"ticket/submit";
+
 	public static String fileName = "Login";
 	String subject, bundleid, description;
 	Context mContext;

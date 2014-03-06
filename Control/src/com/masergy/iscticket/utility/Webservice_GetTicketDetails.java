@@ -48,8 +48,8 @@ import com.masergy.iscticket.ContentView.Ticket;
 public class Webservice_GetTicketDetails {
 
 	SharedPreferences.Editor sharedPrefEditor;
-	String webServiceLinkForTicketDetails = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/ticket/";
-//	String webServiceLinkForTicketDetails = "https://webservice.masergy.com/webservices_mobile/rest/v1/ticket/";
+	String webServiceLinkForTicketDetails = CommonResources.prefixLink+"ticket/";
+
 	Context mContext;
 	String ticketId;
 	ProgressDialog mpProgress;

@@ -100,8 +100,7 @@ To Read,
 public class Webservice_GetSubmitData {
 
 	SharedPreferences.Editor sharedPrefEditor;
-	String webServiceLinkForSubmit = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/ticket/submit";
-//	String webServiceLinkForSubmit = "https://webservice.masergy.com/webservices_mobile/rest/v1/ticket/submit";
+	String webServiceLinkForSubmit = CommonResources.prefixLink+"ticket/submit";
 	Context mContext;
 	ProgressDialog mpProgress;
 

@@ -38,6 +38,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
@@ -61,7 +62,6 @@ public class Fragment_DopplerIM extends Fragment {
 	static DopplerIMListAdapter listAdapter;
 	static ExpandableListView expListView;
 	public static List<DopplerIM_Parent> listDataHeader;
-	public static HashMap<String, List<DopplerIM_Child>> listDataChild;
 	//-------------------------------------
 	static SearchView searchView;
 	static LayoutInflater inflater;
@@ -88,10 +88,9 @@ public class Fragment_DopplerIM extends Fragment {
 		
 		//initialize static variable
 		listDataHeader = new ArrayList<DopplerIM_Parent>();
-		listDataChild = new HashMap<String, List<DopplerIM_Child>>();
 		
 		// load list view
-		initExpandableListView();
+		initExpandableListView(-1);
 
 		// ===========Menu Button===============
 		Button toggleMenuButton = ((Button) lin_rootview
@@ -115,13 +114,13 @@ public class Fragment_DopplerIM extends Fragment {
 		((ViewGroup) lin_rootview).addView(viewgroup_dopplerimview);
 	}
 
-	public static void initExpandableListView() {
-		
-		listAdapter = new DopplerIMListAdapter(Activity_SliderMenu.context, listDataHeader, listDataChild);
+	public static void initExpandableListView(int groupPos) {
+				listAdapter = new DopplerIMListAdapter(Activity_SliderMenu.context, listDataHeader);
 
 		// setting list adapter
 		expListView.setAdapter(listAdapter);
-
+		if(groupPos!=(-1))
+        expListView.expandGroup(groupPos);
 		// Listview Group click listener
 		expListView.setOnGroupClickListener(new OnGroupClickListener() {
 
@@ -131,7 +130,11 @@ public class Fragment_DopplerIM extends Fragment {
 				// Toast.makeText(getApplicationContext(),
 				// "Group Clicked " + listDataHeader.get(groupPosition),
 				// Toast.LENGTH_SHORT).show();
-				return false;
+				// 1. Fetching id
+				Toast.makeText(Activity_SliderMenu.context, "id="+listDataHeader.get(groupPosition).id, Toast.LENGTH_SHORT).show();
+				new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, listDataHeader.get(groupPosition).id, groupPosition).postData();
+			
+				return true;
 			}
 		});
 
@@ -144,7 +147,7 @@ public class Fragment_DopplerIM extends Fragment {
 //						Activity_SliderMenu.context.getApplicationContext(),
 //						listDataHeader.get(groupPosition) + " Expanded",
 //						Toast.LENGTH_SHORT).show();
-				Log.d("tag", "groupPosition="+groupPosition);
+//				Log.d("tag", "groupPosition="+groupPosition);
 			}
 		});
 
@@ -176,14 +179,13 @@ public class Fragment_DopplerIM extends Fragment {
 //										childPosition), Toast.LENGTH_SHORT)
 //						.show();
 				
-				// 1. Fetching ticket id
-//				Toast.makeText(Activity_SliderMenu.context, "ticketId="+listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId, Toast.LENGTH_SHORT).show();
-//				new Webservice_GetDopplerIMList(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId).postData();
-			
+//				// 1. Fetching id
+//				Toast.makeText(Activity_SliderMenu.context, "id="+listDataHeader.get(groupPosition).id, Toast.LENGTH_SHORT).show();
+//				new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, listDataHeader.get(groupPosition).id, groupPosition).postData();
+//			
 				return true;
 			}
 		});
-		
 	}//init()
 
 	

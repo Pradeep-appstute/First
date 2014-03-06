@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.masergy.iscticket.ContentView.DopplerIM_Child;
 import com.masergy.iscticket.ContentView.DopplerIM_Parent;
 import com.masergy.iscticket.ContentView.Fragment_DopplerIM;
 import com.masergy.iscticket.ContentView.Fragment_ModifyService;
@@ -36,8 +37,7 @@ public class Webservice_GetDopplerIMList {
 	public static String fileName = "DopplerIM";
 	SharedPreferences.Editor sharedPrefEditor;
 //	ArrayList<ModifyService> serviceList;
-	String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/node/list";
-//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/node/list";
+	String webServiceLink = CommonResources.prefixLink+"node/list";
 	Context mContext;
 	ProgressDialog mpProgress;
 
@@ -171,8 +171,8 @@ public class Webservice_GetDopplerIMList {
 								else
 									dopplerim.alarmState = "-1";
 			
+								dopplerim.child = null;//new DopplerIM_Child();
 								Fragment_DopplerIM.listDataHeader.add(dopplerim);
-			
 							}// for
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -181,7 +181,7 @@ public class Webservice_GetDopplerIMList {
 						
 						
 						//Init listview
-						Fragment_DopplerIM.initExpandableListView();
+						Fragment_DopplerIM.initExpandableListView(-1);
 					}
 				}
 

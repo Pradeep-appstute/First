@@ -34,8 +34,8 @@ public class Webservice_GetModifyServiceList {
 	public static String fileName = "ModifyService";
 	SharedPreferences.Editor sharedPrefEditor;
 //	ArrayList<ModifyService> serviceList;
-	String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/bundle/modify/list";
-//	String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/bundle/modify/list";
+	String webServiceLink = CommonResources.prefixLink+"bundle/modify/list";
+
 	Context mContext;
 	ProgressDialog mpProgress;
 

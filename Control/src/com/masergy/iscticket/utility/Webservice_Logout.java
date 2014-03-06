@@ -81,8 +81,8 @@ To Read,
 
 public class Webservice_Logout {
 
-	String webServiceLink = "https://webservice-dev.masergy.com/webservices_mobile/rest/v1/auth";
-//	 String webServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/auth";
+	String webServiceLink = CommonResources.prefixLink+"auth";
+
 	Context mContext;
 	ProgressDialog mpProgress;
 

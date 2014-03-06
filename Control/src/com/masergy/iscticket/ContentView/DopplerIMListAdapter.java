@@ -24,110 +24,80 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 
 public class DopplerIMListAdapter extends BaseExpandableListAdapter {
-/*
-	//Public
-	Context mContext;
-	ArrayList<DopplerIM_Parent> dopplerIMList;
-	
-	DopplerIMListAdapter(Context context, ArrayList<DopplerIM_Parent> list)
-	{
-		mContext = context;
-		dopplerIMList = list;
-	}
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return dopplerIMList.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return dopplerIMList.get(position);
-	}
-
-	@Override
-	public long getItemId(int arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		if(convertView==null){
-			convertView = new TextView(mContext);
-			
-			((TextView)convertView).setText(dopplerIMList.get(position).name);
-			((TextView)convertView).setTextSize(16);
-			}
-		((TextView)convertView).setText(dopplerIMList.get(position).name);
-		((TextView)convertView).setTextSize(16);
-//		((TextView)convertView).setBackgroundResource(mContext.getResources().getDrawable(R.drawable.));
-//		Log.d("tag", "item="+dopplerIMList.get(position).name);
-		return ((TextView)convertView);
-	}
-*/
 	
 	DateTimeFormatter dateTimeFormatter;
 	private Context _context;
 	private List<DopplerIM_Parent> _listDataHeader; // header titles
-	// child data in format of header title, child title
-	private HashMap<String, List<DopplerIM_Child>> _listDataChild;
 
-	public DopplerIMListAdapter(Context context, List<DopplerIM_Parent> listDataHeader, HashMap<String, List<DopplerIM_Child>> listChildData) 
+	public DopplerIMListAdapter(Context context, List<DopplerIM_Parent> listDataHeader) 
 	{
 		this._context = context;
-		this._listDataHeader = listDataHeader;
-		this._listDataChild = listChildData;	
+		this._listDataHeader = listDataHeader;	
 		dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
 	}
 
 	@Override
 	public Object getChild(int groupPosition, int childPosititon) {
-		return this._listDataChild.get(this._listDataHeader.get(groupPosition)).get(childPosititon);
+		return this._listDataHeader.get(groupPosition).child;
 	}
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		return childPosition;
+		return groupPosition;
 	}
 
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 
-//		final Ticket ticket = (Ticket) getChild(groupPosition, childPosition);
-//
-//		if (convertView == null) {
-//			LayoutInflater infalInflater = (LayoutInflater) this._context
-//					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//			convertView = infalInflater.inflate(R.layout.list_item, null);
-//		}
-//
-//		Log.d("tag", "childPosition%2==0="+(childPosition%2==0));
-//		if (childPosition%2==0)	
-//			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
-//		else
-//			convertView.setBackgroundColor(Color.WHITE);
-//		
-//		TextView txtTicketNum = (TextView) convertView
-//				.findViewById(R.id.lblTicketNum);
-//		TextView txtDateCreated = (TextView) convertView
-//				.findViewById(R.id.lblDateCreated);
-//		TextView txtSubject = (TextView) convertView
-//				.findViewById(R.id.lblSubject);
-//
-//		txtTicketNum.setText(ticket.ticketId);
-//		txtDateCreated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(ticket.createDate))).toString());
-//		txtSubject.setText(ticket.subject);
+		final DopplerIM_Child child = (DopplerIM_Child) getChild(groupPosition, childPosition);
+if(child==null)
+{
+		if (convertView == null) {
+			LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = infalInflater.inflate(R.layout.dopplerim_childrow, null);
+		}
+
+		Log.d("tag", "childPosition%2==0="+(childPosition%2==0));
+		if (childPosition%2==0)	
+			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
+		else
+			convertView.setBackgroundColor(Color.WHITE);
 		
+		TextView txtid = (TextView) convertView.findViewById(R.id.text_id);
+		TextView txtname = (TextView) convertView.findViewById(R.id.text_name);
+		TextView txtalarmstate = (TextView) convertView.findViewById(R.id.text_alarmState);
+		TextView txttype = (TextView) convertView.findViewById(R.id.text_type);
+		TextView txtcreatedate = (TextView) convertView.findViewById(R.id.text_createDate);
+		TextView txtcloudid = (TextView) convertView.findViewById(R.id.text_cloudId);
+		TextView txtcloudname = (TextView) convertView.findViewById(R.id.text_cloudName);
+		TextView txtipaddress = (TextView) convertView.findViewById(R.id.text_ipAddress);
+		TextView txtsite = (TextView) convertView.findViewById(R.id.text_site);
+		TextView txtcreditpointsused = (TextView) convertView.findViewById(R.id.text_creditPointsUsed);
+		TextView txtassetmanufacturer = (TextView) convertView.findViewById(R.id.text_assetManufacturer);
+		TextView txtassetmodel = (TextView) convertView.findViewById(R.id.text_assetModel);
+		
+		
+		 txtid.setText(child.id);
+		 txtname.setText(child.name);
+		 txtalarmstate.setText(child.alarmState);
+		 txttype.setText(child.type);
+		 txtcreatedate.setText(child.createDate);
+		 txtcloudid.setText(child.cloudId);
+		 txtcloudname.setText(child.cloudName);
+		 txtipaddress.setText(child.ipAddress);
+		 txtsite.setText(child.site);
+		 txtcreditpointsused.setText(child.creditPointsUsed);
+		 txtassetmanufacturer.setText(child.assetManufacturer);
+		 txtassetmodel.setText(child.assetModel);
+}
 		return convertView;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-				.size();
+//		return this._listDataHeader.size();
+		return 0;
 	}
 
 	@Override

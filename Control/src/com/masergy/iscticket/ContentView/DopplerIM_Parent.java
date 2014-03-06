@@ -9,5 +9,5 @@ public class DopplerIM_Parent {
     public String alarmState;
     
     // ArrayList to store child objects
-    public ArrayList<DopplerIM_Child> children;
+    public DopplerIM_Child child;
 }
