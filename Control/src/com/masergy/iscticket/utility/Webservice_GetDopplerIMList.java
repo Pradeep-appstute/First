@@ -26,6 +26,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.masergy.iscticket.ContentView.DopplerIM_Parent;
 import com.masergy.iscticket.ContentView.Fragment_DopplerIM;
 import com.masergy.iscticket.ContentView.Fragment_ModifyService;
 import com.masergy.iscticket.ContentView.ModifyService;
@@ -113,8 +114,10 @@ public class Webservice_GetDopplerIMList {
 				if (mpProgress.isShowing())
 					mpProgress.dismiss();
 			}
+			
+			
 			return result;
-		}
+		}//doInBackground()
 
 
 
@@ -136,14 +139,55 @@ public class Webservice_GetDopplerIMList {
 						sharedPrefEditor.putString("dopplerim", result.toString());
 						sharedPrefEditor.commit();
 						
+						
+						//JSON parsing
+					// Convert string to JSONArray
+						JSONArray jsonArray;
+						try {
+							jsonArray = new JSONArray(result);
+							// Getting JSON Array node
+							for (int i = 0; i < jsonArray.length(); i++) {
+			
+								JSONObject jsonObj = jsonArray.getJSONObject(i);
+								DopplerIM_Parent dopplerim = new DopplerIM_Parent();
+								/*
+								 * Log.d("tag", "" + jsonObj.get("bundleId")); Log.d("tag",
+								 * "" + jsonObj.get("bundleAlias")); Log.d("tag", "" +
+								 * jsonObj.get("currentBandwidth")); Log.d("tag", "" +
+								 * jsonObj.get("location"));
+								 */
+								if (!(jsonObj.get("id").equals(JSONObject.NULL)))
+									dopplerim.id= jsonObj.getString("id");
+								else
+									dopplerim.id = "-1";
+			
+								if (!(jsonObj.get("name").equals(JSONObject.NULL)))
+									dopplerim.name = jsonObj.getString("name");
+								else
+									dopplerim.name = "";
+			
+								if (!(jsonObj.get("alarmState").equals(JSONObject.NULL)))
+									dopplerim.alarmState = jsonObj.getString("alarmState");
+								else
+									dopplerim.alarmState = "-1";
+			
+								Fragment_DopplerIM.listDataHeader.add(dopplerim);
+			
+							}// for
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						
 						//Init listview
-						Fragment_DopplerIM.initListView();
+						Fragment_DopplerIM.initExpandableListView();
 					}
 				}
 
 			} else {
-				Toast.makeText(mContext, "No response from server", 1000)
-						.show();
+				Fragment_DopplerIM.noResponseFromServer();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
 		}
