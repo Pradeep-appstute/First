@@ -17,7 +17,7 @@
         <TableRow>
 
             <TextView
-                android:id="@+id/text_id"
+                android:id="@+id/text_child"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
@@ -26,137 +26,7 @@
                 android:textSize="12dip" />
         </TableRow>
 
-        <TableRow>
 
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_alarmState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_createDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_cloudId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_cloudName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_ipAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_site"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_creditPointsUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_assetManufacturer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/text_assetModel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="30dip"
-                android:layout_weight="1"
-                android:textSize="12dip" />
-        </TableRow>
     </TableLayout>
 
 </TableLayout>

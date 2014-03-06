@@ -171,8 +171,8 @@ public class Webservice_GetDopplerIMList {
 								else
 									dopplerim.alarmState = "-1";
 			
-								dopplerim.child = null;//new DopplerIM_Child();
-								Fragment_DopplerIM.listDataHeader.add(dopplerim);
+								//dopplerim.child = new DopplerIM_Child();
+								Fragment_DopplerIM.dopplerIM_Parents.add(dopplerim);
 							}// for
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -181,7 +181,7 @@ public class Webservice_GetDopplerIMList {
 						
 						
 						//Init listview
-						Fragment_DopplerIM.initExpandableListView(-1);
+						Fragment_DopplerIM.initExpandableListView();
 					}
 				}
 

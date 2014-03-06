@@ -1,0 +1,54 @@
+package com.masergy.iscticket.ContentView;
+
+import java.util.ArrayList;
+
+//Parent view for Doppler IM 
+public class DopplerIM_Parent {
+    public String id;
+    public String name;
+    public String alarmState;
+    
+    //List of childs
+    ArrayList<DopplerIM_Child> childList;
+    
+    
+    public String getId()
+    {
+        return id;
+    }
+     
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+    public String getName()
+    {
+        return name;
+    }
+     
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+     
+    public String getAlarmState()
+    {
+        return alarmState;
+    }
+     
+    public void setAlarmState(String alarmState)
+    {
+        this.alarmState = alarmState;
+    }
+ 
+    // ArrayList to store child objects
+    public ArrayList<DopplerIM_Child> getChildrenList()
+    {
+        return childList;
+    }
+     
+    public void setChildrenToList(ArrayList<DopplerIM_Child> children)
+    {
+        this.childList = childList;
+    }
+}
