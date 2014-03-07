@@ -170,163 +170,90 @@ public class Webservice_GetDopplerIMNodeDetails {
 								 * jsonObj.get("location"));
 								 */
 								
-								if (!(jsonObj.get("id").equals(JSONObject.NULL)))
-								{
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("id:"+jsonObj.getString("id"));
-									dopplerim_childList.add(child);
-								}
-								else
-								{
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("id:");
-									dopplerim_childList.add(child);
-								}
 			
-								if (!(jsonObj.get("name").equals(JSONObject.NULL)))
+								if (!(jsonObj.get("cloudId").equals(JSONObject.NULL)))
 								{
+
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("name:"+jsonObj.getString("name"));
+									child.setchildText("Cloud: "+jsonObj.getString("cloudId"));
+									dopplerim_childList.add(child);
+								}
+									
+								else
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("Cloud: ");
+									dopplerim_childList.add(child);
+								}
+								
+								if (!(jsonObj.get("ipAddress").equals(JSONObject.NULL)))
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("IP: "+jsonObj.getString("ipAddress"));
 									dopplerim_childList.add(child);
 								}
 								else
 								{
+
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("name:");
+									child.setchildText("IP: ");
+									dopplerim_childList.add(child);
+								}
+				
+								
+									
+			
+								if (!(jsonObj.get("type").equals(JSONObject.NULL)))
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("Type: "+jsonObj.getString("type"));
+									dopplerim_childList.add(child);
+								}
+								else
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("Type: ");
 									dopplerim_childList.add(child);
 								}
 			
 								if (!(jsonObj.get("alarmState").equals(JSONObject.NULL)))
 								{
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("alarmState:"+jsonObj.getString("alarmState"));
+									child.setchildText("Status:"+jsonObj.getString("alarmState"));
 									dopplerim_childList.add(child);
 								}
 									
 								else
 								{
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("alarmState:");
-									dopplerim_childList.add(child);
-								}
-										
-			
-								if (!(jsonObj.get("type").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("type:"+jsonObj.getString("type"));
-									dopplerim_childList.add(child);
-								}
-								else
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("type:");
-									dopplerim_childList.add(child);
-								}
-			
-								if (!(jsonObj.get("createDate").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("createDate:"+jsonObj.getString("createDate"));
+									child.setchildText("Status: ");
 									dopplerim_childList.add(child);
 								}
 									
-								else
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("createDate:");
-									dopplerim_childList.add(child);
-								}
-									
-			
-								if (!(jsonObj.get("cloudId").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("cloudId:"+jsonObj.getString("cloudId"));
-									dopplerim_childList.add(child);
-								}
-									
-								else
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("cloudId:");
-									dopplerim_childList.add(child);
-								}
-
-								
-								if (!(jsonObj.get("cloudName").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("cloudName:"+jsonObj.getString("cloudName"));
-									dopplerim_childList.add(child);
-								}
-								else
-								{
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("cloudName:");
-									dopplerim_childList.add(child);
-								}
-			
-								if (!(jsonObj.get("ipAddress").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("ipAddress:"+jsonObj.getString("ipAddress"));
-									dopplerim_childList.add(child);
-								}
-								else
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("ipAddress:");
-									dopplerim_childList.add(child);
-								}
-				
-			
 								if (!(jsonObj.get("site").equals(JSONObject.NULL)))
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("site:"+jsonObj.getString("site"));
+									child.setchildText("Site:"+jsonObj.getString("site"));
 									dopplerim_childList.add(child);
 								}
 								else
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("site:");
+									child.setchildText("Site:");
 									dopplerim_childList.add(child);
 								}
-									
 								
-								if (!(jsonObj.get("creditPointsUsed").equals(JSONObject.NULL)))
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("creditPointsUsed:"+jsonObj.getString("creditPointsUsed"));
-									dopplerim_childList.add(child);
-								}
-									
-								else
-								{
-
-									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("creditPointsUsed:");
-									dopplerim_childList.add(child);
-								}
-			
 								if (!(jsonObj.get("assetManufacturer").equals(JSONObject.NULL)))
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("assetManufacturer:"+jsonObj.getString("assetManufacturer"));
+									child.setchildText("Manufacturer: "+jsonObj.getString("assetManufacturer"));
 									dopplerim_childList.add(child);
 								}
 									
@@ -334,16 +261,15 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("assetManufacturer:");
+									child.setchildText("Manufacturer: ");
 									dopplerim_childList.add(child);
 								}
-									
-			
+								
 								if (!(jsonObj.get("assetModel").equals(JSONObject.NULL)))
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("assetModel:"+jsonObj.getString("assetModel"));
+									child.setchildText("Model: "+jsonObj.getString("assetModel"));
 									dopplerim_childList.add(child);
 								}
 									
@@ -351,13 +277,28 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("assetModel:");
+									child.setchildText("Model: ");
+									dopplerim_childList.add(child);
+								}
+								
+								
+								if (!(jsonObj.get("createDate").equals(JSONObject.NULL)))
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("Created: "+jsonObj.getString("createDate"));
 									dopplerim_childList.add(child);
 								}
 									
+								else
+								{
+
+									DopplerIM_Child child = new DopplerIM_Child();
+									child.setchildText("Created: ");
+									dopplerim_childList.add(child);
+								}
 								
-								Fragment_DopplerIM.dopplerIM_Parents.get(groupPosition).setChildren(dopplerim_childList);
-								
+								Fragment_DopplerIM.dopplerIM_Parents.get(groupPosition).setChildren(dopplerim_childList);								
 								Fragment_DopplerIM.listAdapter.notifyDataSetChanged();//Recreate listview
 								Fragment_DopplerIM.expListView.expandGroup(groupPosition);
 							}// for

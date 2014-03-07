@@ -5,10 +5,13 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 
@@ -77,8 +81,33 @@ public class Fragment_ContactUs extends Fragment {
         webview.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.i(TAG, "Processing webview url click...");
+                
+                if (url.startsWith("tel:")) { 
+                    Intent intent = new Intent(Intent.ACTION_DIAL,
+                            Uri.parse(url)); 
+                    startActivity(intent); 
+            }
+                else if (url.startsWith("mailto:")) { 
+                    try {
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND, Uri.parse(url));
+                        emailIntent.setType("message/rfc822");//u can also try to setType(message/rfc822); might be it will show only mail client installed on your device
+                        String recipient = url.substring( url.indexOf(":")+1 );
+//                        if (TextUtils.isEmpty(recipient)) recipient = "csc@masergy.com";
+                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"csc@masergy.com"});
+                        
+//                        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{recipient});
+//                        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, mContext.getString(R.string.email_subject));
+//                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, mContext.getString(R.string.email_message, " "));
+
+                        Activity_SliderMenu.context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                    }
+                    catch (Exception ex) {}
+            }
+                else if(url.startsWith("http:") || url.startsWith("https:")) {
                 view.loadUrl(url);
-                return true;
+            }
+            return true;
+                
             }
 
             public void onPageFinished(WebView view, String url) {

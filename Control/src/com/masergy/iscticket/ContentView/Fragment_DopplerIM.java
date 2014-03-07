@@ -130,8 +130,10 @@ public class Fragment_DopplerIM extends Fragment {
 				// "Group Clicked " + listDataHeader.get(groupPosition),
 				// Toast.LENGTH_SHORT).show();
 				// 1. Fetching id
-				Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
 				new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
+
+				
 			
 				return true;
 			}
@@ -178,11 +180,8 @@ public class Fragment_DopplerIM extends Fragment {
 //										childPosition), Toast.LENGTH_SHORT)
 //						.show();
 				
-//				// 1. Fetching id
-//				Toast.makeText(Activity_SliderMenu.context, "id="+listDataHeader.get(groupPosition).id, Toast.LENGTH_SHORT).show();
-//				new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, listDataHeader.get(groupPosition).id, groupPosition).postData();
-//			
-				return true;
+//				
+				return false;
 			}
 		});
 		
