@@ -29,7 +29,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
-import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 
 public class Webservice_PostModifyDetails {	
@@ -177,13 +176,12 @@ public class Webservice_PostModifyDetails {
 					
 					try {
 						JSONObject jsonObj = new JSONObject(result);
-						//String str_bundleID = jsonObj.getString("bundleId");
+						String str_bundleID = jsonObj.getString("bundleId");
 						String str_prodType = jsonObj.getString("prodType");
 						String str_currentBandwidth = jsonObj.getString("currentBandwidth");
 						String str_confirmationId = jsonObj.getString("confirmationId");
 						
 						String dialog_title = "Modify Service Confirmation "+str_confirmationId;
-						String dialog_message = str_prodType+" successfully modified. New Bandwidth:"+str_currentBandwidth ;
 						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 								Activity_SliderMenu.context);
 				 
@@ -192,17 +190,13 @@ public class Webservice_PostModifyDetails {
 				 
 							// set dialog message
 							alertDialogBuilder
-								.setMessage(dialog_message)
+								.setMessage(prod"")
 								.setCancelable(false)
 								.setPositiveButton("OK",new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,int id) {
 										// if this button is clicked, just close
 										// the dialog box and do nothing
 										dialog.cancel();
-										Intent intent = new Intent(mContext.getApplicationContext(), Activity_Home.class);
-										intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-										intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-										mContext.startActivity(intent);
 									}
 								  });
 								

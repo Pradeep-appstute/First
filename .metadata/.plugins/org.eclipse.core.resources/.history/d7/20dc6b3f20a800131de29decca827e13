@@ -29,7 +29,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
-import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 
 public class Webservice_PostModifyDetails {	
@@ -199,10 +198,6 @@ public class Webservice_PostModifyDetails {
 										// if this button is clicked, just close
 										// the dialog box and do nothing
 										dialog.cancel();
-										Intent intent = new Intent(mContext.getApplicationContext(), Activity_Home.class);
-										intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-										intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-										mContext.startActivity(intent);
 									}
 								  });
 								

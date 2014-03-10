@@ -147,7 +147,7 @@ public class Fragment_ModifyService extends Fragment {
 					JSONObject jsonObj = jsonArray.getJSONObject(0);
 					Log.d("tag", "intermediate----code");
 
-					//if((jsonObj.getInt("code")>0) && (jsonObj.get("message").toString().length()>0))
+					if((jsonObj.getInt("code")>0) && (jsonObj.get("message").toString().length()>0))
 					{
 					Log.d("tag", "Post----code");
 					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
@@ -296,7 +296,7 @@ public class Fragment_ModifyService extends Fragment {
 					JSONObject jsonObj = jsonArray.getJSONObject(0);
 					Log.d("tag", "intermediate----code");
 
-					//if((jsonObj.getInt("code")==1000) && (jsonObj.get("message").toString().length()>0))
+					if((jsonObj.getInt("code")==1000) && (jsonObj.get("message").toString().length()>0))
 					{
 					Log.d("tag", "Post----code");
 					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

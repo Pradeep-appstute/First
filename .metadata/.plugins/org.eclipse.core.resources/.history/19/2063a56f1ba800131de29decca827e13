@@ -17,10 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,7 +26,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.ContentView.Fragment_ModifyService;
 import com.masergy.iscticket.ContentView.ModifyService;
 
@@ -206,7 +203,6 @@ public class Webservice_GetModifyServiceDetails {
 						
 						//Init service details
 						Fragment_ModifyService.initServiceDetailsView();
-
 					}
 				}
 

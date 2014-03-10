@@ -11,7 +11,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,11 +24,9 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
-import com.masergy.iscticket.Activity_Login;
 import com.masergy.iscticket.Activity_SliderMenu;
 
 public class Webservice_PostModifyDetails {	
@@ -162,7 +159,8 @@ public class Webservice_PostModifyDetails {
 			if (result!=null) {
 
 //				Toast.makeText(mContext, "Response-"+result, 1000).show();
-//				System.out.println("Result Create Ticket="+result.toString());
+				//System.out.println("Response="+result);
+				System.out.println("Result Create Ticket="+result.toString());
 				/*
 				{
 					  "bundleId": "MB061705",
@@ -171,58 +169,30 @@ public class Webservice_PostModifyDetails {
 					  "confirmationId": "CN009501"
 				}
 					*/
-				
-				if(result.contains("bundleId") && result.contains("prodType") && result.contains("currentBandwidth") && result.contains("confirmationId"))
-				{
-					
-					try {
-						JSONObject jsonObj = new JSONObject(result);
-						//String str_bundleID = jsonObj.getString("bundleId");
-						String str_prodType = jsonObj.getString("prodType");
-						String str_currentBandwidth = jsonObj.getString("currentBandwidth");
-						String str_confirmationId = jsonObj.getString("confirmationId");
-						
-						String dialog_title = "Modify Service Confirmation "+str_confirmationId;
-						String dialog_message = str_prodType+" successfully modified. New Bandwidth:"+str_currentBandwidth ;
-						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-								Activity_SliderMenu.context);
-				 
-							// set title
-							alertDialogBuilder.setTitle(dialog_title);
-				 
-							// set dialog message
-							alertDialogBuilder
-								.setMessage(dialog_message)
-								.setCancelable(false)
-								.setPositiveButton("OK",new DialogInterface.OnClickListener() {
-									public void onClick(DialogInterface dialog,int id) {
-										// if this button is clicked, just close
-										// the dialog box and do nothing
-										dialog.cancel();
-										Intent intent = new Intent(mContext.getApplicationContext(), Activity_Home.class);
-										intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-										intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-										mContext.startActivity(intent);
-									}
-								  });
-								
-				 
-								// create alert dialog
-								AlertDialog alertDialog = alertDialogBuilder.create();
-				 
-								// show it
-								alertDialog.show();
-						
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-					
-					
-
-							
-				}//inner-if
+//				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//						Activity_SliderMenu.context);
+//		 
+//					// set title
+//					alertDialogBuilder.setTitle("Server Error");
+//		 
+//					// set dialog message
+//					alertDialogBuilder
+//						.setMessage("Unable to connect, please check your internet connection.")
+//						.setCancelable(false)
+//						.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+//							public void onClick(DialogInterface dialog,int id) {
+//								// if this button is clicked, just close
+//								// the dialog box and do nothing
+//								dialog.cancel();
+//							}
+//						  });
+//						
+//		 
+//						// create alert dialog
+//						AlertDialog alertDialog = alertDialogBuilder.create();
+//		 
+//						// show it
+//						alertDialog.show();
 			}
 			else
 			{

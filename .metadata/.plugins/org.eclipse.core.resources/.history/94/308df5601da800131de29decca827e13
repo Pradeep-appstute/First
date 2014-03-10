@@ -206,7 +206,31 @@ public class Webservice_GetModifyServiceDetails {
 						
 						//Init service details
 						Fragment_ModifyService.initServiceDetailsView();
-
+						System.out.println("Result Create Ticket="+result.toString());
+//						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//								Activity_SliderMenu.context);
+//				 
+//							// set title
+//							alertDialogBuilder.setTitle("Server Error");
+//				 
+//							// set dialog message
+//							alertDialogBuilder
+//								.setMessage("Unable to connect, please check your internet connection.")
+//								.setCancelable(false)
+//								.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+//									public void onClick(DialogInterface dialog,int id) {
+//										// if this button is clicked, just close
+//										// the dialog box and do nothing
+//										dialog.cancel();
+//									}
+//								  });
+//								
+//				 
+//								// create alert dialog
+//								AlertDialog alertDialog = alertDialogBuilder.create();
+//				 
+//								// show it
+//								alertDialog.show();
 					}
 				}
 
