@@ -55,15 +55,15 @@ public class Webservice_GetTicketDetails {
 	Context mContext;
 	String ticketId;
 	ProgressDialog mpProgress;
-	public static String response;
+	public static String str_response;
 
 	public Webservice_GetTicketDetails(Context context, String ticketId) {
 		this.mContext = context;
 		this.ticketId = ticketId;
 		webServiceLinkForTicketDetails = webServiceLinkForTicketDetails+ticketId;
-		String fileName = "Login";
-		sharedPrefEditor = ((Activity) context).getSharedPreferences(fileName,
-				context.MODE_PRIVATE).edit();
+		sharedPrefEditor = ((Activity) context).getSharedPreferences(Send_to_Web.fileName,context.MODE_PRIVATE).edit();
+		Log.d("tag", "webServiceLinkForTicketDetails="+webServiceLinkForTicketDetails);
+		System.out.println("=========== URL=" + webServiceLinkForTicketDetails);
 	}
 
 	public void postData() {
@@ -120,12 +120,15 @@ public class Webservice_GetTicketDetails {
 
 		@Override
 		protected String doInBackground(Void... params) {
+			Log.d("tag", "webServiceLinkForTicketDetails="+webServiceLinkForTicketDetails);
+			System.out.println("=========== URL=" + webServiceLinkForTicketDetails);
 			//Local variable declaration
 			String result=null;
 			// Create http client object to send request to server
 			HttpClient httpclient = new DefaultHttpClient();
 			// Create Request to server and get response
 			HttpGet httpget = new HttpGet(webServiceLinkForTicketDetails);
+
 			httpget.setHeader("Content-Type", "application/json");
 			httpget.setHeader(
 					"Authorization",
@@ -145,7 +148,7 @@ public class Webservice_GetTicketDetails {
 					StringWriter writer = new StringWriter();
 					IOUtils.copy(instream, writer);
 					result = writer.toString();
-					Log.d("tag", "ticketDetails=" + result);
+					
 					instream.close();					
 				}// if
 
@@ -172,8 +175,8 @@ public class Webservice_GetTicketDetails {
 			if (result != null) {
 
 				// Toast.makeText(mContext, "Response-"+result, 1000).show();
-				// System.out.println("Response="+result);
-				response=result;
+				 System.out.println("Response="+result);
+				 str_response=result;
 				
 				Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
 

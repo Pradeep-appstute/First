@@ -42,7 +42,6 @@ import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
-import com.masergy.iscticket.ContentView.Fragment_Tickets.Webservice_GetTicketDetails;
 import com.masergy.iscticket.utility.Webservice_GetDopplerIMList;
 import com.masergy.iscticket.utility.Webservice_GetDopplerIMNodeDetails;
 import com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails;
