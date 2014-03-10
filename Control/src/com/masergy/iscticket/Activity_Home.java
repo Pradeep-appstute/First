@@ -142,4 +142,9 @@ public class Activity_Home extends Activity {
 	    }
 		
 	}
+	
+	@Override
+	public void onBackPressed() {
+	
+	}
 }

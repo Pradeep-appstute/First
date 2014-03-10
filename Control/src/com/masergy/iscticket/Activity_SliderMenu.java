@@ -112,5 +112,10 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	    	//This will never happen because on tap of logout on Activity_Home, application will logout
 	    }
 	}//onCreate
+	
+	@Override
+	public void onBackPressed() {
+	
+	}
 }
 

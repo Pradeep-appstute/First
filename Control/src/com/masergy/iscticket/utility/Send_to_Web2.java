@@ -12,9 +12,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+
+import com.masergy.iscticket.Activity_SliderMenu;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
@@ -51,7 +56,31 @@ public class Send_to_Web2 {
 		}
 		else
 		{
-			Toast.makeText(mContext, "No network availble", 1000).show();
+//			Toast.makeText(mContext, "No network availble", 1000).show();
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					Activity_SliderMenu.context);
+	 
+				// set title
+				alertDialogBuilder.setTitle("Server Error");
+	 
+				// set dialog message
+				alertDialogBuilder
+					.setMessage("Unable to connect, please check your internet connection.")
+					.setCancelable(false)
+					.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, just close
+							// the dialog box and do nothing
+							dialog.cancel();
+						}
+					  });
+					
+	 
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+	 
+					// show it
+					alertDialog.show();
 		}
 	} 
 

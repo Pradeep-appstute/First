@@ -3,7 +3,6 @@ package com.masergy.iscticket.utility;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.ArrayList;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -17,8 +16,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,11 +27,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.masergy.iscticket.ContentView.DopplerIM_Child;
+import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.ContentView.DopplerIM_Parent;
 import com.masergy.iscticket.ContentView.Fragment_DopplerIM;
-import com.masergy.iscticket.ContentView.Fragment_ModifyService;
-import com.masergy.iscticket.ContentView.ModifyService;
 
 
 public class Webservice_GetDopplerIMList {
@@ -54,7 +53,31 @@ public class Webservice_GetDopplerIMList {
 			post_data post = new post_data();
 			post.execute();
 		} else {
-			Toast.makeText(mContext, "No network availble", 1000).show();
+//			Toast.makeText(mContext, "No network availble", 1000).show();			
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+			Activity_SliderMenu.context);
+			 
+		// set title
+		alertDialogBuilder.setTitle("Server Error");
+
+		// set dialog message
+		alertDialogBuilder
+			.setMessage("Unable to connect, please check your internet connection.")
+			.setCancelable(false)
+			.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, just close
+					// the dialog box and do nothing
+					dialog.cancel();
+				}
+			  });
+			
+
+			// create alert dialog
+			AlertDialog alertDialog = alertDialogBuilder.create();
+
+			// show it
+			alertDialog.show();
 		}
 	}
 
@@ -135,6 +158,51 @@ public class Webservice_GetDopplerIMList {
 				{
 					if(result.length()>0)
 					{
+						try {
+						
+						//Check if code and message has any message
+						boolean flag=true;
+						JSONArray jsonArray = new JSONArray(result);
+						/*
+						 [
+  							{
+    							"code": 1000,
+    							"message": "Validation Field Problem: Bundle can not be modified at this time, reason: Unknown"
+  							}
+						 ]
+						 */
+						JSONObject jsonObj = jsonArray.getJSONObject(0);
+						Log.d("tag", "Pre----code");
+						if((!(jsonObj.get("code").equals(JSONObject.NULL))) && (!(jsonObj.get("message").equals(JSONObject.NULL))))
+						{
+							Log.d("tag", "Post----code");
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+									Activity_SliderMenu.context);
+					 
+								// set title
+								alertDialogBuilder.setTitle("Alert!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("This service is not modifiable.")
+									.setCancelable(false)
+									.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+						}
+						else
+						{
 						//Save modify service to shared preference file
 						sharedPrefEditor.putString("dopplerim", result.toString());
 						sharedPrefEditor.commit();
@@ -142,13 +210,13 @@ public class Webservice_GetDopplerIMList {
 						
 						//JSON parsing
 					// Convert string to JSONArray
-						JSONArray jsonArray;
-						try {
+				
+						
 							jsonArray = new JSONArray(result);
 							// Getting JSON Array node
 							for (int i = 0; i < jsonArray.length(); i++) {
 			
-								JSONObject jsonObj = jsonArray.getJSONObject(i);
+								jsonObj = jsonArray.getJSONObject(i);
 								DopplerIM_Parent dopplerim = new DopplerIM_Parent();
 								/*
 								 * Log.d("tag", "" + jsonObj.get("bundleId")); Log.d("tag",
@@ -174,17 +242,22 @@ public class Webservice_GetDopplerIMList {
 								//dopplerim.child = new DopplerIM_Child();
 								Fragment_DopplerIM.dopplerIM_Parents.add(dopplerim);
 							}// for
+						
+						
+						//Init listview
+						Fragment_DopplerIM.initExpandableListView();
+						
+					}
+						
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 						
-						
-						//Init listview
-						Fragment_DopplerIM.initExpandableListView();
-					}
+					}//if (length>0)
+				
 				}
-
+				
 			} else {
 				Fragment_DopplerIM.noResponseFromServer();
 //				Toast.makeText(mContext, "No response from server", 1000).show();

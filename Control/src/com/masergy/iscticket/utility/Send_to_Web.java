@@ -15,8 +15,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -26,6 +28,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
+import com.masergy.iscticket.Activity_SliderMenu;
 
 /*
  To edit data from sharedpreference
@@ -80,7 +83,31 @@ public class Send_to_Web {
 		}
 		else
 		{
-			Toast.makeText(mContext, "No network availble", 1000).show();
+//			Toast.makeText(mContext, "No network availble", 1000).show();
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					Activity_SliderMenu.context);
+	 
+				// set title
+				alertDialogBuilder.setTitle("Server Error");
+	 
+				// set dialog message
+				alertDialogBuilder
+					.setMessage("Unable to connect, please check your internet connection.")
+					.setCancelable(false)
+					.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, just close
+							// the dialog box and do nothing
+							dialog.cancel();
+						}
+					  });
+					
+	 
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+	 
+					// show it
+					alertDialog.show();
 		}
 	} 
 

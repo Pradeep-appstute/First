@@ -16,6 +16,8 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +28,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,18 +43,18 @@ import com.masergy.iscticket.utility.Webservice_PostModifyDetails;
 
 public class Fragment_ModifyService extends Fragment {
 
-	static LinearLayout lin_rootview;
-	static ViewGroup viewgroup_modifyserviceview;
-	static Spinner spinner_changeto;
+	public static LinearLayout lin_rootview;
+	public static ViewGroup viewgroup_modifyserviceview;
+	public static Spinner spinner_changeto;
 
 	ViewGroup viewgroup_servicedetails_view;
-	static ListAdapter listAdapter;
-	static ListView listView;
-	static SearchView searchView;
-	static LayoutInflater inflater;
-	static ViewGroup container;
-	static ArrayList<ModifyService> serviceList;
-	static String bundleId = null, prodType = null, location = null,
+	public static ModifyServiceListAdapter listAdapter;
+	public static ListView listView;
+	public static EditText inputSearch;
+	public static LayoutInflater inflater;
+	public static ViewGroup container;
+	public static ArrayList<ModifyService> serviceList;
+	public static String bundleId = null, prodType = null, location = null,
 			currentBandwidth = null, contractBandwidth = null;
 
 	@Override
@@ -67,8 +69,34 @@ public class Fragment_ModifyService extends Fragment {
 
 		// get the listview
 		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
-		searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
+		inputSearch = (EditText) lin_rootview.findViewById(R.id.inputSearch);
+		inputSearch.addTextChangedListener(new TextWatcher() {
+		     
+		    @Override
+		    public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+		        // When user changed the Text
+		        listAdapter.getFilter().filter(cs);  
+		    }
+		     
+		    @Override
+		    public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+		            int arg3) {
+		        // TODO Auto-generated method stub
+		         
+		    }
+		     
+		    @Override
+		    public void afterTextChanged(Editable arg0) {
+		        // TODO Auto-generated method stub                         
+		    }
+		});
 
+		 
+		 SharedPreferences.Editor sharedPrefEditor =  Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName,
+				 Activity_SliderMenu.context.MODE_PRIVATE).edit();
+
+		sharedPrefEditor.putString("modifyservice", null);
+		sharedPrefEditor.commit();
 		// load list view
 		initListView();
 
@@ -90,19 +118,75 @@ public class Fragment_ModifyService extends Fragment {
 				.getSharedPreferences(Webservice_GetModifyServiceList.fileName,
 						Activity_SliderMenu.context.MODE_PRIVATE);
 		String modifyJSONStr = prefs.getString("modifyservice", null);
+		
 		serviceList = new ArrayList<ModifyService>();
 		serviceList.clear();
 		if (modifyJSONStr != null) {
 			Log.d("tag", "modifyJSONStr" + modifyJSONStr);
 
-			// Convert string to JSONArray
-			JSONArray jsonArray;
+			
+//======			
+			
 			try {
-				jsonArray = new JSONArray(modifyJSONStr);
+				
+				//Check if code and message has any message
+				boolean flag=true;
+
+				Log.d("tag", "Pre----code");
+				if(modifyJSONStr.contains("code") && modifyJSONStr.contains("message"))//jsonObj.has("code") && jsonObj.has("message"))
+				{
+					JSONArray jsonArray = new JSONArray(modifyJSONStr);
+					/*
+					 [
+							{
+							"code": 1000,
+							"message": "Validation Field Problem: Bundle can not be modified at this time, reason: Unknown"
+							}
+					 ]
+					 */
+					JSONObject jsonObj = jsonArray.getJSONObject(0);
+					Log.d("tag", "intermediate----code");
+
+					if((jsonObj.getInt("code")>0) && (jsonObj.get("message").toString().length()>0))
+					{
+					Log.d("tag", "Post----code");
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+							Activity_SliderMenu.context);
+			 
+						// set title
+						alertDialogBuilder.setTitle("Alert!");
+			 
+						// set dialog message
+						alertDialogBuilder
+							.setMessage("This service is not modifiable.")
+							.setCancelable(false)
+							.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// if this button is clicked, just close
+									// the dialog box and do nothing
+									dialog.cancel();
+								}
+							  });
+							
+			 
+							// create alert dialog
+							AlertDialog alertDialog = alertDialogBuilder.create();
+			 
+							// show it
+							alertDialog.show();
+					}
+				}
+				else
+				{
+			
+			// Convert string to JSONArray
+			
+				JSONArray jsonArray = new JSONArray(modifyJSONStr);
+				JSONObject jsonObj;
 				// Getting JSON Array node
 				for (int i = 0; i < jsonArray.length(); i++) {
 
-					JSONObject jsonObj = jsonArray.getJSONObject(i);
+					jsonObj = jsonArray.getJSONObject(i);
 					ModifyService service = new ModifyService();
 					/*
 					 * Log.d("tag", "" + jsonObj.get("bundleId")); Log.d("tag",
@@ -135,10 +219,7 @@ public class Fragment_ModifyService extends Fragment {
 					serviceList.add(service);
 
 				}// for
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 			listAdapter = new ModifyServiceListAdapter(
 					Activity_SliderMenu.context, serviceList);
 			listView.setAdapter(listAdapter);
@@ -156,6 +237,39 @@ public class Fragment_ModifyService extends Fragment {
 					instance.postData();
 				}
 			});
+			}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+//=====			
+		}//if (modifyJSONStr != null)
+		else
+		{
+			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+					Activity_SliderMenu.context);
+	 
+				// set title
+				alertDialogBuilder.setTitle("Error!");
+	 
+				// set dialog message
+				alertDialogBuilder
+					.setMessage("Unable to get details, Please contact service desk")
+					.setCancelable(false)
+					.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog,int id) {
+							// if this button is clicked, just close
+							// the dialog box and do nothing
+							dialog.cancel();
+						}
+					  });
+					
+	 
+					// create alert dialog
+					AlertDialog alertDialog = alertDialogBuilder.create();
+	 
+					// show it
+//					alertDialog.show();
 		}
 	}// initListView
 
@@ -164,6 +278,61 @@ public class Fragment_ModifyService extends Fragment {
 		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
 		 if (modifyJSONStr != null) 
 		 {
+
+				if(modifyJSONStr.contains("code") && modifyJSONStr.contains("message"))//jsonObj.has("code") && jsonObj.has("message"))
+				{
+					JSONArray jsonArray;
+					try {
+						jsonArray = new JSONArray(modifyJSONStr);
+					
+					/*
+					 [
+							{
+							"code": 1000,
+							"message": "Validation Field Problem: Bundle can not be modified at this time, reason: Unknown"
+							}
+					 ]
+					 */
+					JSONObject jsonObj = jsonArray.getJSONObject(0);
+					Log.d("tag", "intermediate----code");
+
+					if((jsonObj.getInt("code")==1000) && (jsonObj.get("message").toString().length()>0))
+					{
+					Log.d("tag", "Post----code");
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+							Activity_SliderMenu.context);
+			 
+						// set title
+						alertDialogBuilder.setTitle("Alert!");
+			 
+						// set dialog message
+						alertDialogBuilder
+							.setMessage("This service is not modifiable.")
+							.setCancelable(false)
+							.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int id) {
+									// if this button is clicked, just close
+									// the dialog box and do nothing
+									dialog.cancel();
+								}
+							  });
+							
+			 
+							// create alert dialog
+							AlertDialog alertDialog = alertDialogBuilder.create();
+			 
+							// show it
+							alertDialog.show();
+					}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else
+				{
+			 
+			 
 			 //Log.d("tag", "modifyJSONStr="+modifyJSONStr);
 			 /*
 			  {
@@ -206,6 +375,8 @@ public class Fragment_ModifyService extends Fragment {
 			 ArrayList<String> list = new ArrayList<String>();         
 				// Convert string to JSONArray
 				JSONObject jsonRootObj;
+				JSONArray jsonArray;
+				JSONObject jsonObj;
 				try {
 					jsonRootObj = new JSONObject(modifyJSONStr);
 					
@@ -214,12 +385,12 @@ public class Fragment_ModifyService extends Fragment {
 					location = jsonRootObj.getString("location");
 				    currentBandwidth = jsonRootObj.getString("currentBandwidth");
 				    contractBandwidth = jsonRootObj.getString("contractBandwidth");
-				    JSONArray jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
+				    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
 				    
 					// Getting JSON Array node
 					for (int i = 0; i < jsonArray.length(); i++) {
 
-						JSONObject jsonObj = jsonArray.getJSONObject(i);
+						jsonObj = jsonArray.getJSONObject(i);
 						bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
 						list.add(jsonObj.getString("label").toString());
 					}// for	
@@ -243,7 +414,7 @@ public class Fragment_ModifyService extends Fragment {
 			 
 				//Add modify service detail view 
 				// Remove expandable searchview and list view
-				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.searchView));
+				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.inputSearch));
 				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
 				
 				// Add submitview
@@ -305,11 +476,11 @@ public class Fragment_ModifyService extends Fragment {
 						initListView();		
 						
 						// Add search view and list view
-						((ViewGroup) lin_rootview).addView(searchView);
+						((ViewGroup) lin_rootview).addView(inputSearch);
 						((ViewGroup) lin_rootview).addView(listView);
 						
-						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
-					    instance_submit.postData();
+//						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
+//					    instance_submit.postData();
 					}
 				});
 		        
@@ -370,6 +541,8 @@ public class Fragment_ModifyService extends Fragment {
 
 					}
 				});
+		        
+		 }
 		 }
 	}//initServiceDetailsView
 }
