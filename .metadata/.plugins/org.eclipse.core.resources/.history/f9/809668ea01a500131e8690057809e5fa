@@ -1,0 +1,7 @@
+package com.masergy.iscticket.ContentView;
+
+import android.widget.TextView;
+
+public class DopplerTextView extends TextView {
+
+}

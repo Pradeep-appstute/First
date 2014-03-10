@@ -1,0 +1,6 @@
+package com.masergy.iscticket.utility;
+
+public class CommonResources {
+	String initialwebServiceLink ="https://webservice-dev.masergy.com/webservices_mobile/rest/v1/";
+//	String initialwebServiceLink ="https://webservice.masergy.com/webservices_mobile/rest/v1/";
+}

@@ -1,0 +1,13 @@
+package com.masergy.iscticket.ContentView;
+
+import java.util.ArrayList;
+
+//Parent view for Doppler IM 
+public class DopplerIM_Child {
+    public String id;
+    public String name;
+    public String alarmState;
+    
+    // ArrayList to store child objects
+    private ArrayList<child> children;
+}
