@@ -352,7 +352,7 @@ public class Fragment_Tickets extends Fragment {
 //						.show();
 				
 				// 1. Fetching ticket id
-				Toast.makeText(Activity_SliderMenu.context, "ticketId="+listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId, Toast.LENGTH_SHORT).show();
+//				Toast.makeText(Activity_SliderMenu.context, "ticketId="+listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId, Toast.LENGTH_SHORT).show();
 				new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId).postData();
 				
 //					Log.d("tag", ""+Webservice_GetTicketDetails.response);

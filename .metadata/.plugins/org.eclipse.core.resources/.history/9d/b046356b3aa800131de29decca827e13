@@ -163,7 +163,45 @@ public class Webservice_GetDopplerIMList {
 						//Check if code and message has any message
 						boolean flag=true;
 						JSONArray jsonArray = new JSONArray(result);
-						
+						/*
+						 [
+  							{
+    							"code": 1000,
+    							"message": "Validation Field Problem: Bundle can not be modified at this time, reason: Unknown"
+  							}
+						 ]
+						 */
+						JSONObject jsonObj = jsonArray.getJSONObject(0);
+						Log.d("tag", "Pre----code");
+						if((!(jsonObj.get("code").equals(JSONObject.NULL))) && (!(jsonObj.get("message").equals(JSONObject.NULL))))
+						{
+							Log.d("tag", "Post----code");
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+									Activity_SliderMenu.context);
+					 
+								// set title
+								alertDialogBuilder.setTitle("Alert!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("This service is not modifiable.")
+									.setCancelable(false)
+									.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+						}
+						else
 						{
 						//Save modify service to shared preference file
 						sharedPrefEditor.putString("dopplerim", result.toString());
@@ -175,7 +213,6 @@ public class Webservice_GetDopplerIMList {
 				
 						
 							jsonArray = new JSONArray(result);
-							JSONObject jsonObj;
 							// Getting JSON Array node
 							for (int i = 0; i < jsonArray.length(); i++) {
 			
