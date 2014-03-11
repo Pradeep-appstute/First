@@ -14,8 +14,11 @@ import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -43,7 +46,17 @@ public class Fragment_ContactUs extends Fragment {
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_contactus, container, false);
-
+		lin_rootview.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return true;
+			}
+		});
+		
 		// ==========Menu Title============
 		TextView menu_title = ((TextView) lin_rootview
 				.findViewById(R.id.activity_main_content_title));
@@ -57,6 +70,9 @@ public class Fragment_ContactUs extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Activity_SliderMenu.slidingMenu.toggle();
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
 			}
 		});
 

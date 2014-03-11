@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,8 +21,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -66,9 +70,29 @@ public class Fragment_ModifyService extends Fragment {
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_modifyservice, container, false);
-
+		lin_rootview.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
+		
 		// get the listview
 		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
+		listView.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		inputSearch = (EditText) lin_rootview.findViewById(R.id.inputSearch);
 		inputSearch.addTextChangedListener(new TextWatcher() {
 		     
@@ -108,6 +132,9 @@ public class Fragment_ModifyService extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Activity_SliderMenu.slidingMenu.toggle();
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
 			}
 		});
 		return lin_rootview;

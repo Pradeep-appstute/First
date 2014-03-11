@@ -1,52 +1,31 @@
 package com.masergy.iscticket.ContentView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
-import com.masergy.iscticket.utility.Webservice_GetDopplerIMList;
 import com.masergy.iscticket.utility.Webservice_GetDopplerIMNodeDetails;
-import com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails;
-import com.masergy.iscticket.utility.Webservice_GetModifyServiceList;
-import com.masergy.iscticket.utility.Webservice_PostModifyDetails;
 
 public class Fragment_DopplerIM extends Fragment {
 
@@ -80,9 +59,29 @@ public class Fragment_DopplerIM extends Fragment {
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_dopplerim, container, false);
+		lin_rootview.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 
 		// get the listview
 		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
+		expListView.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
 		
 		//initialize static variable
@@ -98,6 +97,9 @@ public class Fragment_DopplerIM extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Activity_SliderMenu.slidingMenu.toggle();
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
 			}
 		});
 		return lin_rootview;

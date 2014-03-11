@@ -29,7 +29,7 @@
     <string name="ticketdetails_submittedby">Submitted by:</string>
     <string name="ticketdetails_lastupdated">Last Updated:</string>
     <string name="ticketdetails_comments">Comments</string>
-    <string name="ticketdetails_ticketsId">ticketsId</string>
+    <string name="ticketdetails_ticketsId">Ticket ID</string>
     <string name="ticketdetails_status">Status</string>
     <string name="ticketdetails_next">Next</string>
     <string name="ticketdetails_prev">Previous</string>

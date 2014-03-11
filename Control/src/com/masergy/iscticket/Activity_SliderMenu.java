@@ -3,7 +3,9 @@ package com.masergy.iscticket;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -117,5 +119,14 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	public void onBackPressed() {
 	
 	}
+	
+	
+//	@Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+//                                                        INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+//        return true;
+//    }
 }
 

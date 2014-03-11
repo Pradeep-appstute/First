@@ -1,19 +1,9 @@
 package com.masergy.iscticket.ContentView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -23,34 +13,34 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -58,9 +48,9 @@ import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
-//import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
 import com.masergy.iscticket.utility.Webservice_PostSubmitData;
+//import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
 //import com.masergy.iscticket.utility.Webservice_GetTicketDetails.post_data;
 
 public class Fragment_Tickets extends Fragment {
@@ -113,12 +103,32 @@ public class Fragment_Tickets extends Fragment {
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(
 				R.layout.fragment_tickets, container, false);
-
+		lin_rootview.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
+		
 		// v.setBackgroundColor(Color.RED);
 		
 		// get the listview
 		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
-
+		expListView.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
+		
 		// preparing list data
 		prepareListData(OpenTab);
 		// load list view
@@ -135,6 +145,9 @@ public class Fragment_Tickets extends Fragment {
 				@Override
 				public void onClick(View v) {
 						Activity_SliderMenu.slidingMenu.toggle();
+						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+		                 inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+		                		    InputMethodManager.HIDE_NOT_ALWAYS);
 				}
 		});
 		
@@ -233,7 +246,18 @@ public class Fragment_Tickets extends Fragment {
 					
 					// Add submitview
 					viewgroup_submitview = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.submit_view, (ViewGroup) lin_rootview,false);
+					viewgroup_submitview.setOnTouchListener(new OnTouchListener() {
+						
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+			                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+			               		    InputMethodManager.HIDE_NOT_ALWAYS);
+							return false;
+						}
+					});
 					((ViewGroup) lin_rootview).addView(viewgroup_submitview);
+					
 				}//if (isTicketDetailsTapped) 
 				else
 				{
@@ -242,6 +266,16 @@ public class Fragment_Tickets extends Fragment {
 				
 				// Add submitview
 				viewgroup_submitview = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.submit_view, (ViewGroup) lin_rootview,false);
+				viewgroup_submitview.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+		                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+		               		    InputMethodManager.HIDE_NOT_ALWAYS);
+						return false;
+					}
+				});
 				((ViewGroup) lin_rootview).addView(viewgroup_submitview);
 				}
 				SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.context.MODE_PRIVATE);    
@@ -318,11 +352,43 @@ public class Fragment_Tickets extends Fragment {
 		               btnCreateTicket.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							txt_description = editTextDescription.getText().toString();
+							txt_description = ""+editTextDescription.getText().toString();
+							
+							if(txt_description.length()>0)
+							{
 							Webservice_PostSubmitData webservicePostSubmitData = new Webservice_PostSubmitData(Activity_SliderMenu.context, txt_subject, txt_bundleid, txt_description);
 							webservicePostSubmitData.postData();
+							}//if
+							else
+							{
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+								 
+								// set title
+								alertDialogBuilder.setTitle("Alert!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("Please enter the description.")
+									.setCancelable(false)
+									.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+							}
 						}
 					});
+		               
+		               
 			}
 
 
@@ -399,6 +465,16 @@ public class Fragment_Tickets extends Fragment {
 				
 				// Add ticketdetails_view
 				viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
+				viewgroup_ticketdetails_view.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+		                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+		               		    InputMethodManager.HIDE_NOT_ALWAYS);
+						return false;
+					}
+				});
 				((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
 				
 					//subject
