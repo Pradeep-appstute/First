@@ -57,12 +57,16 @@ public class Webservice_GetTicketDetails {
 	ProgressDialog mpProgress;
 	public static String str_response;
 
-	public Webservice_GetTicketDetails(Context context, String ticketId) {
+	//To handle views on next prev button
+	boolean calledFromNextPrevBtn;
+	
+	public Webservice_GetTicketDetails(Context context, String ticketId, boolean calledFromNextPrevBtn) {
 		this.mContext = context;
 		this.ticketId = ticketId;
 		webServiceLinkForTicketDetails = webServiceLinkForTicketDetails+ticketId;
 		sharedPrefEditor = ((Activity) context).getSharedPreferences(Send_to_Web.fileName,context.MODE_PRIVATE).edit();
 		Log.d("tag", "webServiceLinkForTicketDetails="+webServiceLinkForTicketDetails);
+		this.calledFromNextPrevBtn = calledFromNextPrevBtn;
 		System.out.println("=========== URL=" + webServiceLinkForTicketDetails);
 	}
 
@@ -177,8 +181,11 @@ public class Webservice_GetTicketDetails {
 				// Toast.makeText(mContext, "Response-"+result, 1000).show();
 				 System.out.println("Response="+result);
 				 str_response=result;
-				
-				Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
+				 Fragment_Tickets.isTicketDetailsTapped=true;
+				 if (calledFromNextPrevBtn==false)
+					 Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
+				 else
+					 Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable_forPrevNext);
 
 			} else {
 				Toast.makeText(mContext, "No response from server", 1000)

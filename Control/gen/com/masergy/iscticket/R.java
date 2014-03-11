@@ -249,11 +249,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textViewticketsIdValue=0x7f070043;
         public static final int text_child=0x7f07000f;
         public static final int text_view=0x7f070011;
-        public static final int txtVieTimeStamp=0x7f070045;
-        public static final int txtViewDetails=0x7f070047;
+        public static final int ticketdetails_next=0x7f070046;
+        public static final int ticketdetails_prev=0x7f070045;
+        public static final int txtVieTimeStamp=0x7f070047;
+        public static final int txtViewDetails=0x7f070049;
         public static final int txtViewEmail=0x7f070012;
         public static final int txtViewParent=0x7f070010;
-        public static final int txtViewUserName=0x7f070046;
+        public static final int txtViewUserName=0x7f070048;
         public static final int txtView_contract=0x7f07002f;
         public static final int txtView_current=0x7f070030;
         public static final int txtview_bundleid=0x7f07002c;

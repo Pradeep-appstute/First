@@ -145,13 +145,14 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/ticketdetails_prev"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ticketdetails_prev" />
 
         <Button
-            android:id="@+id/textViewSubmittedByValue"
+            android:id="@+id/ticketdetails_next"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

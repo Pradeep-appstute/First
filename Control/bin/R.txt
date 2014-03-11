@@ -119,11 +119,13 @@ int id textViewSubmittedByValue 0x7f07003f
 int id textViewticketsIdValue 0x7f070043
 int id text_child 0x7f07000f
 int id text_view 0x7f070011
-int id txtVieTimeStamp 0x7f070045
-int id txtViewDetails 0x7f070047
+int id ticketdetails_next 0x7f070046
+int id ticketdetails_prev 0x7f070045
+int id txtVieTimeStamp 0x7f070047
+int id txtViewDetails 0x7f070049
 int id txtViewEmail 0x7f070012
 int id txtViewParent 0x7f070010
-int id txtViewUserName 0x7f070046
+int id txtViewUserName 0x7f070048
 int id txtView_contract 0x7f07002f
 int id txtView_current 0x7f070030
 int id txtview_bundleid 0x7f07002c
