@@ -182,7 +182,6 @@ public class Fragment_Tickets extends Fragment {
 		});
 		imgButtonMaint = (ImageButton) lin_rootview.findViewById(R.id.imgButtonMaint);
 		imgButtonMaint.setOnClickListener(new OnClickListener() {
-			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
 				
@@ -205,14 +204,8 @@ public class Fragment_Tickets extends Fragment {
 		});
 		imgButtonSubmit = (ImageButton) lin_rootview.findViewById(R.id.imgButtonSubmit);
 		imgButtonSubmit.setOnClickListener(new OnClickListener() {
-			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
-				imgButtonOpen.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmopen));
-				imgButtonClosed.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmclosed));
-				imgButtonMaint.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmmaint));
-				imgButtonSubmit.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmsubmitselected));
-				
 				isSubmitTapped=true;
 				
 				if (isTicketDetailsTapped) //Load Tickets list view
@@ -418,12 +411,7 @@ public class Fragment_Tickets extends Fragment {
 		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
 		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
 		        	       
-		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
-		        	{
-		        		nextBtn.setEnabled(false);
-        				prevBtn.setEnabled(false);
-		        	}
-		        	else if(childPosition==0)
+		        	if(childPosition==0)
 		        	{
 		        	    	   prevBtn.setEnabled(false);
 		        	    	   nextBtn.setEnabled(true);
@@ -572,13 +560,8 @@ public class Fragment_Tickets extends Fragment {
 		        	//Next and Prev button
 		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
 		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
-		        	  
-		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
-		        	{
-		        		nextBtn.setEnabled(false);
-        				prevBtn.setEnabled(false);
-		        	}
-		        	else if(childPosition==0)
+		        	       
+		        	if(childPosition==0)
 		        	{
 		        	    	   prevBtn.setEnabled(false);
 		        	    	   nextBtn.setEnabled(true);

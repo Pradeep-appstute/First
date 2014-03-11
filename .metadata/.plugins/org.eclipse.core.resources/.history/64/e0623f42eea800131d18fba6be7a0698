@@ -418,12 +418,7 @@ public class Fragment_Tickets extends Fragment {
 		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
 		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
 		        	       
-		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
-		        	{
-		        		nextBtn.setEnabled(false);
-        				prevBtn.setEnabled(false);
-		        	}
-		        	else if(childPosition==0)
+		        	if(childPosition==0)
 		        	{
 		        	    	   prevBtn.setEnabled(false);
 		        	    	   nextBtn.setEnabled(true);
@@ -433,6 +428,11 @@ public class Fragment_Tickets extends Fragment {
         				nextBtn.setEnabled(false);
         				prevBtn.setEnabled(true);
         			}
+		        	else if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
+		        	{
+		        		nextBtn.setEnabled(false);
+        				prevBtn.setEnabled(false);
+		        	}
 		        	else
 		        	{
 		        		nextBtn.setEnabled(true);
@@ -572,13 +572,8 @@ public class Fragment_Tickets extends Fragment {
 		        	//Next and Prev button
 		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
 		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
-		        	  
-		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
-		        	{
-		        		nextBtn.setEnabled(false);
-        				prevBtn.setEnabled(false);
-		        	}
-		        	else if(childPosition==0)
+		        	       
+		        	if(childPosition==0)
 		        	{
 		        	    	   prevBtn.setEnabled(false);
 		        	    	   nextBtn.setEnabled(true);
@@ -588,6 +583,11 @@ public class Fragment_Tickets extends Fragment {
         				nextBtn.setEnabled(false);
         				prevBtn.setEnabled(true);
         			}
+		        	else if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
+		        	{
+		        		nextBtn.setEnabled(false);
+        				prevBtn.setEnabled(false);
+		        	}
 		        	else
 		        	{
 		        		nextBtn.setEnabled(true);
