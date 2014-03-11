@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
 import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
 
 /*
  To edit data from sharedpreference
@@ -186,9 +187,10 @@ public class Send_to_Web {
 			super.onPostExecute(result);
 			if (result!=null) {
 
-				//Toast.makeText(mContext, "Response-"+result, 1000).show();
-				//System.out.println("Response="+result);
-				
+//				Toast.makeText(mContext, "Response-"+result, 1000).show();
+//				System.out.println("Response="+result);
+				if(result.contains("authToken") && result.contains("contactId") && result.contains("userId"))
+				{
 				try {
 					JSONObject jObj = new JSONObject(result);
 					String authToken = jObj.getString("authToken");
@@ -235,6 +237,34 @@ public class Send_to_Web {
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				
+			}//inner-if
+				else
+				{
+					//display invalid user name  or password
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+					 
+					// set title
+					alertDialogBuilder.setTitle("Invalid Username or Password");
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setCancelable(false)
+						.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, just close
+								// the dialog box and do nothing
+								dialog.cancel();
+							}
+						  });
+						
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
 				}
 			}
 			else

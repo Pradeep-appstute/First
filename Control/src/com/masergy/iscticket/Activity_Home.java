@@ -122,7 +122,9 @@ public class Activity_Home extends Activity {
 
 	        holder.txtTitle.setText(rowItem.getTitle());
 	        holder.imageView.setImageResource(rowItem.getImageId());
-	 
+	        
+	        //set background
+	        convertView.setBackgroundResource(R.drawable.menulistbackground);
 	        return convertView;
 	    }
 	 

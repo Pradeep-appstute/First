@@ -54,6 +54,8 @@ class BaseAdapter_ListMenu extends BaseAdapter {
         holder.txtTitle.setText(rowItem.getTitle());
         holder.imageView.setImageResource(rowItem.getImageId());
  
+        //set background
+        convertView.setBackgroundResource(R.drawable.menulistbackground);
         return convertView;
     }
  

@@ -24,12 +24,15 @@
             android:textSize="30dp"
             android:typeface="normal" />
     </LinearLayout>
-
+<!--         android:listSelector="#547686"  -->
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="#4E4E50"
-        android:listSelector="#547686" />
+
+        android:divider="@null"
+		android:dividerHeight="0dp"
+        />
 
 </LinearLayout>
