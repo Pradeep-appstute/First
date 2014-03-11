@@ -498,27 +498,18 @@ public class Webservice_GetTicketsList {
 				
 			}
 			
-			Log.d("tag", "CurrentWeek");
-			for(int i=0; i<currentWeekDatesList.size(); i++)
-			{
-				
-				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentWeekDatesList.get(i).getTime()))==0)
-					return CurrentWeek;
-			}
-			
 			Log.d("tag", "LastWeek->CurrentMonth");
 			for(int i=0; i<currentMonthList.size(); i++)
 			{				
 				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentMonthList.get(i).getTime()))==0)
 				{
-					Log.d("tag", "(< 0)");
+					Log.d("tag", "(LessThan 0)");
 					return CurrentMonth;
 				}
 			}
 		}
 		else if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, datetime_today)>0)
 		{
-			
 			Log.d("tag", "CurrentWeek");
 			for(int i=0; i<currentWeekDatesList.size(); i++)
 			{
@@ -531,10 +522,7 @@ public class Webservice_GetTicketsList {
 			for(int i=0; i<currentMonthList.size(); i++)
 			{				
 				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(currentMonthList.get(i).getTime()))==0)
-				{
-					Log.d("tag", "(> 0)");
 					return CurrentMonth;
-				}
 			}
 		}
 		return -1;

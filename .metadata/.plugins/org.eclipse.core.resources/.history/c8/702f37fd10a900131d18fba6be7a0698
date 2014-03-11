@@ -518,6 +518,13 @@ public class Webservice_GetTicketsList {
 		}
 		else if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, datetime_today)>0)
 		{
+			Log.d("tag", "LastWeek");
+			for(int i=0; i<lastWeekDatesList.size(); i++)
+			{	
+				if(DateTimeComparator.getDateOnlyInstance().compare(datetime_created, new DateTime(lastWeekDatesList.get(i).getTime()))==0)
+					return LastWeek;
+				
+			}
 			
 			Log.d("tag", "CurrentWeek");
 			for(int i=0; i<currentWeekDatesList.size(); i++)
