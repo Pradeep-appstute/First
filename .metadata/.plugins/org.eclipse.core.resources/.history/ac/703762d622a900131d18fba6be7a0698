@@ -35,7 +35,7 @@
     <string name="ticketdetails_prev">Previous</string>
 
     <!-- Service Detail Screen -->
-    <string name="servicedetails_headertitle">Select Service</string>
+    <string name="servicedetails_headertitle">Select service</string>
     <string name="servicedetails_title">Select desired bandwidth:</string>
     <string name="servicedetails_bundleid">Bundle ID:</string>
     <string name="servicedetails_services">Services:</string>

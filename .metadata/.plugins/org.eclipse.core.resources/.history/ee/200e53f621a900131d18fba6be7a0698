@@ -185,7 +185,7 @@ public class Webservice_GetTicketDetails {
 				 str_response=result;
 				 Fragment_Tickets.isTicketDetailsTapped=true;
 					TextView menu_title = ((TextView) Fragment_Tickets.lin_rootview.findViewById(R.id.activity_main_content_title));
-					menu_title.setText("Tickets details");
+					menu_title.setText("Tickets");
 				 if (calledFromNextPrevBtn==false)
 					 Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
 				 else

@@ -68,7 +68,7 @@ public class Fragment_Tickets extends Fragment {
 	//To resolve issue of changing tabs
 	static boolean isSubmitTapped;//Temporary declared static, later save in shared pref. 
 	public static boolean isTicketDetailsTapped;
-	public static LinearLayout lin_rootview;
+	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview,viewgroup_ticketdetails_view;
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;

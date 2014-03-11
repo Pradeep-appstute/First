@@ -68,7 +68,7 @@ public class Fragment_Tickets extends Fragment {
 	//To resolve issue of changing tabs
 	static boolean isSubmitTapped;//Temporary declared static, later save in shared pref. 
 	public static boolean isTicketDetailsTapped;
-	public static LinearLayout lin_rootview;
+	LinearLayout lin_rootview;
 	ViewGroup viewgroup_submitview,viewgroup_ticketdetails_view;
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
@@ -752,8 +752,6 @@ public class Fragment_Tickets extends Fragment {
 
 		if (isTicketDetailsTapped) //Load Tickets list view
 		{
-			TextView menu_title = ((TextView) lin_rootview.findViewById(R.id.activity_main_content_title));
-			menu_title.setText("Tickets");
 			isTicketDetailsTapped=false;
 			
 			// Remove expandable list view

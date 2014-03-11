@@ -96,7 +96,7 @@ public class Webservice_PostModifyDetails {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					mpProgress= ProgressDialog.show(mContext, "Modifying Service", "Please wait for a moment...");
+					mpProgress= ProgressDialog.show(mContext, "Creating Ticket", "Please wait for a moment...");
 				}
 			});
 			

@@ -41,10 +41,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.masergy.iscticket.Activity_SliderMenu;
-import com.masergy.iscticket.R;
 import com.masergy.iscticket.ContentView.Fragment_Tickets;
 import com.masergy.iscticket.ContentView.Ticket;
 
@@ -184,8 +182,6 @@ public class Webservice_GetTicketDetails {
 				 System.out.println("Response="+result);
 				 str_response=result;
 				 Fragment_Tickets.isTicketDetailsTapped=true;
-					TextView menu_title = ((TextView) Fragment_Tickets.lin_rootview.findViewById(R.id.activity_main_content_title));
-					menu_title.setText("Tickets details");
 				 if (calledFromNextPrevBtn==false)
 					 Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable);
 				 else
