@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_Home;
 import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.ContentView.Fragment_Tickets;
 
 public class Webservice_PostSubmitData {
 	
@@ -162,8 +163,47 @@ public class Webservice_PostSubmitData {
 			super.onPostExecute(result);
 			if (result!=null) {
 
-				Toast.makeText(mContext, "Response-"+result, 1000).show();
-				//System.out.println("Response="+result);
+//				Toast.makeText(mContext, "Response-"+result, 1000).show();
+				System.out.println("Response="+result);
+				
+				/*
+			    {"name":"ticketId","value":"189630"}
+				 */
+				String value="";
+				if(result.contains("value"))
+				{
+				try {
+					JSONObject jsonObject = new JSONObject(result);
+					value = jsonObject.getString("value");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				}
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+		 
+					// set title
+					alertDialogBuilder.setTitle("Alert");
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setMessage("Your Ticket is successfully submitted Ticket #"+value)
+						.setCancelable(false)
+						.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, just close
+								// the dialog box and do nothing
+								dialog.cancel();
+								Fragment_Tickets.reloadTicketsView();
+							}
+						  });
+						
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
 			}
 			else
 			{

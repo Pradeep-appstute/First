@@ -119,4 +119,26 @@ public class ListFragment_ListMenu extends ListFragment {
 		}
 			
 	}//onListItemClick
+	
+//	static void reloadTicketView()
+//	{
+//		Fragment newContent = null;
+//
+//		    Webservice_GetSubmitData instance_submit = new Webservice_GetSubmitData(Activity_SliderMenu.context);
+//		    instance_submit.postData();
+//		    Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
+//		    instance.postData();
+//			newContent = new Fragment_Tickets();
+//
+//		
+//		if (newContent != null)
+//		{
+//		    FragmentTransaction ft = getFragmentManager().beginTransaction();
+//		    ft.replace(R.id.activity_main_content_fragment, newContent);
+//		    ft.commit();
+//		    
+//		    //Toggle sliding menu
+//		    Activity_SliderMenu.slidingMenu.showContent();
+//		}
+//	}
 }

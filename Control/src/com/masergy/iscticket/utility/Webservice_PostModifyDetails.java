@@ -226,8 +226,36 @@ public class Webservice_PostModifyDetails {
 			}
 			else
 			{
-				Toast.makeText(mContext, "No response from server", 1000).show();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				//System.out.println("No response from server");
+				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+						Activity_SliderMenu.context);
+		 
+					// set title
+					alertDialogBuilder.setTitle("Error");
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setMessage("Unable to create ticket.")
+						.setCancelable(false)
+						.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, just close
+								// the dialog box and do nothing
+								dialog.cancel();
+								Intent intent = new Intent(mContext.getApplicationContext(), Activity_Home.class);
+								intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+								intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								mContext.startActivity(intent);
+							}
+						  });
+						
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
 			}
 		}
 

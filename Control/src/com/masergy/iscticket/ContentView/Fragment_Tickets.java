@@ -97,6 +97,13 @@ public class Fragment_Tickets extends Fragment {
 	//To maintain Next and Previous button on TiketDetails View
 	int groupPosition, childPosition;
 	
+	public static void reloadTicketsView()
+	{
+		imgButtonOpen.performClick();
+		Webservice_GetTicketsList instance = new Webservice_GetTicketsList(Activity_SliderMenu.context);
+		instance.postData();
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
