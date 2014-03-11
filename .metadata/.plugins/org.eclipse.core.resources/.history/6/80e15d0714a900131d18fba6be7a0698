@@ -315,7 +315,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									
+									;
 									child.setchildText("Created: "+DateTimeFormat.forPattern("MM/dd/yyyy").print(new DateTime(Long.parseLong(jsonObj.getString("createDate")))).toString());
 									dopplerim_childList.add(child);
 								}
