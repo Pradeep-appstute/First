@@ -42,6 +42,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
@@ -363,6 +364,11 @@ public class Fragment_Tickets extends Fragment {
 		        	//status
 		        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
 		        	tv_status.setText(status);
+		        	
+		        	//List View
+		        	ListView listView = (ListView) viewgroup_ticketdetails_view.findViewById(R.id.listViewComment);
+		        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
+		        	
 				}
 				catch (JSONException e)
 				{

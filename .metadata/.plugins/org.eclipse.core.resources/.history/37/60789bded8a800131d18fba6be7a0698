@@ -1,0 +1,62 @@
+package com.masergy.iscticket.ContentView;
+
+import java.util.ArrayList;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.ListAdapter;
+import android.widget.TextView;
+
+import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.Fragment_Tickets.Comment;
+
+public class TicketsDetailsListAdapter extends BaseAdapter implements
+		ListAdapter {
+	// Public
+	Context mContext;
+	ArrayList<Comment> comment_List;
+
+	TicketsDetailsListAdapter(Context context, ArrayList<Comment> list) {
+		mContext = context;
+		this.comment_List = list ;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return comment_List.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return comment_List.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if (convertView == null) {
+			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			convertView = inflater.inflate(R.layout.ticketdetails_view_list_item, parent, false);
+			TextView txt_uname=((TextView) convertView.findViewById(R.id.txtViewUserName));
+////			((TextView) convertView).setTextSize(16);
+//			// ((TextView)convertView).setRelative(5, 5, 5, 5);
+		}
+////		((TextView) convertView)
+////				.setText(filtered_modifyServiceList.get(position).bundleId + " "
+////						+ filtered_modifyServiceList.get(position).location);
+////		((TextView) convertView).setTextSize(16);
+//
+		return convertView;
+	}
+}
