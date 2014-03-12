@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,6 +22,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -42,7 +45,7 @@ public class Fragment_DopplerIM extends Fragment {
 	public static ExpandableListView expListView;
 	public static ArrayList<DopplerIM_Parent> dopplerIM_Parents;
 	//-------------------------------------
-	static SearchView searchView;
+	public static EditText inputSearch;
 	static LayoutInflater inflater;
 	static ViewGroup container;
 	
@@ -84,7 +87,28 @@ public class Fragment_DopplerIM extends Fragment {
 				return false;
 			}
 		});
-		searchView = (SearchView) lin_rootview.findViewById(R.id.searchView);
+		inputSearch = (EditText) lin_rootview.findViewById(R.id.inputSearch);
+		inputSearch.addTextChangedListener(new TextWatcher() {
+		     
+		    @Override
+		    public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+		        // When user changed the Text
+		        listAdapter.getFilter().filter(cs);  
+		    }
+		     
+		    @Override
+		    public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+		            int arg3) {
+		        // TODO Auto-generated method stub
+		         
+		    }
+		     
+		    @Override
+		    public void afterTextChanged(Editable arg0) {
+		        // TODO Auto-generated method stub                         
+		    }
+		});
+
 		
 		//initialize static variable
 		dopplerIM_Parents = new ArrayList<DopplerIM_Parent>();
@@ -138,11 +162,20 @@ public class Fragment_DopplerIM extends Fragment {
 				{
 //					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
 					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
+					expListView.setSelection(groupPosition);
 				}
 				else if (dopplerIM_Parents.get(groupPosition).getChildren().size()==0)
 				{
 					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
 					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
+//					
+					//For scroll tapped list view item at top (or as a first list view item)
+					expListView.setSelection(groupPosition);
+					int offset = groupPosition - expListView.getFirstVisiblePosition();
+		            if(expListView.getFirstVisiblePosition() > 0)
+		                offset -= 1;
+
+		            expListView.smoothScrollByOffset(offset);
 				}
 				else
 				{
@@ -150,8 +183,16 @@ public class Fragment_DopplerIM extends Fragment {
 						//Collapse
 						expListView.collapseGroup(groupPosition);
 					else
+					{
 						//Expand
 						expListView.expandGroup(groupPosition);
+//						expListView.setSelection(groupPosition);
+						int offset = groupPosition - expListView.getFirstVisiblePosition();
+			            if(expListView.getFirstVisiblePosition() > 0)
+			                offset -= 1;
+
+			            expListView.smoothScrollByOffset(offset);
+					}
 				}
 				
 			
@@ -168,7 +209,13 @@ public class Fragment_DopplerIM extends Fragment {
 //						Activity_SliderMenu.context.getApplicationContext(),
 //						listDataHeader.get(groupPosition) + " Expanded",
 //						Toast.LENGTH_SHORT).show();
-				Log.d("tag", "groupPosition="+groupPosition);
+//				Log.d("tag", "groupPosition="+groupPosition);
+//				expListView.setSelection(groupPosition);
+				int offset = groupPosition - expListView.getFirstVisiblePosition();
+	            if(expListView.getFirstVisiblePosition() > 0)
+	                offset -= 1;
+
+	            expListView.smoothScrollByOffset(offset);
 			}
 		});
 

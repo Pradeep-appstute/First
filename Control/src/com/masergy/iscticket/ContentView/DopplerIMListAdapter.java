@@ -1,6 +1,7 @@
 package com.masergy.iscticket.ContentView;
 
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.ModifyServiceListAdapter.ItemFilter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Filter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -27,19 +29,39 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 	
 	DateTimeFormatter dateTimeFormatter;
 	private Context _context;
-	private ArrayList<DopplerIM_Parent> dopplerIM_Parents; // header titles
-
+	ArrayList<DopplerIM_Parent> original_dopplerIM_Parents;
+	ArrayList<DopplerIM_Parent> filtered_dopplerIM_Parents;
+	LayoutInflater mInflater;
+	ItemFilter mFilter = new ItemFilter();
 
 	public DopplerIMListAdapter(Context context, ArrayList<DopplerIM_Parent> dopplerIM_Parents){
 		this._context = context;
-		this.dopplerIM_Parents = dopplerIM_Parents;	
+		this.original_dopplerIM_Parents = dopplerIM_Parents ;
+		this.filtered_dopplerIM_Parents = dopplerIM_Parents ;
+		mInflater = LayoutInflater.from(context);
 		dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
 	}
 
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return filtered_dopplerIM_Parents.size();
+	}
+	
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return filtered_dopplerIM_Parents.get(position);
+	}
+
+	
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+	
 	@Override
 	public Object getChild(int groupPosition, int childPosititon) {
 		 //Log.i("Childs", groupPosition+"=  getChild =="+childPosition);
-        return dopplerIM_Parents.get(groupPosition).getChildren().get(childPosititon);
+        return filtered_dopplerIM_Parents.get(groupPosition).getChildren().get(childPosititon);
 	}
 
 	@Override
@@ -48,21 +70,19 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 		return childPosition;
 	}
 
+
+    // getFilter Method
+	public Filter getFilter() {
+		return mFilter;
+	}
+	
 	@Override
 	public View getChildView(int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 
-		final DopplerIM_Parent dopplerim_parent = dopplerIM_Parents.get(groupPosition);
+		final DopplerIM_Parent dopplerim_parent = filtered_dopplerIM_Parents.get(groupPosition);
         final DopplerIM_Child dopplerim_child = dopplerim_parent.getChildren().get(childPosition);
-         
-        
-        
-         
-        
-        
-        
-        
-        
+
 
         // Inflate childrow.xml file for child rows
 		if (convertView == null) {
@@ -77,55 +97,27 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 			convertView.setBackgroundColor(Color.WHITE);
 		
 		// Get childrow.xml file elements and set values
-		((TextView) convertView.findViewById(R.id.text_child)).setText(dopplerim_child.getchildText());
-		
-//		TextView txtid = (TextView) convertView.findViewById(R.id.text_id);
-//		TextView txtname = (TextView) convertView.findViewById(R.id.text_name);
-//		TextView txtalarmstate = (TextView) convertView.findViewById(R.id.text_alarmState);
-//		TextView txttype = (TextView) convertView.findViewById(R.id.text_type);
-//		TextView txtcreatedate = (TextView) convertView.findViewById(R.id.text_createDate);
-//		TextView txtcloudid = (TextView) convertView.findViewById(R.id.text_cloudId);
-//		TextView txtcloudname = (TextView) convertView.findViewById(R.id.text_cloudName);
-//		TextView txtipaddress = (TextView) convertView.findViewById(R.id.text_ipAddress);
-//		TextView txtsite = (TextView) convertView.findViewById(R.id.text_site);
-//		TextView txtcreditpointsused = (TextView) convertView.findViewById(R.id.text_creditPointsUsed);
-//		TextView txtassetmanufacturer = (TextView) convertView.findViewById(R.id.text_assetManufacturer);
-//		TextView txtassetmodel = (TextView) convertView.findViewById(R.id.text_assetModel);
-//		
-//		
-//		 txtid.setText(child.id);
-//		 txtname.setText(child.name);
-//		 txtalarmstate.setText(child.alarmState);
-//		 txttype.setText(child.type);
-//		 txtcreatedate.setText(child.createDate);
-//		 txtcloudid.setText(child.cloudId);
-//		 txtcloudname.setText(child.cloudName);
-//		 txtipaddress.setText(child.ipAddress);
-//		 txtsite.setText(child.site);
-//		 txtcreditpointsused.setText(child.creditPointsUsed);
-//		 txtassetmanufacturer.setText(child.assetManufacturer);
-//		 txtassetmodel.setText(child.assetModel);
-		
+		((TextView) convertView.findViewById(R.id.text_child)).setText(dopplerim_child.getchildText());		
 		return convertView;
 	}
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		int size=0;
-        if(dopplerIM_Parents.get(groupPosition).getChildren()!=null)
-            size = dopplerIM_Parents.get(groupPosition).getChildren().size();
+        if(filtered_dopplerIM_Parents.get(groupPosition).getChildren()!=null)
+            size = filtered_dopplerIM_Parents.get(groupPosition).getChildren().size();
         return size;
 	}
 
 	@Override
 	public Object getGroup(int groupPosition) {
 		Log.i("Parent", groupPosition+"=  getGroup ");
-		return this.dopplerIM_Parents.get(groupPosition);
+		return this.filtered_dopplerIM_Parents.get(groupPosition);
 	}
 
 	@Override
 	public int getGroupCount() {
-		return this.dopplerIM_Parents.size();
+		return this.filtered_dopplerIM_Parents.size();
 	}
 
 	@Override
@@ -168,4 +160,37 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 		return true;
 	}
 
+	public class ItemFilter extends Filter {
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			String filterString = constraint.toString().toLowerCase();
+			FilterResults results = new FilterResults();
+			final ArrayList<DopplerIM_Parent> list = original_dopplerIM_Parents;
+
+			int count = list.size();
+			final ArrayList<DopplerIM_Parent> new_list = new ArrayList<DopplerIM_Parent>(count);
+
+			DopplerIM_Parent filterableString;
+			for (int i = 0; i < count; i++) {
+				filterableString = list.get(i);
+				if (filterableString.name.toString().toLowerCase().contains(filterString)) {
+					new_list.add(filterableString);
+				}
+			}
+			results.values = new_list;
+			results.count = new_list.size();
+
+			return results;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void publishResults(CharSequence constraint, FilterResults results) {
+			filtered_dopplerIM_Parents = (ArrayList<DopplerIM_Parent>) results.values;
+			
+			notifyDataSetChanged();
+		}
+
+	}//eof class ItemFilter
 }
+
