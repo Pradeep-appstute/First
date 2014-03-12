@@ -283,6 +283,7 @@ public class Fragment_Tickets extends Fragment {
 		        String firstName = prefs.getString("firstName", "");
 		        if (firstName != null) 
 		        {
+		        	firstName = firstName+" "+prefs.getString("lastName", "");
 		        	TextView tv_name = (TextView)viewgroup_submitview.findViewById(R.id.textViewNameValue);
 		        	         tv_name.setText(firstName);
 		        }
