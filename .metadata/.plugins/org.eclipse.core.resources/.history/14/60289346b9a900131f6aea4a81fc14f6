@@ -455,7 +455,7 @@ public class Fragment_Tickets extends Fragment {
 						Comment comment = new Comment();
 						        comment.timestamp = comments_JsonObj.getString("timestamp");
 						        comment.userName = comments_JsonObj.getString("userName");
-						        comment.detail = (comments_JsonObj.getString("detail").toString()).replace("null", "");
+						        comment.detail = comments_JsonObj.getString("detail");
 						        commentsList.add(comment);
 				}
 				
