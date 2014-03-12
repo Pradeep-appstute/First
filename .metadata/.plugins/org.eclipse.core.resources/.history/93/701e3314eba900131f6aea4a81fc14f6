@@ -204,7 +204,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Cloud:"+jsonObj.getString("cloudId"));
+									child.setchildText("Cloud: "+jsonObj.getString("cloudId"));
 									dopplerim_childList.add(child);
 								}
 									
@@ -212,7 +212,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Cloud:");
+									child.setchildText("Cloud: ");
 									dopplerim_childList.add(child);
 								}
 								
@@ -220,14 +220,14 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("IP:"+jsonObj.getString("ipAddress"));
+									child.setchildText("IP: "+jsonObj.getString("ipAddress"));
 									dopplerim_childList.add(child);
 								}
 								else
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("IP:");
+									child.setchildText("IP: ");
 									dopplerim_childList.add(child);
 								}
 				
@@ -238,14 +238,14 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Type:"+jsonObj.getString("type"));
+									child.setchildText("Type: "+jsonObj.getString("type"));
 									dopplerim_childList.add(child);
 								}
 								else
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Type:");
+									child.setchildText("Type: ");
 									dopplerim_childList.add(child);
 								}
 			
@@ -259,7 +259,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								else
 								{
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Status:");
+									child.setchildText("Status: ");
 									dopplerim_childList.add(child);
 								}
 									
@@ -282,7 +282,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Manufacturer:"+jsonObj.getString("assetManufacturer"));
+									child.setchildText("Manufacturer: "+jsonObj.getString("assetManufacturer"));
 									dopplerim_childList.add(child);
 								}
 									
@@ -290,7 +290,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Manufacturer:");
+									child.setchildText("Manufacturer: ");
 									dopplerim_childList.add(child);
 								}
 								
@@ -298,7 +298,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Model:"+jsonObj.getString("assetModel"));
+									child.setchildText("Model: "+jsonObj.getString("assetModel"));
 									dopplerim_childList.add(child);
 								}
 									
@@ -306,7 +306,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Model:");
+									child.setchildText("Model: ");
 									dopplerim_childList.add(child);
 								}
 								
@@ -316,7 +316,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 
 									DopplerIM_Child child = new DopplerIM_Child();
 									
-									child.setchildText("Created:"+DateTimeFormat.forPattern("MM/dd/yyyy").print(new DateTime(Long.parseLong(jsonObj.getString("createDate")))).toString());
+									child.setchildText("Created: "+DateTimeFormat.forPattern("MM/dd/yyyy").print(new DateTime(Long.parseLong(jsonObj.getString("createDate")))).toString());
 									dopplerim_childList.add(child);
 								}
 									
@@ -324,7 +324,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 								{
 
 									DopplerIM_Child child = new DopplerIM_Child();
-									child.setchildText("Created:");
+									child.setchildText("Created: ");
 									dopplerim_childList.add(child);
 								}
 								

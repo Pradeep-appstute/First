@@ -102,7 +102,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
             System.out.println(token);
         }
 		
-		((TextView) convertView.findViewById(R.id.text_childlabel)).setText(str_array[0]+": ");
+		((TextView) convertView.findViewById(R.id.text_childlabel)).setText(str_array[0]);
 		((TextView) convertView.findViewById(R.id.text_child)).setText(str_array[1]);		
 		return convertView;
 	}

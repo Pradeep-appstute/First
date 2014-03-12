@@ -1,11 +1,17 @@
 package com.masergy.iscticket.ContentView;
 
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import com.masergy.iscticket.R;
+import com.masergy.iscticket.ContentView.ModifyServiceListAdapter.ItemFilter;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,11 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Filter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
-
-import com.masergy.iscticket.R;
 
 public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 	
@@ -91,19 +97,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 			convertView.setBackgroundColor(Color.WHITE);
 		
 		// Get childrow.xml file elements and set values
-		String main_str = dopplerim_child.getchildText();
-
-        StringTokenizer stt = new StringTokenizer(main_str,":");
-        String[] str_array = new String[2];
-        int i=0;
-        while (stt.hasMoreTokens()){
-            String token = stt.nextToken();
-            str_array[i++]=token;
-            System.out.println(token);
-        }
-		
-		((TextView) convertView.findViewById(R.id.text_childlabel)).setText(str_array[0]+": ");
-		((TextView) convertView.findViewById(R.id.text_child)).setText(str_array[1]);		
+		((TextView) convertView.findViewById(R.id.text_child)).setText(dopplerim_child.getchildText());		
 		return convertView;
 	}
 
