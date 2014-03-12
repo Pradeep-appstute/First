@@ -145,12 +145,7 @@ public class Fragment_DopplerIM extends Fragment {
 				}
 				else
 				{
-					if(expListView.isGroupExpanded(groupPosition))
-						//Collapse
-						expListView.collapseGroup(groupPosition);
-					else
-						//Expand
-						expListView.expandGroup(groupPosition);
+					//Do nothing
 				}
 				
 			

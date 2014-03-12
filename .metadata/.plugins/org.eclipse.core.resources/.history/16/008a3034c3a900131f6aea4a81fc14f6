@@ -138,19 +138,14 @@ public class Fragment_DopplerIM extends Fragment {
 //					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
 					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
 				}
-				else if (dopplerIM_Parents.get(groupPosition).getChildren().size()==0)
+				else if (dopplerIM_Parents.get(groupPosition).getChildren().size()>0)
 				{
 					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
 					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
 				}
 				else
 				{
-					if(expListView.isGroupExpanded(groupPosition))
-						//Collapse
-						expListView.collapseGroup(groupPosition);
-					else
-						//Expand
-						expListView.expandGroup(groupPosition);
+					//Do nothing
 				}
 				
 			
