@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dip" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TableRow android:layout_marginTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/ticketdetails_subject" />
+
+            <TextView
+                android:id="@+id/textViewSubjectValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  " />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/ticketdetails_submittedby" />
+
+            <TextView
+                android:id="@+id/textViewSubmittedByValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  " />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="5dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/ticketdetails_lastupdated" />
+
+            <TextView
+                android:id="@+id/textViewLastUpdatedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  " />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" 
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ticketdetails_comments"
+            android:textSize="18dip"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/listViewComment"
+            android:layout_width="match_parent"
+            android:layout_height="240dp" >
+        </ListView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linbottombar"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="#4345"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticketdetails_ticketsId" />
+
+            <TextView
+                android:id="@+id/textViewticketsIdValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticketdetails_status" />
+
+            <TextView
+                android:id="@+id/textViewStatusValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linbottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ticketdetails_prev"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ticketdetails_prev" />
+
+        <Button
+            android:id="@+id/ticketdetails_next"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/ticketdetails_next" />
+    </LinearLayout>
+</LinearLayout>
+</RelativeLayout>

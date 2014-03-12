@@ -425,9 +425,9 @@ public class Fragment_Tickets extends Fragment {
 				// Convert string to JSONArray
 				JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
 				
-				String ticketId = new String(": "+ticketdetails_JsonObj.getString("ticketId")); 
+				String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
 				String subject = new String(ticketdetails_JsonObj.getString("subject")); 
-				String status = new String(": "+ticketdetails_JsonObj.getString("status"));
+				String status = new String(":"+ticketdetails_JsonObj.getString("status"));
 		
 				String createDate;
 				if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
@@ -594,9 +594,9 @@ public class Fragment_Tickets extends Fragment {
 				// Convert string to JSONArray
 				JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
 				
-				String ticketId = new String(": "+ticketdetails_JsonObj.getString("ticketId")); 
+				String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
 				String subject = new String(ticketdetails_JsonObj.getString("subject")); 
-				String status = new String(": "+ticketdetails_JsonObj.getString("status"));
+				String status = new String(":"+ticketdetails_JsonObj.getString("status"));
 		
 				String createDate;
 				if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
@@ -625,7 +625,7 @@ public class Fragment_Tickets extends Fragment {
 						Comment comment = new Comment();
 						        comment.timestamp = comments_JsonObj.getString("timestamp");
 						        comment.userName = comments_JsonObj.getString("userName");
-						        comment.detail = comments_JsonObj.getString("detail");
+						        comment.detail = (comments_JsonObj.getString("detail")).toString().replace("null", "");
 						        commentsList.add(comment);
 				}
 				
