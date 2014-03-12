@@ -118,7 +118,6 @@ public class Fragment_Tickets extends Fragment {
 		
 		// get the listview
 		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
-		expListView.setGroupIndicator(null);
 		expListView.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
