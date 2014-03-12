@@ -40,14 +40,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/servicedetails_bundleid"
-                            android:gravity="right"
                             android:textColor="#000" />
 
                         <TextView
                             android:id="@+id/txtview_bundleid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text="@string/servicedetails_bundleid"
                             android:textColor="#000" />
                     </TableRow>
 
@@ -57,14 +56,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/servicedetails_services"
-                            android:gravity="right"
                             android:textColor="#000" />
 
                         <TextView
                             android:id="@+id/txtview_services"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text="@string/servicedetails_services"
                             android:textColor="#000" />
                     </TableRow>
 
@@ -74,14 +72,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/servicedetails_site"
-                            android:gravity="right"
                             android:textColor="#000" />
 
                         <TextView
                             android:id="@+id/txtview_site"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text="@string/servicedetails_site"
                             android:textColor="#000" />
                     </TableRow>
                 </TableLayout>

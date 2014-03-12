@@ -47,7 +47,7 @@
                             android:id="@+id/txtview_bundleid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text=""
                             android:textColor="#000" />
                     </TableRow>
 
@@ -64,7 +64,7 @@
                             android:id="@+id/txtview_services"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text=""
                             android:textColor="#000" />
                     </TableRow>
 
@@ -81,7 +81,7 @@
                             android:id="@+id/txtview_site"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="   "
+                            android:text=""
                             android:textColor="#000" />
                     </TableRow>
                 </TableLayout>
