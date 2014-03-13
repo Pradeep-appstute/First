@@ -34,7 +34,7 @@
             android:screenOrientation="portrait"
             ></activity>
         <activity android:name="Activity_SliderMenu"
-            android:windowSoftInputMode="adjustPan"
+            
             android:screenOrientation="portrait"
             ></activity>
     </application>

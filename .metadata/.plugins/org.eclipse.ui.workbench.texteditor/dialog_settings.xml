@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="263" key="DIALOG_WIDTH"/>
-		<item value="246" key="DIALOG_Y_ORIGIN"/>
-		<item value="1031" key="DIALOG_X_ORIGIN"/>
+		<item value="330" key="DIALOG_Y_ORIGIN"/>
 		<item value="399" key="DIALOG_HEIGHT"/>
+		<item value="1017" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="viewgroup_ticketdetails_view" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
-			<item value="viewgroup_ticketdetails_view"/>
-			<item value="viewgroup_submitview"/>
-			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;viewgroup_submitview.setOnTouchListener(new OnTouchListener() {"/>
-			<item value="listView"/>
-			<item value="toggle"/>
-			<item value="ticketdetails_ticketsId"/>
-			<item value="isTicketDetailsTapped"/>
-			<item value="runnable"/>
+			<item value="getItem"/>
+			<item value="inputSearch"/>
+			<item value="removeView"/>
+			<item value="spinner"/>
+			<item value="spinner_bundle"/>
+			<item value=" "/>
+			<item value="status"/>
+			<item value="subject"/>
 		</list>
 		<list key="replacehistory">
 			<item value="=="/>

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
     <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
@@ -123,7 +120,9 @@
                 android:layout_marginRight="40dip"
                 android:layout_span="2"
                 android:ems="10"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine" 
+                android:lines="2"
+                />
         </TableRow>
 
         <TableRow
@@ -141,5 +140,3 @@
                 android:background="@drawable/img_btncreateticket" />
         </TableRow>
     </TableLayout>
-
-</ScrollView>

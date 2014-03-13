@@ -108,6 +108,8 @@ public class Fragment_Tickets extends Fragment {
 			
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
+				
+				
 				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
                 inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
                		    InputMethodManager.HIDE_NOT_ALWAYS);
@@ -252,6 +254,7 @@ public class Fragment_Tickets extends Fragment {
 						
 						@Override
 						public boolean onTouch(View v, MotionEvent event) {
+							
 							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
 			                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
 			               		    InputMethodManager.HIDE_NOT_ALWAYS);
@@ -352,6 +355,7 @@ public class Fragment_Tickets extends Fragment {
 					});
 		        
 		        editTextDescription = (EditText) viewgroup_submitview.findViewById(R.id.editTextDescription);
+
 		        ImageButton btnCreateTicket = (ImageButton) viewgroup_submitview.findViewById(R.id.btnCreateTicket);
 		               btnCreateTicket.setOnClickListener(new OnClickListener() {
 						@Override

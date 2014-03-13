@@ -3,9 +3,8 @@ package com.masergy.iscticket;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.MotionEvent;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
+import android.view.WindowManager;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -26,7 +25,8 @@ public class Activity_SliderMenu extends SlidingFragmentActivity {
 	public static Context context;
 
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState); 
+	    super.onCreate(savedInstanceState);
+	    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 	    //Remove title bar
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //	    requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
