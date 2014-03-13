@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.masergy.iscticket.MenuView.ListFragment_ListMenu;
 import com.masergy.iscticket.MenuView.RowItem;
 import com.masergy.iscticket.utility.Webservice_Logout;
 
@@ -50,6 +51,7 @@ public class Activity_Home extends Activity {
 //			        Toast.makeText(Activity_Home.this, ""+titles[position], Toast.LENGTH_LONG).show();
 			    	  if(titles[position].equalsIgnoreCase("Tickets"))
 			    	  {
+			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_ticketsselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Tickets");
 			    		  startActivity(intent);
@@ -57,6 +59,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(titles[position].equalsIgnoreCase("Modify Service"))
 			    	  {
+			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_modifyserviceselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Modify Service");
 			    		  startActivity(intent);
@@ -64,6 +67,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(titles[position].equalsIgnoreCase("Doppler IM"))
 			    	  {
+			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_dopplerimselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Doppler IM");
 			    		  startActivity(intent);
@@ -71,6 +75,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(titles[position].equalsIgnoreCase("Contact us"))
 			    	  {
+			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_contactusselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Contact us");
 			    		  startActivity(intent);
@@ -78,6 +83,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(titles[position].equalsIgnoreCase("Logout"))
 			    	  {
+			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_logoutselected;
 			  		    Webservice_Logout instance = new Webservice_Logout(Activity_Home.this);
 					    instance.postData();
 			    	  }			    	  
