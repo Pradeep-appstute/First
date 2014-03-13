@@ -92,7 +92,7 @@
                 android:gravity="center" />
         </TableRow>
 
-        <TableRow android:layout_marginTop="20dip" >
+        <TableRow android:layout_marginTop="10dip" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
         </TableRow>
 
         <TableRow
-            android:layout_marginTop="5dip"
+            android:layout_marginTop="0dip"
             android:gravity="center" >
 
             <EditText
@@ -121,7 +121,8 @@
                 android:layout_span="2"
                 android:ems="10"
                 android:inputType="textMultiLine" 
-                android:lines="2"
+                android:lines="3"
+                android:background="@drawable/shapeedittext"
                 />
         </TableRow>
 

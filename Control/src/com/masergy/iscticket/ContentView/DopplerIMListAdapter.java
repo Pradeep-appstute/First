@@ -84,8 +84,8 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.dopplerim_childrow, null);
 		}
 
-		//Log.d("tag", "childPosition%2==0="+(childPosition%2==0));
-		if (childPosition%2==0)	
+//		Log.d("tag", "childPosition%2==0="+(childPosition%2==0));
+		if (childPosition%2!=0)	
 			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
 		else
 			convertView.setBackgroundColor(Color.WHITE);
@@ -142,6 +142,12 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 			convertView = infalInflater.inflate(R.layout.dopplerim_grouprow, null);
 		}
 
+//		Log.d("tag", "childPosition%2==0="+(position%2==0));
+		if (groupPosition%2==0)	
+			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
+		else
+			convertView.setBackgroundColor(Color.WHITE);
+		
 		TextView lblListHeader = (TextView) convertView.findViewById(R.id.txtViewParent);
 		lblListHeader.setTypeface(null, Typeface.BOLD);
 		lblListHeader.setText(headerTitle);

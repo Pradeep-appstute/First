@@ -45,17 +45,29 @@
         android:layout_height="0px" >
     </android.support.v4.view.ViewPager>
     <!-- Editext for Search -->
-    <EditText android:id="@+id/inputSearch"
+    <LinearLayout 
+                android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#BDBDC4"
+        android:padding="5dp"
+        >
+        
+            <EditText android:id="@+id/inputSearch"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Search"
-        android:inputType="textVisiblePassword"/>
+        android:inputType="textVisiblePassword"
+        android:background="@drawable/shapeedittext"
+        android:padding="3dp"
+        />
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/lvExp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        
+        android:divider="@null"
          />
 
 </LinearLayout>

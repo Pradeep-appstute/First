@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +56,20 @@ public class ModifyServiceListAdapter extends BaseAdapter implements
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = new TextView(mContext);
+			convertView.setPadding(10, 15, 10, 15);
 			((TextView) convertView)
 					.setText(filtered_modifyServiceList.get(position).bundleId + " "
 							+ filtered_modifyServiceList.get(position).location);
 			((TextView) convertView).setTextSize(16);
 			// ((TextView)convertView).setRelative(5, 5, 5, 5);
 		}
+		
+//		Log.d("tag", "childPosition%2==0="+(position%2==0));
+		if (position%2==0)	
+			convertView.setBackgroundColor(Color.rgb(230, 240, 246));
+		else
+			convertView.setBackgroundColor(Color.WHITE);
+		
 		((TextView) convertView)
 				.setText(filtered_modifyServiceList.get(position).bundleId + " "
 						+ filtered_modifyServiceList.get(position).location);

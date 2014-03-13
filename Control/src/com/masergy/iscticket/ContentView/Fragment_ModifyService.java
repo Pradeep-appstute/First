@@ -503,7 +503,7 @@ public class Fragment_ModifyService extends Fragment {
 						initListView();		
 						
 						// Add search view and list view
-						((ViewGroup) lin_rootview).addView(inputSearch);
+//						((ViewGroup) lin_rootview).addView(inputSearch);
 						((ViewGroup) lin_rootview).addView(listView);
 						listAdapter.getFilter().filter(inputSearch.getText().toString()); //To retain search history  
 //						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
