@@ -1,0 +1,15 @@
+package com.masergy.iscticket;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View.OnCreateContextMenuListener;
+
+public class Activity_ForgotPassword extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.forget_username);
+	}
+}

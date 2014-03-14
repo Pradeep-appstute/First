@@ -1,29 +1,24 @@
 package com.masergy.iscticket;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.TextView;
 
-import com.masergy.iscticket.ContentView.Fragment_ModifyService;
-import com.masergy.iscticket.ContentView.ModifyService;
-import com.masergy.iscticket.ContentView.ModifyServiceListAdapter;
 import com.masergy.iscticket.utility.NetworkConnection;
 import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Validation;
 
 public class Activity_Login extends Activity {
 
+	TextView textViewForgotUserName, textViewForgotPassword;
+	
 	EditText edt_UserName, edt_Password;
 
 	@Override
@@ -34,6 +29,23 @@ public class Activity_Login extends Activity {
 		// Init
 		edt_UserName = (EditText) findViewById(R.id.editTextUserName);
 		edt_Password = (EditText) findViewById(R.id.editTextPassword);
+		textViewForgotUserName = (TextView) findViewById(R.id.textViewForgotUserName);
+		textViewForgotUserName.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Activity_Login.this, Activity_ForgotUsername.class));
+			}
+		});
+		textViewForgotPassword = (TextView) findViewById(R.id.textViewForgotPassword);
+		textViewForgotPassword.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(Activity_Login.this, Activity_ForgotPassword.class));
+			}
+		});
+		
 	}//onCreate()
 
 	public void loginButtonTapped(View v) {
