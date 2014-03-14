@@ -158,16 +158,16 @@ public class Fragment_DopplerIM extends Fragment {
 				// Toast.LENGTH_SHORT).show();
 				// 1. Fetching id
 				Log.d("tag", "dopplerIM_Parents.get(groupPosition).getChildren()="+dopplerIM_Parents.get(groupPosition).getChildren());
-				if(dopplerIM_Parents.get(groupPosition).getChildren()==null)
+				if(DopplerIMListAdapter.filtered_dopplerIM_Parents.get(groupPosition).getChildren()==null)
 				{
 //					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
-					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
+					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, DopplerIMListAdapter.filtered_dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
 					expListView.setSelection(groupPosition);
 				}
-				else if (dopplerIM_Parents.get(groupPosition).getChildren().size()==0)
+				else if (DopplerIMListAdapter.filtered_dopplerIM_Parents.get(groupPosition).getChildren().size()==0)
 				{
 					Toast.makeText(Activity_SliderMenu.context, "id="+dopplerIM_Parents.get(groupPosition).id, Toast.LENGTH_SHORT).show();
-					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
+					new Webservice_GetDopplerIMNodeDetails(Activity_SliderMenu.context, DopplerIMListAdapter.filtered_dopplerIM_Parents.get(groupPosition).id, groupPosition).postData();
 //					
 					//For scroll tapped list view item at top (or as a first list view item)
 					expListView.setSelection(groupPosition);

@@ -31,6 +31,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
+import com.masergy.iscticket.ContentView.DopplerIMListAdapter;
 import com.masergy.iscticket.ContentView.DopplerIM_Child;
 import com.masergy.iscticket.ContentView.DopplerIM_Parent;
 import com.masergy.iscticket.ContentView.Fragment_DopplerIM;
@@ -171,7 +172,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 						//Init service details
 						//Fragment_ModifyService.initServiceDetailsView();
 						
-//						Log.d("tag", "groupPosition="+groupPosition+"-"+result);
+						Log.d("tag", "dopplerimdetails***>>>>>>>>>>"+groupPosition+"-"+result);
 						/*
 						 {"id":"953",
 						 "name":"Accounting",
@@ -327,8 +328,8 @@ public class Webservice_GetDopplerIMNodeDetails {
 									child.setchildText("Created:");
 									dopplerim_childList.add(child);
 								}
-								
-								Fragment_DopplerIM.dopplerIM_Parents.get(groupPosition).setChildren(dopplerim_childList);								
+							
+								DopplerIMListAdapter.filtered_dopplerIM_Parents.get(groupPosition).setChildren(dopplerim_childList);								
 								Fragment_DopplerIM.listAdapter.notifyDataSetChanged();//Recreate listview
 								Fragment_DopplerIM.expListView.expandGroup(groupPosition);
 							}// for

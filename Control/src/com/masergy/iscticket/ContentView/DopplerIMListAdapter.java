@@ -24,7 +24,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 	DateTimeFormatter dateTimeFormatter;
 	private Context _context;
 	ArrayList<DopplerIM_Parent> original_dopplerIM_Parents;
-	ArrayList<DopplerIM_Parent> filtered_dopplerIM_Parents;
+	public static ArrayList<DopplerIM_Parent> filtered_dopplerIM_Parents;
 	LayoutInflater mInflater;
 	ItemFilter mFilter = new ItemFilter();
 

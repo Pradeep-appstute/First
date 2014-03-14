@@ -50,12 +50,5 @@
 
      <!-- Doppler IM Screen -->
     <string name="dopplerim_headertitle">Doppler IM</string>
-    <string name="dopplerim_noresponsemessage">Masergy Doppler Infrastructure
-Management provides secure, robust
-infrastructure monitoring for your LAN and
-WAN environments.\n
-This managed cloud service allows you to
-offload network infrastructure monitoring to
-Masergy so your IT department can focus
-on strategic initiatives.</string>
+    <string name="dopplerim_noresponsemessage">Masergy Doppler Infrastructure Management provides secure, robust infrastructure monitoring for your LAN and WAN environments.\n\nThis managed cloud service allows you to offload network infrastructure monitoring to Masergy so your IT department can focus on strategic initiatives.</string>
 </resources>
