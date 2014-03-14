@@ -20,7 +20,7 @@ public class ModifyServiceListAdapter extends BaseAdapter implements
 	// Public
 	Context mContext;
 	ArrayList<ModifyService> original_modifyServiceList;
-	public static ArrayList<ModifyService> filtered_modifyServiceList;
+	ArrayList<ModifyService> filtered_modifyServiceList;
 	//---------For Filter----------
 	LayoutInflater mInflater;
 	ItemFilter mFilter = new ItemFilter();

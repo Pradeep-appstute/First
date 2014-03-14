@@ -145,7 +145,7 @@ public class Fragment_ModifyService extends Fragment {
 				.getSharedPreferences(Webservice_GetModifyServiceList.fileName,
 						Activity_SliderMenu.context.MODE_PRIVATE);
 		String modifyJSONStr = prefs.getString("modifyservice", null);
-		if(serviceList==null)
+		
 		serviceList = new ArrayList<ModifyService>();
 		serviceList.clear();
 		if (modifyJSONStr != null) {
@@ -260,7 +260,7 @@ public class Fragment_ModifyService extends Fragment {
 					// Toast.LENGTH_SHORT).show();
 					Webservice_GetModifyServiceDetails instance = new Webservice_GetModifyServiceDetails(
 							Activity_SliderMenu.context, ""
-									+ ModifyServiceListAdapter.filtered_modifyServiceList.get(position).bundleId);
+									+ serviceList.get(position).bundleId);
 					instance.postData();
 				}
 			});
