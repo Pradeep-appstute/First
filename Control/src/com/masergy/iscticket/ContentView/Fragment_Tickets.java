@@ -508,8 +508,8 @@ public class Fragment_Tickets extends Fragment {
 		        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
 		        	
 		        	//Next and Prev button
-		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
-		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
+		        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
+		        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
 		        	       
 		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
 		        	{
@@ -663,8 +663,8 @@ public class Fragment_Tickets extends Fragment {
 		        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
 		        	
 		        	//Next and Prev button
-		        	Button prevBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
-		        	Button nextBtn=(Button)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
+		        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
+		        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
 		        	  
 		        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
 		        	{

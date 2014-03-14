@@ -25,16 +25,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.inputmethod.InputMethodManager;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -491,7 +491,7 @@ public class Fragment_ModifyService extends Fragment {
 					}
 				});
 
-		        Button btn_back = (Button)viewgroup_modifyserviceview.findViewById(R.id.btn_back);
+		        ImageButton btn_back = (ImageButton)viewgroup_modifyserviceview.findViewById(R.id.btn_back);
 		        btn_back.setOnClickListener(new OnClickListener() {
 					
 					@Override
@@ -512,7 +512,7 @@ public class Fragment_ModifyService extends Fragment {
 				});
 		        
 		       
-		        Button btn_submit = (Button)viewgroup_modifyserviceview.findViewById(R.id.btn_submit);
+		        ImageButton btn_submit = (ImageButton)viewgroup_modifyserviceview.findViewById(R.id.btn_submit);
 		        btn_submit.setOnClickListener(new OnClickListener() {
 					
 					@Override

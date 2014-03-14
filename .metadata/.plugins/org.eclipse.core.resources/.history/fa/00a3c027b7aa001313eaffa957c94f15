@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/lin_fragment_modifyservicedetails"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/servicedetails_title"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TableLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" >
+
+                    <TableRow android:layout_marginTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/servicedetails_bundleid"
+                            android:gravity="right"
+                            android:textColor="#000" />
+
+                        <TextView
+                            android:id="@+id/txtview_bundleid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="   "
+                            android:textColor="#000" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/servicedetails_services"
+                            android:gravity="right"
+                            android:textColor="#000" />
+
+                        <TextView
+                            android:id="@+id/txtview_services"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="   "
+                            android:textColor="#000" />
+                    </TableRow>
+
+                    <TableRow android:layout_marginTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/servicedetails_site"
+                            android:gravity="right"
+                            android:textColor="#000" />
+
+                        <TextView
+                            android:id="@+id/txtview_site"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="   "
+                            android:textColor="#000" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/servicedetails_bandwidth"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#68859E"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/servicedetails_contract"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/txtView_contract"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/servicedetails_current"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+
+                    <TextView
+                        android:id="@+id/txtView_current"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/servicedetails_changeto"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_changeto"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        android:textSize="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/servicedetails_title2"
+                    android:textColor="#000"
+                    android:textSize="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp"
+ >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_backbtn" 
+            android:layout_marginRight="5dp"
+            />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_btnsubmit" 
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
