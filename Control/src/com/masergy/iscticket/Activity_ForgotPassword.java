@@ -37,7 +37,7 @@ public class Activity_ForgotPassword extends Activity {
 			@Override
 			public void onClick(View v) {
 				//Check if any of the field is empty
-				if (Validation.isEmpty(editText.getText().toString())) {					
+				if (Validation.isEmpty(editText.getText().toString().trim())) {					
 					AlertDialog.Builder alertDialog = new AlertDialog.Builder(Activity_ForgotPassword.this);
 					// Setting Dialog Title
 					alertDialog.setTitle("Alert!");
@@ -62,7 +62,7 @@ public class Activity_ForgotPassword extends Activity {
 				else
 				{
 				//Web-service call
-				Send_Uid_to_Web instance = new Send_Uid_to_Web (Activity_ForgotPassword.this, editText.getText().toString(), true);
+				Send_Uid_to_Web instance = new Send_Uid_to_Web (Activity_ForgotPassword.this, editText.getText().toString().trim(), true);
 				instance.postData();
 				}
 			}

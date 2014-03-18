@@ -39,7 +39,7 @@ public class Activity_ForgotUsername extends Activity {
 			@Override
 			public void onClick(View v) {
 				//Web-service call
-				if (Validation.isEmpty(editText.getText().toString().trim())) {					
+				if (Validation.isEmpty(editText.getText().toString())) {					
 					AlertDialog.Builder alertDialog = new AlertDialog.Builder(Activity_ForgotUsername.this);
 					// Setting Dialog Title
 					alertDialog.setTitle("Alert!");
@@ -64,7 +64,7 @@ public class Activity_ForgotUsername extends Activity {
 				else
 				{
 				//Web-service call
-				Send_Uid_to_Web instance = new Send_Uid_to_Web (Activity_ForgotUsername.this, editText.getText().toString().trim(), false);
+				Send_Uid_to_Web instance = new Send_Uid_to_Web (Activity_ForgotUsername.this, editText.getText().toString(), false);
 				instance.postData();
 				}
 			}
