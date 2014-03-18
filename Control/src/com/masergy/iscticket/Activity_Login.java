@@ -25,7 +25,6 @@ public class Activity_Login extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
 		// Init
 		edt_UserName = (EditText) findViewById(R.id.editTextUserName);
 		edt_Password = (EditText) findViewById(R.id.editTextPassword);

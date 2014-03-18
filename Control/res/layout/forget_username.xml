@@ -64,6 +64,7 @@
             android:layout_marginRight="10dp"
             android:ems="10"
             android:background="@drawable/shapeedittext"
+            android:padding="5dp"
              >
 			
             <requestFocus />

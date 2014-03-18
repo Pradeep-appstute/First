@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="offset" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
-			<item value="offset"/>
-			<item value="InputMethodManager"/>
-			<item value="getItem"/>
-			<item value="inputSearch"/>
-			<item value="removeView"/>
-			<item value="spinner"/>
-			<item value="spinner_bundle"/>
-			<item value=" "/>
+			<item value="theString Logout"/>
+			<item value="theString Logout="/>
+			<item value="dopplerim_noresponsemessage"/>
+			<item value="Log"/>
+			<item value="listView.setOnItemClickListener"/>
+			<item value="btn_submit"/>
+			<item value="btn_back"/>
+			<item value="android:layout_mar"/>
 		</list>
 		<list key="replacehistory">
 			<item value="=="/>
