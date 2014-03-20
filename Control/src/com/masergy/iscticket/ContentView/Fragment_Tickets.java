@@ -162,10 +162,10 @@ public class Fragment_Tickets extends Fragment {
 			@Override
 			public void onClick(View v) {
 				
-				imgButtonOpen.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmopenselected));
-				imgButtonClosed.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmclosed));
-				imgButtonMaint.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmmaint));
-				imgButtonSubmit.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmsubmit));
+				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopenselected);
+				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
+				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
+				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
 				
 				prepareListData(OpenTab);
 				initExpandableListView();
@@ -186,10 +186,10 @@ public class Fragment_Tickets extends Fragment {
 			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
-				imgButtonOpen.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmopen));
-				imgButtonClosed.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmclosedselected));
-				imgButtonMaint.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmmaint));
-				imgButtonSubmit.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmsubmit));
+				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
+				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosedselected);
+				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
+				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
 				
 				prepareListData(ClosedTab);
 				initExpandableListView();
@@ -209,11 +209,11 @@ public class Fragment_Tickets extends Fragment {
 			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
-				
-				imgButtonOpen.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmopen));
-				imgButtonClosed.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmclosed));
-				imgButtonMaint.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmmaintselected));
-				imgButtonSubmit.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmsubmit));
+				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
+				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
+				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaintselected);
+				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
+
 				prepareListData(MaintTab);
 				initExpandableListView();
 				//listAdapter.notifyDataSetInvalidated();
@@ -232,11 +232,11 @@ public class Fragment_Tickets extends Fragment {
 			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
-				imgButtonOpen.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmopen));
-				imgButtonClosed.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmclosed));
-				imgButtonMaint.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmmaint));
-				imgButtonSubmit.setBackground(Activity_SliderMenu.context.getResources().getDrawable(R.drawable.img_btnmsubmitselected));
-				
+				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
+				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
+				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
+				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmitselected);
+						
 				isSubmitTapped=true;
 				
 				if (isTicketDetailsTapped) //Load Tickets list view
