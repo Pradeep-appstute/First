@@ -10,4 +10,5 @@
     android:textSize="14dp" 
     style="?android:attr/spinnerItemStyle"
     android:layout_marginLeft="5dp"
+    
     />

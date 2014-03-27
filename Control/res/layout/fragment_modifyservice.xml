@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:background="#BDBDC4"
         android:padding="5dp"
+        android:id="@+id/lin_inputSearch"
         >
         
             <EditText android:id="@+id/inputSearch"

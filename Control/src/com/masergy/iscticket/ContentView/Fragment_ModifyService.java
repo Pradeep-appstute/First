@@ -53,6 +53,7 @@ public class Fragment_ModifyService extends Fragment {
 
 	ViewGroup viewgroup_servicedetails_view;
 	public static ModifyServiceListAdapter listAdapter;
+	public static LinearLayout lin_inputSearch;
 	public static ListView listView;
 	public static EditText inputSearch;
 	public static LayoutInflater inflater;
@@ -82,6 +83,7 @@ public class Fragment_ModifyService extends Fragment {
 		});
 		
 		// get the listview
+		lin_inputSearch = (LinearLayout) lin_rootview.findViewById(R.id.lin_inputSearch);
 		listView = (ListView) lin_rootview.findViewById(R.id.lvExp);
 		listView.setOnTouchListener(new OnTouchListener() {
 			
@@ -441,7 +443,7 @@ public class Fragment_ModifyService extends Fragment {
 			 
 				//Add modify service detail view 
 				// Remove expandable searchview and list view
-				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.inputSearch));
+				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lin_inputSearch));
 				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
 				
 				// Add submitview
@@ -503,7 +505,7 @@ public class Fragment_ModifyService extends Fragment {
 						initListView();		
 						
 						// Add search view and list view
-//						((ViewGroup) lin_rootview).addView(inputSearch);
+						((ViewGroup) lin_rootview).addView(lin_inputSearch);
 						((ViewGroup) lin_rootview).addView(listView);
 						listAdapter.getFilter().filter(inputSearch.getText().toString()); //To retain search history  
 //						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
