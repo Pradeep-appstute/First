@@ -471,7 +471,7 @@ public class Fragment_ModifyService extends Fragment {
 		        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
 			 
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
-				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
 				spinner_changeto.setAdapter(dataAdapter);
 		        spinner_changeto.setOnItemSelectedListener(new OnItemSelectedListener() {
 

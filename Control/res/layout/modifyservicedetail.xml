@@ -99,30 +99,36 @@
                 android:layout_height="wrap_content"
                 android:background="#68859E"
                 android:orientation="horizontal"
-                android:padding="5dp" >
+                 >
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:padding="10dp" >
+                    android:padding="5dp" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/servicedetails_contract"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="12dp" 
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        />
 
                     <TextView
                         android:id="@+id/txtView_contract"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="#fff"
-                        android:padding="5dp"
+                        android:padding="2dp"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="14dp" 
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -130,23 +136,28 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:padding="10dp" >
+                    android:padding="5dp" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/servicedetails_current"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="12dp" 
+                        android:layout_marginBottom="5dp"
+                        />
 
                     <TextView
                         android:id="@+id/txtView_current"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="#fff"
-                        android:padding="5dp"
+                        android:padding="2dp"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="14dp" 
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,23 +165,27 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:padding="10dp" >
+                    android:padding="5dp" >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/servicedetails_changeto"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="12dp" 
+                        android:layout_marginBottom="5dp"
+                        />
 
                     <Spinner
                         android:id="@+id/spinner_changeto"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:background="#fff"
-                        android:padding="5dp"
+                        android:padding="2dp"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="140dp"
+                        android:layout_marginLeft="5dp" 
+                        />
                 </LinearLayout>
             </LinearLayout>
 

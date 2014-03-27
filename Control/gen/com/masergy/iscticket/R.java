@@ -314,10 +314,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int row=0x7f030013;
         public static final int slidingmenu=0x7f030014;
         public static final int slidingmenumain=0x7f030015;
-        public static final int submit_view=0x7f030016;
-        public static final int ticketdetails_view=0x7f030017;
-        public static final int ticketdetails_view_list_item=0x7f030018;
-        public static final int ticketfragment=0x7f030019;
+        public static final int spinner_layout=0x7f030016;
+        public static final int submit_view=0x7f030017;
+        public static final int ticketdetails_view=0x7f030018;
+        public static final int ticketdetails_view_list_item=0x7f030019;
+        public static final int ticketfragment=0x7f03001a;
     }
     public static final class string {
         public static final int Login=0x7f050002;
