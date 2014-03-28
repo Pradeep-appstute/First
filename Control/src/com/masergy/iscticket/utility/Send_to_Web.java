@@ -188,7 +188,7 @@ public class Send_to_Web {
 			if (result!=null) {
 
 //				Toast.makeText(mContext, "Response-"+result, 1000).show();
-//				System.out.println("Response="+result);
+				System.out.println("Response="+result);
 				if(result.contains("authToken") && result.contains("contactId") && result.contains("userId"))
 				{
 				try {
@@ -270,7 +270,7 @@ public class Send_to_Web {
 			else
 			{
 //				Toast.makeText(mContext, "No response from server", 1000).show();
-				System.out.println("No response from server");
+//				System.out.println("No response from server");
 			}
 		}
 

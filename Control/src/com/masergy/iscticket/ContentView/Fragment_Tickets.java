@@ -157,6 +157,16 @@ public class Fragment_Tickets extends Fragment {
 		
 		// ===========Tab Buttons===============
 		imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
+		imgButtonOpen.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		imgButtonOpen.setOnClickListener(new OnClickListener() {
 			@SuppressLint("NewApi")
 			@Override
@@ -182,6 +192,16 @@ public class Fragment_Tickets extends Fragment {
 			}
 		});
 		imgButtonClosed = (ImageButton) lin_rootview.findViewById(R.id.imgButtonClosed);
+		imgButtonClosed.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		imgButtonClosed.setOnClickListener(new OnClickListener() {
 			@SuppressLint("NewApi")
 			@Override
@@ -205,6 +225,16 @@ public class Fragment_Tickets extends Fragment {
 			}
 		});
 		imgButtonMaint = (ImageButton) lin_rootview.findViewById(R.id.imgButtonMaint);
+		imgButtonMaint.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		imgButtonMaint.setOnClickListener(new OnClickListener() {
 			@SuppressLint("NewApi")
 			@Override
@@ -228,6 +258,16 @@ public class Fragment_Tickets extends Fragment {
 			}
 		});
 		imgButtonSubmit = (ImageButton) lin_rootview.findViewById(R.id.imgButtonSubmit);
+		imgButtonSubmit.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+               		    InputMethodManager.HIDE_NOT_ALWAYS);
+				return false;
+			}
+		});
 		imgButtonSubmit.setOnClickListener(new OnClickListener() {
 			@SuppressLint("NewApi")
 			@Override

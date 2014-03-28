@@ -102,6 +102,7 @@ public class Fragment_ContactUs extends Fragment {
                     Intent intent = new Intent(Intent.ACTION_DIAL,
                             Uri.parse(url)); 
                     startActivity(intent); 
+                    return true; // we handled the url loading
             }
                 else if (url.startsWith("mailto:")) { 
                     try {
@@ -116,13 +117,15 @@ public class Fragment_ContactUs extends Fragment {
 //                        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, mContext.getString(R.string.email_message, " "));
 
                         Activity_SliderMenu.context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                        return true; // we handled the url loading
                     }
                     catch (Exception ex) {}
             }
                 else if(url.startsWith("http:") || url.startsWith("https:")) {
                 view.loadUrl(url);
+                return true; // we handled the url loading
             }
-            return true;
+            return false; // let WebView handle this event
                 
             }
 
@@ -151,6 +154,7 @@ public class Fragment_ContactUs extends Fragment {
         if(isNetworkAvailable())
 		{
         	webview.loadUrl("https://webservice.masergy.com/webservices_mobile/contact_us.html");
+//        	webview.loadUrl("file:///android_asset/contactus.html");
 		}
 		else
 		{
