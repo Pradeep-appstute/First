@@ -341,8 +341,7 @@ public class Webservice_GetDopplerIMNodeDetails {
 				}//eof if (result!=null)
 
 			} else {
-				Toast.makeText(mContext, "No response from server", 1000)
-						.show();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
 		}

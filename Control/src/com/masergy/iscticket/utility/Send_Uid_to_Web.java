@@ -266,7 +266,7 @@ public class Send_Uid_to_Web {
 			}
 			else
 			{
-				Toast.makeText(mContext, "No response from server", 1000).show();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
 		}

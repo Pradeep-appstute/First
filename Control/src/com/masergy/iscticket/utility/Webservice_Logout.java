@@ -205,8 +205,7 @@ public class Webservice_Logout {
 				mContext.startActivity(intent);
 
 			} else {
-				Toast.makeText(mContext, "No response from server", 1000)
-						.show();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
 		}

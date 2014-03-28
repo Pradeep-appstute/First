@@ -192,8 +192,7 @@ public class Webservice_GetTicketDetails {
 					 Fragment_Tickets.tickets_handler.post(Fragment_Tickets.tickets_runnable_forPrevNext);
 
 			} else {
-				Toast.makeText(mContext, "No response from server", 1000)
-						.show();
+//				Toast.makeText(mContext, "No response from server", 1000).show();
 				System.out.println("No response from server");
 			}
 		}

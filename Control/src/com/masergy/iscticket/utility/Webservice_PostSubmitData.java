@@ -207,8 +207,8 @@ public class Webservice_PostSubmitData {
 			}
 			else
 			{
-				Toast.makeText(mContext, "No response from server", 1000).show();
-				//System.out.println("No response from server");
+//				Toast.makeText(mContext, "No response from server", 1000).show();
+				System.out.println("No response from server");
 			}
 		}
 
