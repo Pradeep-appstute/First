@@ -555,21 +555,27 @@ public class Fragment_Tickets extends Fragment {
 		        	{
 		        		nextBtn.setEnabled(false);
         				prevBtn.setEnabled(false);
+        				Log.d("tag", "false-false");
+//        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
+//        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
 		        	}
 		        	else if(childPosition==0)
 		        	{
-		        	    	   prevBtn.setEnabled(false);
-		        	    	   nextBtn.setEnabled(true);
+		        	    prevBtn.setEnabled(false);
+		        	    nextBtn.setEnabled(true);
+		        	    Log.d("tag", "false-true");
 		        	}
 		        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
         			{
         				nextBtn.setEnabled(false);
         				prevBtn.setEnabled(true);
+        				Log.d("tag", "true-false");
         			}
 		        	else
 		        	{
 		        		nextBtn.setEnabled(true);
         				prevBtn.setEnabled(true);
+        				Log.d("tag", "true-true");
 		        	}
 		        	
 		        	prevBtn.setOnClickListener(new OnClickListener() {

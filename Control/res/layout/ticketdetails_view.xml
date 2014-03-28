@@ -165,6 +165,8 @@
         android:layout_alignParentLeft="true"
         android:gravity="center"
         android:orientation="horizontal"
+        android:paddingRight="2dp"
+        android:paddingLeft="2dp"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
          >
