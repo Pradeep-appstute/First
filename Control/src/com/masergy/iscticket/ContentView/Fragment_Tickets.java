@@ -555,29 +555,28 @@ public class Fragment_Tickets extends Fragment {
 		        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
 		        	       Log.d("tag", "childPosition="+childPosition);
 		        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
-				        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
+				        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
 				        	{
 				        		nextBtn.setEnabled(false);
 		        				prevBtn.setEnabled(false);
 		        				Log.d("tag", "false-false");
-		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
 		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-//		        				
+		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
 				        	}
 				        	else if(childPosition==0)
 				        	{
 				        	    prevBtn.setEnabled(false);
 				        	    nextBtn.setEnabled(true);
 				        	    Log.d("tag", "false-true");
+				        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
 				        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
 				        	}
 				        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
 		        			{
 				        		prevBtn.setEnabled(true);
+				        		nextBtn.setEnabled(false);
+				        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
 				        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-		        				nextBtn.setEnabled(false);
-		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
 		        				Log.d("tag", "true-false");
 		        			}
 				        	else
@@ -725,29 +724,28 @@ public class Fragment_Tickets extends Fragment {
 		        	  
 		        	Log.d("tag", "childPosition="+childPosition);
 	        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
-			        	if(listDataChild.get(listDataHeader.get(groupPosition)).size()==1)
+			        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
 			        	{
 			        		nextBtn.setEnabled(false);
 	        				prevBtn.setEnabled(false);
 	        				Log.d("tag", "false-false");
-	        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
 	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-//	        				
+	        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
 			        	}
 			        	else if(childPosition==0)
 			        	{
 			        	    prevBtn.setEnabled(false);
 			        	    nextBtn.setEnabled(true);
 			        	    Log.d("tag", "false-true");
+			        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
 			        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
 			        	}
 			        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
 	        			{
 			        		prevBtn.setEnabled(true);
+			        		nextBtn.setEnabled(false);
+			        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
 			        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-	        				nextBtn.setEnabled(false);
-	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
 	        				Log.d("tag", "true-false");
 	        			}
 			        	else
@@ -758,6 +756,7 @@ public class Fragment_Tickets extends Fragment {
 	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
 	        				Log.d("tag", "true-true");
 			        	}
+	        	
 		        	
 		        	prevBtn.setOnClickListener(new OnClickListener() {
 						
