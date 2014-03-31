@@ -41,7 +41,6 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.TicketsDetailsListAdapter"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.R.drawable"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_ForgotPassword"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.R.drawable"/>
 </qualifiedTypeNameHistroy>

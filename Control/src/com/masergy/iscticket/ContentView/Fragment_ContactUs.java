@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.CommonResources;
 
 
 public class Fragment_ContactUs extends Fragment {
@@ -153,8 +154,8 @@ public class Fragment_ContactUs extends Fragment {
         
         if(isNetworkAvailable())
 		{
-        	webview.loadUrl("https://webservice.masergy.com/webservices_mobile/contact_us.html");
-//        	webview.loadUrl("file:///android_asset/contactus.html");
+        	String webServiceLink =CommonResources.prefixLinkContactUs+"contact_us.html";
+        	webview.loadUrl(webServiceLink);
 		}
 		else
 		{

@@ -175,7 +175,6 @@
             android:id="@+id/ticketdetails_prev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_prevbtn" 
             android:layout_marginRight="10dp"
             
             />
@@ -183,8 +182,7 @@
         <ImageButton
             android:id="@+id/ticketdetails_next"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_nextbtn" 
+            android:layout_height="wrap_content"            
             android:layout_marginLeft="10dp"
              
             />

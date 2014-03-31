@@ -80,6 +80,7 @@
         android:layout_marginBottom="5dp"
         android:orientation="horizontal" 
         android:gravity="center"
+        android:weightSum="100"
         >
 
         <ImageButton
@@ -88,6 +89,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/img_btncancel"
             android:layout_marginRight="5dp"
+            android:layout_weight="50"
             android:text="Cancel" />
 
         <ImageButton
@@ -96,6 +98,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/img_btnsubmit"
             android:layout_marginLeft="5dp"
+            android:layout_weight="50"
             android:text="Submit" />
     </LinearLayout>
 
