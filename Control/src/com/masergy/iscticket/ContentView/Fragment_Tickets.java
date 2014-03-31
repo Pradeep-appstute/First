@@ -272,6 +272,8 @@ public class Fragment_Tickets extends Fragment {
 			@SuppressLint("NewApi")
 			@Override
 			public void onClick(View v) {
+				if(isSubmitTapped==false)
+				{
 				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
 				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
 				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
@@ -304,7 +306,7 @@ public class Fragment_Tickets extends Fragment {
 					((ViewGroup) lin_rootview).addView(viewgroup_submitview);
 					
 				}//if (isTicketDetailsTapped) 
-				else
+				else 
 				{
 				// Remove expandable list view
 				((LinearLayout) lin_rootview).removeView(lin_rootview.findViewById(R.id.lvExp));
@@ -323,6 +325,7 @@ public class Fragment_Tickets extends Fragment {
 				});
 				((ViewGroup) lin_rootview).addView(viewgroup_submitview);
 				}
+				
 				SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.context.MODE_PRIVATE);    
 		        
 		        String firstName = prefs.getString("firstName", "");
@@ -436,7 +439,7 @@ public class Fragment_Tickets extends Fragment {
 						}
 					});
 		               
-		               
+			}//if (isSubmitTapped==false)     
 			}
 
 
@@ -901,7 +904,7 @@ public class Fragment_Tickets extends Fragment {
 	/*
 	 * Preparing the list data
 	 */
-	private void prepareListData(int tabName) {
+	private void prepareListData(int tabId) {
 
 		if (isTicketDetailsTapped) //Load Tickets list view
 		{
@@ -945,7 +948,7 @@ public class Fragment_Tickets extends Fragment {
 			last30Days = new ArrayList<Ticket>();
 		// end===initialization=================================
 
-		if (tabName == OpenTab) {
+		if (tabId == OpenTab) {
 			today.clear();
 			thisWeek.clear();
 			lastWeek.clear();
@@ -987,7 +990,7 @@ public class Fragment_Tickets extends Fragment {
 									.get(i));
 				}
 			}
-		} else if (tabName == ClosedTab) {
+		} else if (tabId == ClosedTab) {
 
 			today.clear();
 			thisWeek.clear();
@@ -1031,7 +1034,7 @@ public class Fragment_Tickets extends Fragment {
 				}
 			}
 
-		} else if (tabName == MaintTab) {
+		} else if (tabId == MaintTab) {
 
 			today.clear();
 			thisWeek.clear();
@@ -1074,7 +1077,7 @@ public class Fragment_Tickets extends Fragment {
 									.get(i));
 				}
 			}
-		} else if (tabName == SubmitTab) {
+		} else if (tabId == SubmitTab) {
 
 		}
 
