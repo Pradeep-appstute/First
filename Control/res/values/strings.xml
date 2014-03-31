@@ -41,9 +41,9 @@
     <string name="servicedetails_services">Services:</string>
     <string name="servicedetails_site">Site:</string>
     <string name="servicedetails_bandwidth">Bandwidth:</string>
-    <string name="servicedetails_contract">Contract:</string>
-    <string name="servicedetails_current">Current:</string>
-    <string name="servicedetails_changeto">Change to:</string>
+    <string name="servicedetails_contract">Contract</string>
+    <string name="servicedetails_current">Current</string>
+    <string name="servicedetails_changeto">Change to</string>
     <string name="servicedetails_title2">(Cannot be less than contract bandwidth)</string>
     <string name="servicedetails_back">Back</string>
     <string name="servicedetails_submit">Submit</string>

@@ -7,7 +7,6 @@ INDEX VERSION 1.126+/Users/AppstuteMac5/Documents/ControlAndroid/.metadata/.plug
 2715273621.index
 2503083192.index
 3697839461.index
-4202587450.index
 4111635225.index
 4174099546.index
 2040064081.index
