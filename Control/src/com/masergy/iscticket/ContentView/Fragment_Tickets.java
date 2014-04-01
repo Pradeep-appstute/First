@@ -11,13 +11,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.R.bool;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -44,9 +44,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
+import com.masergy.iscticket.utility.OnFlingGestureListener;
 import com.masergy.iscticket.utility.Send_to_Web;
 import com.masergy.iscticket.utility.Webservice_GetTicketDetails;
 import com.masergy.iscticket.utility.Webservice_GetTicketsList;
@@ -56,6 +58,10 @@ import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 
 public class Fragment_Tickets extends Fragment {
 
+	// For  Spinner
+	List<String> list_bundle_spinner,list_subject_spinner;
+	ArrayAdapter<String> dataAdapter_bundle_spinner, dataAdapter_subject_spinner;
+    boolean tappedBundleSpinner=false, tappedSubjectSpinner=false;
 	//To resolve issue of changing tabs
 	static boolean isSubmitTapped;//Temporary declared static, later save in shared pref. 
 	public static boolean isTicketDetailsTapped;
@@ -371,16 +377,50 @@ public class Fragment_Tickets extends Fragment {
 					
 					// Add ticketdetails_view
 					viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
-					viewgroup_ticketdetails_view.setOnTouchListener(new OnTouchListener() {
+//					viewgroup_ticketdetails_view.setOnTouchListener(new OnTouchListener() {
+//						
+//						@Override
+//						
+//						
+//						public boolean onTouch(View v, MotionEvent event) {
+//							
+//							Toast.makeText(Activity_SliderMenu.context, "OnTouch detected", Toast.LENGTH_SHORT).show();
+//							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+//			                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+//			               		    InputMethodManager.HIDE_NOT_ALWAYS);
+//			                
+//			                
+//							return false;
+//						}
+//					});
+					
+					
+					viewgroup_ticketdetails_view.setOnTouchListener(new OnFlingGestureListener() {
 						
-						@Override
-						public boolean onTouch(View v, MotionEvent event) {
-							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-			                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-			               		    InputMethodManager.HIDE_NOT_ALWAYS);
-							return false;
-						}
-					});
+				        @Override
+				        public void onTopToBottom() {
+				           //Your code here
+				        }
+
+				        @Override
+				        public void onRightToLeft() {
+				           //Your code here
+				        	Toast.makeText(Activity_SliderMenu.context, "R to L swipe", Toast.LENGTH_SHORT).show();
+				        	
+				        }
+
+				        @Override
+				        public void onLeftToRight() {
+				           //Your code here
+				        	Toast.makeText(Activity_SliderMenu.context, "L to R swipe", Toast.LENGTH_SHORT).show();
+				        }
+
+				        @Override
+				        public void onBottomToTop() {
+				           //Your code here
+				        }
+				     });
+					
 					((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
 					
 						//subject
@@ -685,7 +725,8 @@ public class Fragment_Tickets extends Fragment {
 				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmitselected);
 						
 				isSubmitTapped=true;
-				
+				tappedBundleSpinner=false;
+				tappedSubjectSpinner=false;
 				if (isTicketDetailsTapped) //Load Tickets list view
 				{
 					TextView menu_title = ((TextView) lin_rootview.findViewById(R.id.activity_main_content_title));
@@ -731,7 +772,7 @@ public class Fragment_Tickets extends Fragment {
 				((ViewGroup) lin_rootview).addView(viewgroup_submitview);
 				}
 				
-				SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.context.MODE_PRIVATE);    
+				final SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.context.MODE_PRIVATE);    
 		        
 		        String firstName = prefs.getString("firstName", "");
 		        if (firstName != null) 
@@ -761,15 +802,27 @@ public class Fragment_Tickets extends Fragment {
 		        }
    	         
 		        //Read JSON string array and populate spinner
-		        spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);
-		        
-		        addItemsOnSpinnerBundle(spinner_bundle, prefs);
+		        spinner_bundle = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerBundle);		        
+		        addItemsOnSpinnerBundle(spinner_bundle, prefs, true);
+		        spinner_bundle.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						tappedBundleSpinner = true;
+						addItemsOnSpinnerBundle(spinner_bundle, prefs, false);
+						dataAdapter_bundle_spinner.notifyDataSetChanged();
+						return false;
+					}
+				});
+
 		        spinner_bundle.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 					@Override
 					public void onItemSelected(AdapterView<?> parent, View view,
 							int pos, long id) {
-						// TODO Auto-generated method stub
+						// Remove select text from spinner
+//						addItemsOnSpinnerBundle(spinner_bundle, prefs, false);
+						
 						//Toast.makeText(parent.getContext(), "spinner Bundle", Toast.LENGTH_SHORT).show();
 						txt_bundleid = spinner_bundle.getSelectedItem().toString();
 						//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
@@ -784,12 +837,26 @@ public class Fragment_Tickets extends Fragment {
 				});
 
 		        spinner_subject = (Spinner)viewgroup_submitview.findViewById(R.id.spinnerSubject);
-		        addItemsOnSpinnerSubject(spinner_subject, prefs);	
+		        addItemsOnSpinnerSubject(spinner_subject, prefs, true);	
+		        spinner_subject.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						tappedSubjectSpinner = true;
+						addItemsOnSpinnerBundle(spinner_subject, prefs, false);
+						dataAdapter_subject_spinner.notifyDataSetChanged();
+						return false;
+					}
+				});
+
 		        spinner_subject.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 					@Override
 					public void onItemSelected(AdapterView<?> parent, View view,
 							int pos, long id) {
+						// Remove select text from spinner
+//						addItemsOnSpinnerBundle(spinner_subject, prefs, false);
+					
 						//Toast.makeText(parent.getContext(), "spinner Subject",Toast.LENGTH_SHORT).show();
 						txt_subject = spinner_subject.getSelectedItem().toString();
 						//Toast.makeText(parent.getContext(), "txt_subject="+txt_subject,Toast.LENGTH_SHORT).show();
@@ -810,17 +877,101 @@ public class Fragment_Tickets extends Fragment {
 						public void onClick(View v) {
 							txt_description = ""+editTextDescription.getText().toString();
 							
-							if(txt_description.length()>0)
+							
+							//Check for empty field
+
+							if (txt_description.length()==0 && tappedBundleSpinner==false && tappedSubjectSpinner==false)
 							{
-							Webservice_PostSubmitData webservicePostSubmitData = new Webservice_PostSubmitData(Activity_SliderMenu.context, txt_subject, txt_bundleid, txt_description);
-							webservicePostSubmitData.postData();
-							}//if
-							else
-							{
+								//If all fields are empty and then tap on create ticket then
+								//Warning! : Please fill all the respective fields.     OK
 								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
 								 
 								// set title
-								alertDialogBuilder.setTitle("Alert!");
+								alertDialogBuilder.setTitle("Warning!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("Please fill all the respective fields.")
+									.setCancelable(false)
+									.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+							}
+							else if (tappedSubjectSpinner==false)
+							{
+							//If Subject is not entered, and then tap on create ticket then
+							//Warning! : Please enter the subject. OK
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+								 
+								// set title
+								alertDialogBuilder.setTitle("Warning!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("Please enter the subject.")
+									.setCancelable(false)
+									.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+							}
+							else if (tappedBundleSpinner==false)
+							{
+							//If Bundle is not entered, and then tap on create ticket then
+							//Warning! : Please enter the bundle.                    OK
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+								 
+								// set title
+								alertDialogBuilder.setTitle("Warning!");
+					 
+								// set dialog message
+								alertDialogBuilder
+									.setMessage("Please enter the bundle.")
+									.setCancelable(false)
+									.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+										public void onClick(DialogInterface dialog,int id) {
+											// if this button is clicked, just close
+											// the dialog box and do nothing
+											dialog.cancel();
+										}
+									  });
+									
+					 
+									// create alert dialog
+									AlertDialog alertDialog = alertDialogBuilder.create();
+					 
+									// show it
+									alertDialog.show();
+							}
+							else if (txt_description.length()==0)
+							{
+							//In description is not entered, and then tap on create ticket then
+							//Warning! : Please enter the description.             OK
+								AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+								 
+								// set title
+								alertDialogBuilder.setTitle("Warning!");
 					 
 								// set dialog message
 								alertDialogBuilder
@@ -841,6 +992,11 @@ public class Fragment_Tickets extends Fragment {
 									// show it
 									alertDialog.show();
 							}
+							else if (txt_description.length()>0 && tappedBundleSpinner==true && tappedSubjectSpinner==true)
+							{
+								Webservice_PostSubmitData webservicePostSubmitData = new Webservice_PostSubmitData(Activity_SliderMenu.context, txt_subject, txt_bundleid, txt_description);
+								webservicePostSubmitData.postData();
+							}
 						}
 					});
 		               
@@ -854,8 +1010,10 @@ public class Fragment_Tickets extends Fragment {
 
 			
 		{	
+//			lin_rootview = (LinearLayout) inflater.inflate(R.layout.fragment_tickets, container, false);
 //			imgButtonSubmit.setX(btn_x_position);
 //		    imgButtonSubmit.setY(btn_y_position);
+//			imgButtonSubmit.invalidate();
 			imgButtonSubmit.performClick();
 		}
 		}//if (imgButtonSubmit.isEnabled())
@@ -1152,36 +1310,44 @@ public class Fragment_Tickets extends Fragment {
 //		Log.d("tag", "listDataHeader size="+listDataHeader.size());
 	}
 
-    private void addItemsOnSpinnerSubject(Spinner subject_spinner, SharedPreferences prefs) {
+    private void addItemsOnSpinnerSubject(Spinner subject_spinner, SharedPreferences prefs, boolean addSelectText) {
 		
-    	
-		List<String> list = new ArrayList<String>();
+    	list_subject_spinner = new ArrayList<String>();
+	
+		
+
+		if(addSelectText==true)
+			list_subject_spinner.add("Select subject");
         try {
             JSONArray jsonArraySubject = new JSONArray(prefs.getString("subjects", "[]"));
             for (int i = 0; i < jsonArraySubject.length(); i++) {
-            	list.add((String) jsonArraySubject.get(i));
+            	list_subject_spinner.add((String) jsonArraySubject.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }  
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		subject_spinner.setAdapter(dataAdapter);
+		dataAdapter_subject_spinner = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list_subject_spinner);
+		dataAdapter_subject_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		subject_spinner.setAdapter(dataAdapter_subject_spinner);
+		
 	}
 
-	private void addItemsOnSpinnerBundle(Spinner bundle_spinner, SharedPreferences prefs) {
-		List<String> list = new ArrayList<String>();
+	private void addItemsOnSpinnerBundle(Spinner bundle_spinner, SharedPreferences prefs, boolean addSelectText) {
+		list_bundle_spinner = new ArrayList<String>();
+		
+		if(addSelectText==true)
+			list_bundle_spinner.add("Select bundle");
         try {
             JSONArray jsonArraySubject = new JSONArray(prefs.getString("bundles", "[]"));
             for (int i = 0; i < jsonArraySubject.length(); i++) {
-            	list.add((String) jsonArraySubject.get(i));
+            	list_bundle_spinner.add((String) jsonArraySubject.get(i));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }  
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		bundle_spinner.setAdapter(dataAdapter);
+		dataAdapter_bundle_spinner = new ArrayAdapter<String>(Activity_SliderMenu.context, android.R.layout.simple_spinner_item, list_bundle_spinner);
+		dataAdapter_bundle_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		bundle_spinner.setAdapter(dataAdapter_bundle_spinner);	
 		
 	}
 }//eof class

@@ -36,40 +36,19 @@ public class Activity_Home extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
-		
-		/*
-		 	sharedPrefEditor.putString("permViewTicket", permViewTicket);
-			sharedPrefEditor.putString("permSubmitTicket", permSubmitTicket);
-			sharedPrefEditor.putString("permViewServiceDetails", permViewServiceDetails);
-			sharedPrefEditor.putString("permModifyTierNetworkAccess", permModifyTierNetworkAccess);
-//	    if(prefs.getString("permViewTicket", "true").equals("true") && prefs.getString("permSubmitTicket", "true").equals("true"))
-//		{
-//			
-//		} 
-//		else if(prefs.getString("permViewTicket", "true").equals("false") && prefs.getString("permSubmitTicket", "true").equals("true"))
-//		{
-//			
-//		}
-//		else if(prefs.getString("permViewTicket", "true").equals("true") && prefs.getString("permSubmitTicket", "true").equals("false"))
-//		{
-//			
-//		}
-		*/
-		
 
-		
-		
 		menuListLabel = new ArrayList<String>();
 		menuListImages = new ArrayList<Integer>();
 		SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
-		//For testing purpose only
-		SharedPreferences.Editor editor = prefs.edit();	
-		editor.putString("permViewTicket", "true");
-		editor.putString("permSubmitTicket", "false");
-		editor.putString("permModifyTierNetworkAccess", "true");
-		editor.putString("permViewServiceDetails", "true");
-		editor.commit();
-				
+////=================================For testing purpose only==================================================================		
+//		SharedPreferences.Editor editor = prefs.edit();	
+//		editor.putString("permViewTicket", "true");
+//		editor.putString("permSubmitTicket", "true");
+//		editor.putString("permModifyTierNetworkAccess", "true");
+//		editor.putString("permViewServiceDetails", "true");
+//		editor.commit();
+////===========================================================================================================================
+		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{
 			menuListLabel.add("Tickets");
