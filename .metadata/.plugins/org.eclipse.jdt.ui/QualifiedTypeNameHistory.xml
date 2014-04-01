@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetModifyServiceList"/>
-<fullyQualifiedTypeName name="android.widget.ListAdapter"/>
-<fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_ContactUs"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetModifyServiceDetails"/>
 <fullyQualifiedTypeName name="android.widget.Spinner"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.widget.SearchView"/>
@@ -16,7 +11,6 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetDopplerIMNodeDetails"/>
 <fullyQualifiedTypeName name="android.widget.BaseExpandableListAdapter"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.CommonResources"/>
-<fullyQualifiedTypeName name="android.widget.Toast"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.DopplerIM_Parent"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.DopplerIM_Child"/>
@@ -26,7 +20,6 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.ModifyService"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_ModifyService"/>
 <fullyQualifiedTypeName name="org.json.JSONArray"/>
-<fullyQualifiedTypeName name="android.content.SharedPreferences"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_Home"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets.Webservice_GetTicketDetails"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Webservice_GetTicketDetails"/>
@@ -41,10 +34,8 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.TicketsDetailsListAdapter"/>
 <fullyQualifiedTypeName name="org.json.JSONObject"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.Fragment_Tickets"/>
-<fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
 <fullyQualifiedTypeName name="android.graphics.Color"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="android.view.View.OnTouchListener"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.MenuView.ListFragment_ListMenu"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.ContentView.DopplerIMListAdapter"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
@@ -54,10 +45,19 @@
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_ForgotUsername"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_Login"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.R.id"/>
-<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.utility.Send_Uid_to_Web"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.Activity_ForgotPassword"/>
 <fullyQualifiedTypeName name="com.masergy.iscticket.R.drawable"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="android.content.SharedPreferences"/>
+<fullyQualifiedTypeName name="android.content.SharedPreferences.Editor"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.utility.OnFlingGestureListener"/>
+<fullyQualifiedTypeName name="android.view.ViewGroup"/>
+<fullyQualifiedTypeName name="android.R.bool"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.view.View.OnTouchListener"/>
+<fullyQualifiedTypeName name="com.masergy.iscticket.Activity_SliderMenu"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
 </qualifiedTypeNameHistroy>

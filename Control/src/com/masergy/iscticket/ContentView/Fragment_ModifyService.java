@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
@@ -61,7 +62,7 @@ public class Fragment_ModifyService extends Fragment {
 	public static ArrayList<ModifyService> serviceList;
 	public static String bundleId = null, prodType = null, location = null,
 			currentBandwidth = null, contractBandwidth = null;
-
+	static ArrayAdapter<String> dataAdapterSpinnerChangeTo;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -303,7 +304,7 @@ public class Fragment_ModifyService extends Fragment {
 	}// initListView
 
 	public static void initServiceDetailsView() {
-		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
+		final SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
 		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
 		 if (modifyJSONStr != null) 
 		 {
@@ -416,6 +417,7 @@ public class Fragment_ModifyService extends Fragment {
 				    contractBandwidth = jsonRootObj.getString("contractBandwidth");
 				    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
 				    
+				    //list.add("");
 					// Getting JSON Array node
 					for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -472,9 +474,19 @@ public class Fragment_ModifyService extends Fragment {
 				
 		        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
 			 
-				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
-				dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-				spinner_changeto.setAdapter(dataAdapter);
+				dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
+				dataAdapterSpinnerChangeTo.setDropDownViewResource(R.layout.spinner_layout);
+				spinner_changeto.setAdapter(dataAdapterSpinnerChangeTo);
+				spinner_changeto.setOnTouchListener(new OnTouchListener() {
+					
+					@Override
+					public boolean onTouch(View v, MotionEvent event) {
+						//Toast.makeText(Activity_SliderMenu.context, "Touch", Toast.LENGTH_SHORT).show();
+//						addItemsOnSpinner(spinner_changeto, prefs);
+//						dataAdapterSpinnerChangeTo.notifyDataSetChanged();
+						return false;
+					}
+				});
 		        spinner_changeto.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 					@Override
@@ -574,4 +586,79 @@ public class Fragment_ModifyService extends Fragment {
 		 }
 		 }
 	}//initServiceDetailsView
+//	
+//	private static void addItemsOnSpinner(Spinner bundle_spinner, final SharedPreferences prefs) {
+//		 
+//		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
+//		 if (modifyJSONStr != null) 
+//		 {
+//				if(modifyJSONStr.contains("code") && modifyJSONStr.contains("message"))//jsonObj.has("code") && jsonObj.has("message"))
+//				{						
+//						 final HashMap bandwidthOptions = new HashMap();
+//						 ArrayList<String> list = new ArrayList<String>();         
+//							// Convert string to JSONArray
+//							JSONObject jsonRootObj;
+//							JSONArray jsonArray;
+//							JSONObject jsonObj;
+//							try {
+//								jsonRootObj = new JSONObject(modifyJSONStr);
+//								
+////								bundleId = jsonRootObj.getString("bundleId");
+////								prodType = jsonRootObj.getString("prodType");
+////								location = jsonRootObj.getString("location");
+////							    currentBandwidth = jsonRootObj.getString("currentBandwidth");
+////							    contractBandwidth = jsonRootObj.getString("contractBandwidth");
+//							    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
+//							    
+//								// Getting JSON Array node
+//								for (int i = 0; i < jsonArray.length(); i++) {
+//
+//									jsonObj = jsonArray.getJSONObject(i);
+//									bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
+//									list.add(jsonObj.getString("label").toString());
+//								}// for	
+//								
+//								  // Get a set of the entries
+//							      Set set = bandwidthOptions.entrySet();
+//							      // Get an iterator
+//							      Iterator i = set.iterator();
+//							      // Display elements
+//							      while(i.hasNext()) {
+//							         Map.Entry me = (Map.Entry)i.next();
+//							         System.out.print(me.getKey() + ": ");
+//							         System.out.println(me.getValue());
+//							      }  
+//							} catch (JSONException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//							
+//							
+//					        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
+//							 
+//							dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
+//							dataAdapterSpinnerChangeTo.setDropDownViewResource(R.layout.spinner_layout);
+//							spinner_changeto.setAdapter(dataAdapterSpinnerChangeTo);
+//					        spinner_changeto.setOnItemSelectedListener(new OnItemSelectedListener() {
+//
+//								@Override
+//								public void onItemSelected(AdapterView<?> parent, View view,
+//										int pos, long id) {
+//									// TODO Auto-generated method stub
+//									Toast.makeText(parent.getContext(), "Touch", Toast.LENGTH_SHORT).show();
+//									//txt_bundleid = spinner_changeto.getSelectedItem().toString();
+//									//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
+//									addItemsOnSpinner(spinner_changeto, prefs);
+//									dataAdapterSpinnerChangeTo.notifyDataSetChanged();
+//								}
+//
+//								@Override
+//								public void onNothingSelected(AdapterView<?> arg0) {
+//									// TODO Auto-generated method stub
+//									
+//								}
+//							});
+//				}
+//		 }		
+//	}
 }

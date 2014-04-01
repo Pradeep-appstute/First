@@ -203,12 +203,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int img_menu=0x7f02002a;
         public static final int img_menulistselected=0x7f02002b;
         public static final int img_menulistunselected=0x7f02002c;
-        public static final int img_tickettypebg=0x7f02002d;
-        public static final int img_tickitlistsection=0x7f02002e;
-        public static final int listview_bg=0x7f02002f;
-        public static final int menulistbackground=0x7f020030;
-        public static final int shadow=0x7f020031;
-        public static final int shapeedittext=0x7f020032;
+        public static final int img_ticketlistsection=0x7f02002d;
+        public static final int img_tickettypebg=0x7f02002e;
+        public static final int img_tickitlistsection=0x7f02002f;
+        public static final int listview_bg=0x7f020030;
+        public static final int menulistbackground=0x7f020031;
+        public static final int shadow=0x7f020032;
+        public static final int shapeedittext=0x7f020033;
     }
     public static final class id {
         public static final int activity_main_content_button_menu=0x7f07001b;
