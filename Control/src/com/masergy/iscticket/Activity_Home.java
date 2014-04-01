@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,10 @@ import com.masergy.iscticket.MenuView.RowItem;
 import com.masergy.iscticket.utility.Webservice_Logout;
 
 public class Activity_Home extends Activity {
-	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
-	public static final Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
+	//public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
+	//public static final Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
+	List<String> menuListLabel;
+	List<Integer> menuListImages;
 	List<RowItem> rowItems;
 	
 	ListView listView;
@@ -34,12 +37,68 @@ public class Activity_Home extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
 		
+		/*
+		 	sharedPrefEditor.putString("permViewTicket", permViewTicket);
+			sharedPrefEditor.putString("permSubmitTicket", permSubmitTicket);
+			sharedPrefEditor.putString("permViewServiceDetails", permViewServiceDetails);
+			sharedPrefEditor.putString("permModifyTierNetworkAccess", permModifyTierNetworkAccess);
+//	    if(prefs.getString("permViewTicket", "true").equals("true") && prefs.getString("permSubmitTicket", "true").equals("true"))
+//		{
+//			
+//		} 
+//		else if(prefs.getString("permViewTicket", "true").equals("false") && prefs.getString("permSubmitTicket", "true").equals("true"))
+//		{
+//			
+//		}
+//		else if(prefs.getString("permViewTicket", "true").equals("true") && prefs.getString("permSubmitTicket", "true").equals("false"))
+//		{
+//			
+//		}
+		*/
+		
+
+		
+		
+		menuListLabel = new ArrayList<String>();
+		menuListImages = new ArrayList<Integer>();
+		SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
+		//For testing purpose only
+		SharedPreferences.Editor editor = prefs.edit();	
+		editor.putString("permViewTicket", "true");
+		editor.putString("permSubmitTicket", "true");
+		editor.putString("permModifyTierNetworkAccess", "false");
+		editor.putString("permViewServiceDetails", "false");
+		editor.commit();
+				
+		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
+		{
+			menuListLabel.add("Tickets");
+			menuListImages.add(R.drawable.ic_tickets);
+		}
+		     
+		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
+		{
+			menuListLabel.add("Modify Service");
+			menuListImages.add(R.drawable.ic_modifyservice);
+		}
+		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
+		{
+			menuListLabel.add("Doppler IM");
+			menuListImages.add(R.drawable.ic_dopplerim);
+		}
+		
+		menuListLabel.add("Contact us");
+		menuListImages.add(R.drawable.ic_contactus);
+		
+		menuListLabel.add("Logout");
+		menuListImages.add(R.drawable.ic_logout);
+		
 		//Create adaptor and set row title and icon
  		rowItems = new ArrayList<RowItem>();
-         for (int i = 0; i < titles.length; i++) {
-             RowItem item = new RowItem(images[i], titles[i]);
+        for (int i = 0; i < menuListLabel.size(); i++) {
+             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
              rowItems.add(item);
-         }
+        }
          
 		listView = (ListView) findViewById(R.id.listView);
 		listView.setAdapter(new BaseAdapter_ListMenu(Activity_Home.this,rowItems));
@@ -48,42 +107,41 @@ public class Activity_Home extends Activity {
 			      @Override
 			      public void onItemClick(AdapterView<?> parent, final View view,
 			          int position, long id) {
-//			        Toast.makeText(Activity_Home.this, ""+titles[position], Toast.LENGTH_LONG).show();
-			    	  if(titles[position].equalsIgnoreCase("Tickets"))
+			    	  if(menuListLabel.get(position).equalsIgnoreCase("Tickets"))
 			    	  {
-			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_ticketsselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_ticketsselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Tickets");
 			    		  startActivity(intent);
 			    		  Activity_Home.this.finish();
 			    	  }
-			    	  else if(titles[position].equalsIgnoreCase("Modify Service"))
+			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Modify Service"))
 			    	  {
-			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_modifyserviceselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_modifyserviceselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Modify Service");
 			    		  startActivity(intent);
 			    		  Activity_Home.this.finish();
 			    	  }
-			    	  else if(titles[position].equalsIgnoreCase("Doppler IM"))
+			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Doppler IM"))
 			    	  {
-			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_dopplerimselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_dopplerimselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Doppler IM");
 			    		  startActivity(intent);
 			    		  Activity_Home.this.finish();
 			    	  }
-			    	  else if(titles[position].equalsIgnoreCase("Contact us"))
+			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Contact us"))
 			    	  {
-			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_contactusselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_contactusselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Contact us");
 			    		  startActivity(intent);
 			    		  Activity_Home.this.finish();
 			    	  }
-			    	  else if(titles[position].equalsIgnoreCase("Logout"))
+			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Logout"))
 			    	  {
-			    		  ListFragment_ListMenu.images = ListFragment_ListMenu.images_logoutselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_logoutselected;
 			  		    Webservice_Logout instance = new Webservice_Logout(Activity_Home.this);
 					    instance.postData();
 			    	  }			    	  

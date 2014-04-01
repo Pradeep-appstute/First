@@ -135,25 +135,7 @@ public class Activity_Login extends Activity {
 				}
 				else
 				{
-					
-//					//Reset Everything
-//					Fragment_ModifyService.lin_rootview=null;
-//					Fragment_ModifyService.viewgroup_modifyserviceview=null;
-//					Fragment_ModifyService.spinner_changeto=null;
-//
-//					
-//					Fragment_ModifyService.listAdapter=null;
-//					Fragment_ModifyService.listView=null;
-//					Fragment_ModifyService.inputSearch=null;
-//					Fragment_ModifyService.inflater=null;
-//					Fragment_ModifyService.container=null;
-//					Fragment_ModifyService.serviceList=null;
-//					Fragment_ModifyService.bundleId = null;
-//					Fragment_ModifyService.prodType = null;
-//					Fragment_ModifyService.location = null;
-//					Fragment_ModifyService.currentBandwidth = null;
-//					Fragment_ModifyService.contractBandwidth = null;
-					
+										
 					Log.d("TAG", "Calling webservice");
 					//Call login web-service
 					Send_to_Web send_to_Web = new Send_to_Web(Activity_Login.this, edt_UserName.getText().toString(), edt_Password.getText().toString());
