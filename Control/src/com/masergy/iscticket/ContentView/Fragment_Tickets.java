@@ -99,11 +99,15 @@ public class Fragment_Tickets extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 				
+
+		
+		
+		
+		
 		isSubmitTapped =false;
 		isTicketDetailsTapped=false;
 		// construct the RelativeLayout
-		lin_rootview = (LinearLayout) inflater.inflate(
-				R.layout.fragment_tickets, container, false);
+		lin_rootview = (LinearLayout) inflater.inflate(R.layout.fragment_tickets, container, false);
 		lin_rootview.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
@@ -117,147 +121,548 @@ public class Fragment_Tickets extends Fragment {
 			}
 		});
 		
-		// v.setBackgroundColor(Color.RED);
-		
-		// get the listview
-		expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
-		expListView.setGroupIndicator(null);
-		expListView.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-               		    InputMethodManager.HIDE_NOT_ALWAYS);
-				return false;
-			}
-		});
-		
-		// preparing list data
-		prepareListData(OpenTab);
-		// load list view
-		initExpandableListView();		
 		
 		// ==========Menu Title============
 		TextView menu_title = ((TextView) lin_rootview.findViewById(R.id.activity_main_content_title));
 			menu_title.setText("Tickets");
-			
+				
 		// ===========Menu Button===============
 		Button toggleMenuButton = ((Button) lin_rootview.findViewById(R.id.activity_main_content_button_menu));
-		       toggleMenuButton.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-						Activity_SliderMenu.slidingMenu.toggle();
-						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-		                 inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-		                		    InputMethodManager.HIDE_NOT_ALWAYS);
-				}
-		});
+			       toggleMenuButton.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+							Activity_SliderMenu.slidingMenu.toggle();
+							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+			                 inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+			                		    InputMethodManager.HIDE_NOT_ALWAYS);
+					}
+			});
+			       
+			       
+		// ================== Hide or Unhide ==========
+	    imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
+		float btn_x_position = imgButtonOpen.getX();
+		float btn_y_position = imgButtonOpen.getY();
+	    imgButtonClosed = (ImageButton) lin_rootview.findViewById(R.id.imgButtonClosed);
+	    imgButtonMaint = (ImageButton) lin_rootview.findViewById(R.id.imgButtonMaint);
+	    imgButtonSubmit = (ImageButton) lin_rootview.findViewById(R.id.imgButtonSubmit);
+	    
+		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences("Login", Activity_SliderMenu.context.MODE_PRIVATE);				
+		if(prefs.getString("permViewTicket", "true").equals("false"))
+		{
+			imgButtonOpen.setEnabled(false);
+			imgButtonClosed.setEnabled(false);
+			imgButtonMaint.setEnabled(false);
+			imgButtonOpen.setVisibility(View.INVISIBLE);
+			imgButtonClosed.setVisibility(View.INVISIBLE);
+			imgButtonMaint.setVisibility(View.INVISIBLE);
+			
+			//Remove views
+			lin_rootview.removeView(imgButtonOpen);
+			lin_rootview.removeView(imgButtonClosed);
+			lin_rootview.removeView(imgButtonMaint);
+		}
+		
+		if(prefs.getString("permSubmitTicket", "true").equals("false"))
+		{
+			imgButtonSubmit.setEnabled(false);
+			imgButtonSubmit.setVisibility(View.INVISIBLE);
+			
+			//Remove view
+			lin_rootview.removeView(imgButtonSubmit);
+		}
 		
 		// ===========Tab Buttons===============
-		imgButtonOpen = (ImageButton) lin_rootview.findViewById(R.id.imgButtonOpen);
-		imgButtonOpen.setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-               		    InputMethodManager.HIDE_NOT_ALWAYS);
-				return false;
-			}
-		});
-		imgButtonOpen.setOnClickListener(new OnClickListener() {
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
+		// If imgButtonOpen is enabled
+		if (imgButtonOpen.isEnabled())
+		{
+			// get the listview
+			expListView = (ExpandableListView) lin_rootview.findViewById(R.id.lvExp);
+			expListView.setGroupIndicator(null);
+			expListView.setOnTouchListener(new OnTouchListener() {
 				
-				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopenselected);
-				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
-				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
-				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
-				
-				prepareListData(OpenTab);
-				initExpandableListView();
-				//listAdapter.notifyDataSetInvalidated();
-				//Expand the list view by default
-				if(!expListView.isGroupExpanded(0))
-				expListView.expandGroup(0);
-				if(!expListView.isGroupExpanded(1))
-				expListView.expandGroup(1);
-				if(!expListView.isGroupExpanded(2))
-				expListView.expandGroup(2);
-				if(!expListView.isGroupExpanded(3))
-				expListView.expandGroup(3);
-			}
-		});
-		imgButtonClosed = (ImageButton) lin_rootview.findViewById(R.id.imgButtonClosed);
-		imgButtonClosed.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+	                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+	               		    InputMethodManager.HIDE_NOT_ALWAYS);
+					return false;
+				}
+			});
 			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-               		    InputMethodManager.HIDE_NOT_ALWAYS);
-				return false;
-			}
-		});
-		imgButtonClosed.setOnClickListener(new OnClickListener() {
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
-				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
-				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosedselected);
-				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
-				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
-				
-				prepareListData(ClosedTab);
-				initExpandableListView();
-				//listAdapter.notifyDataSetInvalidated();
-				if(!expListView.isGroupExpanded(0))
-				expListView.expandGroup(0);
-				if(!expListView.isGroupExpanded(1))
-				expListView.expandGroup(1);
-				if(!expListView.isGroupExpanded(2))
-				expListView.expandGroup(2);
-				if(!expListView.isGroupExpanded(3))
-				expListView.expandGroup(3);
-			}
-		});
-		imgButtonMaint = (ImageButton) lin_rootview.findViewById(R.id.imgButtonMaint);
-		imgButtonMaint.setOnTouchListener(new OnTouchListener() {
+			// preparing list data
+			prepareListData(OpenTab);
+			// load list view
+			initExpandableListView();	
 			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-               		    InputMethodManager.HIDE_NOT_ALWAYS);
-				return false;
-			}
-		});
-		imgButtonMaint.setOnClickListener(new OnClickListener() {
-			@SuppressLint("NewApi")
-			@Override
-			public void onClick(View v) {
-				imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
-				imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
-				imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaintselected);
-				imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
+			
+			imgButtonOpen.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+	                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+	               		    InputMethodManager.HIDE_NOT_ALWAYS);
+					return false;
+				}
+			});
+			imgButtonOpen.setOnClickListener(new OnClickListener() {
+				@SuppressLint("NewApi")
+				@Override
+				public void onClick(View v) {
+					
+					imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopenselected);
+					imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
+					imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
+					imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
+					
+					prepareListData(OpenTab);
+					initExpandableListView();
+					//listAdapter.notifyDataSetInvalidated();
+					//Expand the list view by default
+					if(!expListView.isGroupExpanded(0))
+					expListView.expandGroup(0);
+					if(!expListView.isGroupExpanded(1))
+					expListView.expandGroup(1);
+					if(!expListView.isGroupExpanded(2))
+					expListView.expandGroup(2);
+					if(!expListView.isGroupExpanded(3))
+					expListView.expandGroup(3);
+				}
+			});
+			
+			imgButtonClosed.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+	                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+	               		    InputMethodManager.HIDE_NOT_ALWAYS);
+					return false;
+				}
+			});
+			imgButtonClosed.setOnClickListener(new OnClickListener() {
+				@SuppressLint("NewApi")
+				@Override
+				public void onClick(View v) {
+					imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
+					imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosedselected);
+					imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaint);
+					imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
+					
+					prepareListData(ClosedTab);
+					initExpandableListView();
+					//listAdapter.notifyDataSetInvalidated();
+					if(!expListView.isGroupExpanded(0))
+					expListView.expandGroup(0);
+					if(!expListView.isGroupExpanded(1))
+					expListView.expandGroup(1);
+					if(!expListView.isGroupExpanded(2))
+					expListView.expandGroup(2);
+					if(!expListView.isGroupExpanded(3))
+					expListView.expandGroup(3);
+				}
+			});
+			
+			imgButtonMaint.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+	                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+	               		    InputMethodManager.HIDE_NOT_ALWAYS);
+					return false;
+				}
+			});
+			imgButtonMaint.setOnClickListener(new OnClickListener() {
+				@SuppressLint("NewApi")
+				@Override
+				public void onClick(View v) {
+					imgButtonOpen.setBackgroundResource(R.drawable.img_btnmopen);
+					imgButtonClosed.setBackgroundResource(R.drawable.img_btnmclosed);
+					imgButtonMaint.setBackgroundResource(R.drawable.img_btnmmaintselected);
+					imgButtonSubmit.setBackgroundResource(R.drawable.img_btnmsubmit);
 
-				prepareListData(MaintTab);
-				initExpandableListView();
-				//listAdapter.notifyDataSetInvalidated();
-				if(!expListView.isGroupExpanded(0))
-				expListView.expandGroup(0);
-				if(!expListView.isGroupExpanded(1))
-				expListView.expandGroup(1);
-				if(!expListView.isGroupExpanded(2))
-				expListView.expandGroup(2);
-				if(!expListView.isGroupExpanded(3))
-				expListView.expandGroup(3);
-			}
-		});
-		imgButtonSubmit = (ImageButton) lin_rootview.findViewById(R.id.imgButtonSubmit);
+					prepareListData(MaintTab);
+					initExpandableListView();
+					//listAdapter.notifyDataSetInvalidated();
+					if(!expListView.isGroupExpanded(0))
+					expListView.expandGroup(0);
+					if(!expListView.isGroupExpanded(1))
+					expListView.expandGroup(1);
+					if(!expListView.isGroupExpanded(2))
+					expListView.expandGroup(2);
+					if(!expListView.isGroupExpanded(3))
+					expListView.expandGroup(3);
+				}
+			});
+			
+			
+			// =================HANDLER====================
+			tickets_handler = new Handler();
+			tickets_runnable = new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					   /*
+				    {
+							"ticketId": 207935,
+							"subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+							"status": "Open",
+							"createDate": 1393823842000,
+							"closeDate": null,
+							"lastUpdateDate": 1393823844000,
+							"comments": [
+										{
+	  										"timestamp": 1393823844000,
+	  										"userName": "Portal User",
+	  										"detail": "Name: Road Runner\nPhone: null\nEmail: acmelabs.roadrunner@gmail.com\n\nTest"
+										}
+										]
+					}
+					*/
+					 //a. Read received JSON response 
+					try {
+						
+					// Convert string to JSONArray
+					JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
+					
+					String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
+					String subject = new String(ticketdetails_JsonObj.getString("subject")); 
+					String status = new String(":"+ticketdetails_JsonObj.getString("status"));
+			
+					String createDate;
+					if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
+						createDate = ticketdetails_JsonObj.getString("createDate");
+					else
+						createDate = "-1";
+				
+					String closeDate;
+					if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
+						closeDate = ticketdetails_JsonObj.getString("closeDate");
+					else
+						closeDate = "-1";
+		
+					String lastUpdateDate;
+					if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
+						lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
+					else
+						lastUpdateDate = "-1";
+					
+					JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
+					ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
+					// Getting JSON Array node
+					for (int i = 0; i < comments_JsonArray.length(); i++) {
+						
+							JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
+							Comment comment = new Comment();
+							        comment.timestamp = comments_JsonObj.getString("timestamp");
+							        comment.userName = comments_JsonObj.getString("userName");
+							        comment.detail = (comments_JsonObj.getString("detail").toString()).replace("null", "");
+							        commentsList.add(comment);
+					}
+					
+				
+					//b. Prepare view
+					// Remove expandable list view
+					((LinearLayout) lin_rootview).removeView(expListView);
+					
+					// Add ticketdetails_view
+					viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
+					viewgroup_ticketdetails_view.setOnTouchListener(new OnTouchListener() {
+						
+						@Override
+						public boolean onTouch(View v, MotionEvent event) {
+							InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
+			                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
+			               		    InputMethodManager.HIDE_NOT_ALWAYS);
+							return false;
+						}
+					});
+					((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
+					
+						//subject
+			        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
+			        	tv_subject.setText(subject);
+			        	//Submitted by
+			        	SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.MODE_PRIVATE);
+			        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
+			        	tv_submittedby.setText(prefs.getString("firstName", "")+" "+prefs.getString("lastName", ""));
+			        	//Last updated
+			        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
+			        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+			        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
+			        	//ticket id
+			        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
+			        	tv_ticketid.setText(ticketId);
+			        	//status
+			        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
+			        	tv_status.setText(status);
+			        	
+			        	//List View
+			        	ListView listView = (ListView) viewgroup_ticketdetails_view.findViewById(R.id.listViewComment);
+			        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
+			        	
+			        	//Next and Prev button
+			        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
+			        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
+			        	       Log.d("tag", "childPosition="+childPosition);
+			        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
+					        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
+					        	{
+					        		nextBtn.setEnabled(false);
+			        				prevBtn.setEnabled(false);
+			        				Log.d("tag", "false-false");
+			        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
+			        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
+					        	}
+					        	else if(childPosition==0)
+					        	{
+					        	    prevBtn.setEnabled(false);
+					        	    nextBtn.setEnabled(true);
+					        	    Log.d("tag", "false-true");
+					        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
+					        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
+					        	}
+					        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
+			        			{
+					        		prevBtn.setEnabled(true);
+					        		nextBtn.setEnabled(false);
+					        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
+					        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
+			        				Log.d("tag", "true-false");
+			        			}
+					        	else
+					        	{
+					        		nextBtn.setEnabled(true);
+			        				prevBtn.setEnabled(true);
+			        				prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
+			        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
+			        				Log.d("tag", "true-true");
+					        	}
+			        	
+			        	prevBtn.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View view) {
+								if (childPosition>0)
+								{
+									childPosition=(childPosition-1);
+//									tickets_handler.post(tickets_runnable);
+									Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
+									details.postData();
+
+								}
+							}
+						});
+			        	
+			        	
+			        			
+			        	nextBtn.setOnClickListener(new OnClickListener() {
+									
+							@Override
+							public void onClick(View v) {
+								if(childPosition<(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
+								{
+									childPosition = (childPosition+1);
+//									tickets_handler.post(tickets_runnable);
+									Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
+									details.postData();
+
+								}		
+							}
+						});
+					}
+					catch (JSONException e)
+					{
+						
+					}
+					
+				}
+			};
+			
+			tickets_runnable_forPrevNext = new Runnable() {
+				
+				@Override
+				public void run() {
+					
+					   /*
+				    {
+							"ticketId": 207935,
+							"subject": "MB095663 / Acme Labs / Irving, TX / Outage",
+							"status": "Open",
+							"createDate": 1393823842000,
+							"closeDate": null,
+							"lastUpdateDate": 1393823844000,
+							"comments": [
+										{
+	  										"timestamp": 1393823844000,
+	  										"userName": "Portal User",
+	  										"detail": "Name: Road Runner\nPhone: null\nEmail: acmelabs.roadrunner@gmail.com\n\nTest"
+										}
+										]
+					}
+					*/
+					 //a. Read received JSON response 
+					try {
+						
+					// Convert string to JSONArray
+					JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
+					
+					String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
+					String subject = new String(ticketdetails_JsonObj.getString("subject")); 
+					String status = new String(":"+ticketdetails_JsonObj.getString("status"));
+			
+					String createDate;
+					if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
+						createDate = ticketdetails_JsonObj.getString("createDate");
+					else
+						createDate = "-1";
+				
+					String closeDate;
+					if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
+						closeDate = ticketdetails_JsonObj.getString("closeDate");
+					else
+						closeDate = "-1";
+		
+					String lastUpdateDate;
+					if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
+						lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
+					else
+						lastUpdateDate = "-1";
+					
+					JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
+					ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
+					// Getting JSON Array node
+					for (int i = 0; i < comments_JsonArray.length(); i++) {
+						
+							JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
+							Comment comment = new Comment();
+							        comment.timestamp = comments_JsonObj.getString("timestamp");
+							        comment.userName = comments_JsonObj.getString("userName");
+							        comment.detail = (comments_JsonObj.getString("detail")).toString().replace("null", "");
+							        commentsList.add(comment);
+					}
+					
+				
+					// Add ticketdetails_view
+//					viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
+//					((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
+					
+						//subject
+			        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
+			        	tv_subject.setText(subject);
+			        	//Submitted by
+			        	SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.MODE_PRIVATE);
+			        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
+			        	tv_submittedby.setText(prefs.getString("firstName", "")+" "+prefs.getString("lastName", ""));
+			        	//Last updated
+			        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
+			        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
+			        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
+			        	//ticket id
+			        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
+			        	tv_ticketid.setText(ticketId);
+			        	//status
+			        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
+			        	tv_status.setText(status);
+			        	
+			        	//List View
+			        	ListView listView = (ListView) viewgroup_ticketdetails_view.findViewById(R.id.listViewComment);
+			        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
+			        	
+			        	//Next and Prev button
+			        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
+			        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
+			        	  
+			        	Log.d("tag", "childPosition="+childPosition);
+		        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
+				        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
+				        	{
+				        		nextBtn.setEnabled(false);
+		        				prevBtn.setEnabled(false);
+		        				Log.d("tag", "false-false");
+		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
+		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
+				        	}
+				        	else if(childPosition==0)
+				        	{
+				        	    prevBtn.setEnabled(false);
+				        	    nextBtn.setEnabled(true);
+				        	    Log.d("tag", "false-true");
+				        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
+				        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
+				        	}
+				        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
+		        			{
+				        		prevBtn.setEnabled(true);
+				        		nextBtn.setEnabled(false);
+				        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
+				        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
+		        				Log.d("tag", "true-false");
+		        			}
+				        	else
+				        	{
+				        		nextBtn.setEnabled(true);
+		        				prevBtn.setEnabled(true);
+		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
+		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
+		        				Log.d("tag", "true-true");
+				        	}
+		        	
+			        	
+			        	prevBtn.setOnClickListener(new OnClickListener() {
+							
+							@Override
+							public void onClick(View view) {
+								if (childPosition>0)
+								{
+									childPosition=(childPosition-1);
+//									tickets_handler.post(tickets_runnable);
+									Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
+									details.postData();
+
+								}
+							}
+						});
+			        	
+			        	
+			        			
+			        	nextBtn.setOnClickListener(new OnClickListener() {
+									
+							@Override
+							public void onClick(View v) {
+								if(childPosition<(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
+								{
+									childPosition = (childPosition+1);
+//									tickets_handler.post(tickets_runnable);
+									Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
+									details.postData();
+
+								}		
+							}
+						});
+					}
+					catch (JSONException e)
+					{
+						
+					}
+					
+				}
+			};
+		}// if (imgButtonOpen.isEnabled())
+			
+
+			
+
+		
+
+		// If imgButtonSubmit is enabled
+		if (imgButtonSubmit.isEnabled())
+		{
+		
 		imgButtonSubmit.setOnTouchListener(new OnTouchListener() {
 			
 			@Override
@@ -444,360 +849,17 @@ public class Fragment_Tickets extends Fragment {
 
 
 		});
-		// =================HANDLER====================
-		tickets_handler = new Handler();
-		tickets_runnable = new Runnable() {
-			
-			@Override
-			public void run() {
-				
-				   /*
-			    {
-						"ticketId": 207935,
-						"subject": "MB095663 / Acme Labs / Irving, TX / Outage",
-						"status": "Open",
-						"createDate": 1393823842000,
-						"closeDate": null,
-						"lastUpdateDate": 1393823844000,
-						"comments": [
-									{
-  										"timestamp": 1393823844000,
-  										"userName": "Portal User",
-  										"detail": "Name: Road Runner\nPhone: null\nEmail: acmelabs.roadrunner@gmail.com\n\nTest"
-									}
-									]
-				}
-				*/
-				 //a. Read received JSON response 
-				try {
-					
-				// Convert string to JSONArray
-				JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
-				
-				String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
-				String subject = new String(ticketdetails_JsonObj.getString("subject")); 
-				String status = new String(":"+ticketdetails_JsonObj.getString("status"));
-		
-				String createDate;
-				if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
-					createDate = ticketdetails_JsonObj.getString("createDate");
-				else
-					createDate = "-1";
-			
-				String closeDate;
-				if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
-					closeDate = ticketdetails_JsonObj.getString("closeDate");
-				else
-					closeDate = "-1";
-	
-				String lastUpdateDate;
-				if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
-					lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
-				else
-					lastUpdateDate = "-1";
-				
-				JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
-				ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
-				// Getting JSON Array node
-				for (int i = 0; i < comments_JsonArray.length(); i++) {
-					
-						JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
-						Comment comment = new Comment();
-						        comment.timestamp = comments_JsonObj.getString("timestamp");
-						        comment.userName = comments_JsonObj.getString("userName");
-						        comment.detail = (comments_JsonObj.getString("detail").toString()).replace("null", "");
-						        commentsList.add(comment);
-				}
-				
-			
-				//b. Prepare view
-				// Remove expandable list view
-				((LinearLayout) lin_rootview).removeView(expListView);
-				
-				// Add ticketdetails_view
-				viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
-				viewgroup_ticketdetails_view.setOnTouchListener(new OnTouchListener() {
-					
-					@Override
-					public boolean onTouch(View v, MotionEvent event) {
-						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-		                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-		               		    InputMethodManager.HIDE_NOT_ALWAYS);
-						return false;
-					}
-				});
-				((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
-				
-					//subject
-		        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
-		        	tv_subject.setText(subject);
-		        	//Submitted by
-		        	SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.MODE_PRIVATE);
-		        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
-		        	tv_submittedby.setText(prefs.getString("firstName", "")+" "+prefs.getString("lastName", ""));
-		        	//Last updated
-		        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
-		        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
-		        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
-		        	//ticket id
-		        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
-		        	tv_ticketid.setText(ticketId);
-		        	//status
-		        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
-		        	tv_status.setText(status);
-		        	
-		        	//List View
-		        	ListView listView = (ListView) viewgroup_ticketdetails_view.findViewById(R.id.listViewComment);
-		        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
-		        	
-		        	//Next and Prev button
-		        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
-		        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
-		        	       Log.d("tag", "childPosition="+childPosition);
-		        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
-				        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
-				        	{
-				        		nextBtn.setEnabled(false);
-		        				prevBtn.setEnabled(false);
-		        				Log.d("tag", "false-false");
-		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-				        	}
-				        	else if(childPosition==0)
-				        	{
-				        	    prevBtn.setEnabled(false);
-				        	    nextBtn.setEnabled(true);
-				        	    Log.d("tag", "false-true");
-				        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
-				        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-				        	}
-				        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
-		        			{
-				        		prevBtn.setEnabled(true);
-				        		nextBtn.setEnabled(false);
-				        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-				        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-		        				Log.d("tag", "true-false");
-		        			}
-				        	else
-				        	{
-				        		nextBtn.setEnabled(true);
-		        				prevBtn.setEnabled(true);
-		        				prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-		        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
-		        				Log.d("tag", "true-true");
-				        	}
-		        	
-		        	prevBtn.setOnClickListener(new OnClickListener() {
-						
-						@Override
-						public void onClick(View view) {
-							if (childPosition>0)
-							{
-								childPosition=(childPosition-1);
-//								tickets_handler.post(tickets_runnable);
-								Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
-								details.postData();
 
-							}
-						}
-					});
-		        	
-		        	
-		        			
-		        	nextBtn.setOnClickListener(new OnClickListener() {
-								
-						@Override
-						public void onClick(View v) {
-							if(childPosition<(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
-							{
-								childPosition = (childPosition+1);
-//								tickets_handler.post(tickets_runnable);
-								Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
-								details.postData();
+		if (imgButtonOpen.isEnabled()==false)
 
-							}		
-						}
-					});
-				}
-				catch (JSONException e)
-				{
-					
-				}
-				
-			}
-		};
-		
-		tickets_runnable_forPrevNext = new Runnable() {
 			
-			@Override
-			public void run() {
-				
-				   /*
-			    {
-						"ticketId": 207935,
-						"subject": "MB095663 / Acme Labs / Irving, TX / Outage",
-						"status": "Open",
-						"createDate": 1393823842000,
-						"closeDate": null,
-						"lastUpdateDate": 1393823844000,
-						"comments": [
-									{
-  										"timestamp": 1393823844000,
-  										"userName": "Portal User",
-  										"detail": "Name: Road Runner\nPhone: null\nEmail: acmelabs.roadrunner@gmail.com\n\nTest"
-									}
-									]
-				}
-				*/
-				 //a. Read received JSON response 
-				try {
-					
-				// Convert string to JSONArray
-				JSONObject ticketdetails_JsonObj = new JSONObject(Webservice_GetTicketDetails.str_response);
-				
-				String ticketId = new String(":"+ticketdetails_JsonObj.getString("ticketId")); 
-				String subject = new String(ticketdetails_JsonObj.getString("subject")); 
-				String status = new String(":"+ticketdetails_JsonObj.getString("status"));
-		
-				String createDate;
-				if (!(ticketdetails_JsonObj.get("createDate").equals(JSONObject.NULL)))
-					createDate = ticketdetails_JsonObj.getString("createDate");
-				else
-					createDate = "-1";
-			
-				String closeDate;
-				if (!(ticketdetails_JsonObj.get("closeDate").equals(JSONObject.NULL)))
-					closeDate = ticketdetails_JsonObj.getString("closeDate");
-				else
-					closeDate = "-1";
-	
-				String lastUpdateDate;
-				if (!(ticketdetails_JsonObj.get("lastUpdateDate").equals(JSONObject.NULL)))
-					lastUpdateDate = ticketdetails_JsonObj.getString("lastUpdateDate");
-				else
-					lastUpdateDate = "-1";
-				
-				JSONArray comments_JsonArray = ticketdetails_JsonObj.getJSONArray("comments");
-				ArrayList<Comment> commentsList = new ArrayList<Fragment_Tickets.Comment>();
-				// Getting JSON Array node
-				for (int i = 0; i < comments_JsonArray.length(); i++) {
-					
-						JSONObject comments_JsonObj = comments_JsonArray.getJSONObject(i);
-						Comment comment = new Comment();
-						        comment.timestamp = comments_JsonObj.getString("timestamp");
-						        comment.userName = comments_JsonObj.getString("userName");
-						        comment.detail = (comments_JsonObj.getString("detail")).toString().replace("null", "");
-						        commentsList.add(comment);
-				}
-				
-			
-				// Add ticketdetails_view
-//				viewgroup_ticketdetails_view = (ViewGroup) ((Activity) Activity_SliderMenu.context).getLayoutInflater().inflate(R.layout.ticketdetails_view, (ViewGroup) lin_rootview,false);
-//				((ViewGroup) lin_rootview).addView(viewgroup_ticketdetails_view);
-				
-					//subject
-		        	TextView tv_subject = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubjectValue);
-		        	tv_subject.setText(subject);
-		        	//Submitted by
-		        	SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Send_to_Web.fileName, Activity_SliderMenu.MODE_PRIVATE);
-		        	TextView tv_submittedby = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewSubmittedByValue);
-		        	tv_submittedby.setText(prefs.getString("firstName", "")+" "+prefs.getString("lastName", ""));
-		        	//Last updated
-		        	TextView tv_lastupdated = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewLastUpdatedValue);
-		        	DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("MM/dd/yyyy");
-		        	tv_lastupdated.setText(dateTimeFormatter.print(new DateTime(Long.parseLong(lastUpdateDate))).toString());
-		        	//ticket id
-		        	TextView tv_ticketid = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewticketsIdValue);
-		        	tv_ticketid.setText(ticketId);
-		        	//status
-		        	TextView tv_status = (TextView)viewgroup_ticketdetails_view.findViewById(R.id.textViewStatusValue);
-		        	tv_status.setText(status);
-		        	
-		        	//List View
-		        	ListView listView = (ListView) viewgroup_ticketdetails_view.findViewById(R.id.listViewComment);
-		        	listView.setAdapter(new TicketsDetailsListAdapter(Activity_SliderMenu.context, commentsList));
-		        	
-		        	//Next and Prev button
-		        	ImageButton prevBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_prev);
-		        	ImageButton nextBtn=(ImageButton)viewgroup_ticketdetails_view.findViewById(R.id.ticketdetails_next);
-		        	  
-		        	Log.d("tag", "childPosition="+childPosition);
-	        	       Log.d("tag", "listDataChild.get(listDataHeader.get(groupPosition)).size()="+listDataChild.get(listDataHeader.get(groupPosition)).size());
-			        	if((listDataChild.get(listDataHeader.get(groupPosition)).size())==1)
-			        	{
-			        		nextBtn.setEnabled(false);
-	        				prevBtn.setEnabled(false);
-	        				Log.d("tag", "false-false");
-	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-	        				prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-			        	}
-			        	else if(childPosition==0)
-			        	{
-			        	    prevBtn.setEnabled(false);
-			        	    nextBtn.setEnabled(true);
-			        	    Log.d("tag", "false-true");
-			        	    nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
-			        	    prevBtn.setBackgroundResource(R.drawable.img_btnprevunselected);
-			        	}
-			        	else if(childPosition==(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
-	        			{
-			        		prevBtn.setEnabled(true);
-			        		nextBtn.setEnabled(false);
-			        		nextBtn.setBackgroundResource(R.drawable.img_btnnextunselected);
-			        		prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-	        				Log.d("tag", "true-false");
-	        			}
-			        	else
-			        	{
-			        		nextBtn.setEnabled(true);
-	        				prevBtn.setEnabled(true);
-	        				prevBtn.setBackgroundResource(R.drawable.img_btnprevselected);
-	        				nextBtn.setBackgroundResource(R.drawable.img_btnnextselected);
-	        				Log.d("tag", "true-true");
-			        	}
-	        	
-		        	
-		        	prevBtn.setOnClickListener(new OnClickListener() {
-						
-						@Override
-						public void onClick(View view) {
-							if (childPosition>0)
-							{
-								childPosition=(childPosition-1);
-//								tickets_handler.post(tickets_runnable);
-								Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
-								details.postData();
+		{	
+//			imgButtonSubmit.setX(btn_x_position);
+//		    imgButtonSubmit.setY(btn_y_position);
+			imgButtonSubmit.performClick();
+		}
+		}//if (imgButtonSubmit.isEnabled())
 
-							}
-						}
-					});
-		        	
-		        	
-		        			
-		        	nextBtn.setOnClickListener(new OnClickListener() {
-								
-						@Override
-						public void onClick(View v) {
-							if(childPosition<(listDataChild.get(listDataHeader.get(groupPosition)).size() -1))
-							{
-								childPosition = (childPosition+1);
-//								tickets_handler.post(tickets_runnable);
-								Webservice_GetTicketDetails details = new Webservice_GetTicketDetails(Activity_SliderMenu.context, listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition).ticketId,true);
-								details.postData();
-
-							}		
-						}
-					});
-				}
-				catch (JSONException e)
-				{
-					
-				}
-				
-			}
-		};
-		//==================
 		return lin_rootview;
 	}//OnCreateView
 

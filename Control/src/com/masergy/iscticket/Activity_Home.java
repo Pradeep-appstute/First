@@ -65,9 +65,9 @@ public class Activity_Home extends Activity {
 		//For testing purpose only
 		SharedPreferences.Editor editor = prefs.edit();	
 		editor.putString("permViewTicket", "true");
-		editor.putString("permSubmitTicket", "true");
-		editor.putString("permModifyTierNetworkAccess", "false");
-		editor.putString("permViewServiceDetails", "false");
+		editor.putString("permSubmitTicket", "false");
+		editor.putString("permModifyTierNetworkAccess", "true");
+		editor.putString("permViewServiceDetails", "true");
 		editor.commit();
 				
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
