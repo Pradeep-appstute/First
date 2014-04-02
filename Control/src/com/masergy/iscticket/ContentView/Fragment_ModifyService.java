@@ -48,9 +48,10 @@ import com.masergy.iscticket.utility.Webservice_PostModifyDetails;
 
 public class Fragment_ModifyService extends Fragment {
 
-	public static LinearLayout lin_rootview;
-	public static ViewGroup viewgroup_modifyserviceview;
-	public static Spinner spinner_changeto;
+	static LinearLayout lin_rootview;
+	static ViewGroup viewgroup_modifyserviceview;
+	static Spinner spinner_changeto;
+	static boolean tappedSpinnerChangeTo=false;
 
 	ViewGroup viewgroup_servicedetails_view;
 	public static ModifyServiceListAdapter listAdapter;
@@ -63,6 +64,7 @@ public class Fragment_ModifyService extends Fragment {
 	public static String bundleId = null, prodType = null, location = null,
 			currentBandwidth = null, contractBandwidth = null;
 	static ArrayAdapter<String> dataAdapterSpinnerChangeTo;
+	static ArrayList<String> list_bandwidth;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -304,8 +306,9 @@ public class Fragment_ModifyService extends Fragment {
 	}// initListView
 
 	public static void initServiceDetailsView() {
+		tappedSpinnerChangeTo=false;
 		final SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences(Webservice_GetModifyServiceList.fileName, Activity_SliderMenu.context.MODE_PRIVATE); 
-		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
+		 final String modifyJSONStr = prefs.getString("modifyservicedetails", null);
 		 if (modifyJSONStr != null) 
 		 {
 
@@ -402,7 +405,7 @@ public class Fragment_ModifyService extends Fragment {
 			 
 			 
 			 final HashMap bandwidthOptions = new HashMap();
-			 ArrayList<String> list = new ArrayList<String>();         
+			 list_bandwidth = new ArrayList<String>();         
 				// Convert string to JSONArray
 				JSONObject jsonRootObj;
 				JSONArray jsonArray;
@@ -417,25 +420,25 @@ public class Fragment_ModifyService extends Fragment {
 				    contractBandwidth = jsonRootObj.getString("contractBandwidth");
 				    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
 				    
-				    //list.add("");
+				    list_bandwidth.add("");
 					// Getting JSON Array node
 					for (int i = 0; i < jsonArray.length(); i++) {
 
 						jsonObj = jsonArray.getJSONObject(i);
 						bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
-						list.add(jsonObj.getString("label").toString());
+						list_bandwidth.add(jsonObj.getString("label").toString());
 					}// for	
 					
-					  // Get a set of the entries
-				      Set set = bandwidthOptions.entrySet();
-				      // Get an iterator
-				      Iterator i = set.iterator();
-				      // Display elements
-				      while(i.hasNext()) {
-				         Map.Entry me = (Map.Entry)i.next();
-				         System.out.print(me.getKey() + ": ");
-				         System.out.println(me.getValue());
-				      }
+//					  // Get a set of the entries
+//				      Set set = bandwidthOptions.entrySet();
+//				      // Get an iterator
+//				      Iterator i = set.iterator();
+//				      // Display elements
+//				      while(i.hasNext()) {
+//				         Map.Entry me = (Map.Entry)i.next();
+//				         System.out.print(me.getKey() + ": ");
+//				         System.out.println(me.getValue());
+//				      }
 				      
 				     
 				} catch (JSONException e) {
@@ -474,16 +477,46 @@ public class Fragment_ModifyService extends Fragment {
 				
 		        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
 			 
-				dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
+				dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list_bandwidth);
 				dataAdapterSpinnerChangeTo.setDropDownViewResource(R.layout.spinner_layout);
 				spinner_changeto.setAdapter(dataAdapterSpinnerChangeTo);
+				tappedSpinnerChangeTo=false;
 				spinner_changeto.setOnTouchListener(new OnTouchListener() {
 					
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
-						//Toast.makeText(Activity_SliderMenu.context, "Touch", Toast.LENGTH_SHORT).show();
-//						addItemsOnSpinner(spinner_changeto, prefs);
-//						dataAdapterSpinnerChangeTo.notifyDataSetChanged();
+						tappedSpinnerChangeTo=true;
+//						Toast.makeText(Activity_SliderMenu.context, "Touch", Toast.LENGTH_SHORT).show();
+						JSONObject jsonRootObj;
+						JSONArray jsonArray;
+						JSONObject jsonObj;
+						
+						try {
+							jsonRootObj = new JSONObject(modifyJSONStr);
+						    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
+						    
+							// Getting JSON Array node
+						    
+						    if (list_bandwidth!=null)
+						    	list_bandwidth.clear();
+							for (int i = 0; i < jsonArray.length(); i++) {
+								jsonObj = jsonArray.getJSONObject(i);
+								bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
+								list_bandwidth.add(jsonObj.getString("label").toString());
+								Log.d("tag", "Smell: "+jsonObj.getString("label").toString());
+							}// for	 
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+						dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list_bandwidth);
+						dataAdapterSpinnerChangeTo.setDropDownViewResource(R.layout.spinner_layout);
+						spinner_changeto.setAdapter(dataAdapterSpinnerChangeTo);
+						
+						dataAdapterSpinnerChangeTo.notifyDataSetChanged();
+						
+//						Toast.makeText(Activity_SliderMenu.context, "Touch End", Toast.LENGTH_SHORT).show();
 						return false;
 					}
 				});
@@ -520,8 +553,8 @@ public class Fragment_ModifyService extends Fragment {
 						((ViewGroup) lin_rootview).addView(lin_inputSearch);
 						((ViewGroup) lin_rootview).addView(listView);
 						listAdapter.getFilter().filter(inputSearch.getText().toString()); //To retain search history  
-//						Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
-//					    instance_submit.postData();
+						//Webservice_GetModifyServiceList instance_submit = new Webservice_GetModifyServiceList(Activity_SliderMenu.context);
+					    //instance_submit.postData();
 					}
 				});
 		        
@@ -531,7 +564,9 @@ public class Fragment_ModifyService extends Fragment {
 					
 					@Override
 					public void onClick(View v) {
-						
+						//Toast.makeText(Activity_SliderMenu.context, "tappedSpinnerChangeTo="+tappedSpinnerChangeTo, Toast.LENGTH_SHORT).show();
+						if(tappedSpinnerChangeTo)
+						{
 						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
 				 
 							// set title
@@ -544,24 +579,9 @@ public class Fragment_ModifyService extends Fragment {
 								.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog,int id) {
 										// if this button is clicked, close current activity
-//										TextView tv = (TextView)spinner_changeto.getSelectedView();
-//										bandwidthOptions.get(tv.getText().toString());
-//										Log.d("tag", ""+bandwidthOptions.get(tv.getText().toString()));
-										Log.d("tag", ""+bandwidthOptions.get(((TextView)spinner_changeto.getSelectedView()).getText().toString()).toString());
+										//Log.d("tag", ""+bandwidthOptions.get(((TextView)spinner_changeto.getSelectedView()).getText().toString()).toString());
 										Webservice_PostModifyDetails instance_submit = new Webservice_PostModifyDetails(Activity_SliderMenu.context, bundleId, (bandwidthOptions.get(((TextView)spinner_changeto.getSelectedView()).getText().toString())).toString() );
-									    instance_submit.postData();
-									    
-//										// Remove modify service details
-//										((LinearLayout) lin_rootview).removeView(viewgroup_modifyserviceview);
-//										
-//										// load list view
-//										initListView();		
-//										
-//										// Add search view and list view
-//										((ViewGroup) lin_rootview).addView(searchView);
-//										((ViewGroup) lin_rootview).addView(listView);
-										
-										
+									    instance_submit.postData();										
 									}
 								  })
 								.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -578,87 +598,39 @@ public class Fragment_ModifyService extends Fragment {
 								// show it
 								alertDialog.show();
 						 //Webservice_PostModifyDetails
-						
+						}
+						else
+						{
+							//If changeto feild is not tapped 
+							//Warning! : Please select bandwidth.     OK
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Activity_SliderMenu.context);
+							 
+							// set title
+							alertDialogBuilder.setTitle("Warning!");
+				 
+							// set dialog message
+							alertDialogBuilder
+								.setMessage("Please select bandwidth.")
+								.setCancelable(false)
+								.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,int id) {
+										// if this button is clicked, just close
+										// the dialog box and do nothing
+										dialog.cancel();
+									}
+								  });
+								
+				 
+								// create alert dialog
+								AlertDialog alertDialog = alertDialogBuilder.create();
+				 
+								// show it
+								alertDialog.show();
+						}
 
 					}
 				});
-		        
 		 }
 		 }
 	}//initServiceDetailsView
-//	
-//	private static void addItemsOnSpinner(Spinner bundle_spinner, final SharedPreferences prefs) {
-//		 
-//		 String modifyJSONStr = prefs.getString("modifyservicedetails", null);
-//		 if (modifyJSONStr != null) 
-//		 {
-//				if(modifyJSONStr.contains("code") && modifyJSONStr.contains("message"))//jsonObj.has("code") && jsonObj.has("message"))
-//				{						
-//						 final HashMap bandwidthOptions = new HashMap();
-//						 ArrayList<String> list = new ArrayList<String>();         
-//							// Convert string to JSONArray
-//							JSONObject jsonRootObj;
-//							JSONArray jsonArray;
-//							JSONObject jsonObj;
-//							try {
-//								jsonRootObj = new JSONObject(modifyJSONStr);
-//								
-////								bundleId = jsonRootObj.getString("bundleId");
-////								prodType = jsonRootObj.getString("prodType");
-////								location = jsonRootObj.getString("location");
-////							    currentBandwidth = jsonRootObj.getString("currentBandwidth");
-////							    contractBandwidth = jsonRootObj.getString("contractBandwidth");
-//							    jsonArray = jsonRootObj.getJSONArray("bandwidthOptions");
-//							    
-//								// Getting JSON Array node
-//								for (int i = 0; i < jsonArray.length(); i++) {
-//
-//									jsonObj = jsonArray.getJSONObject(i);
-//									bandwidthOptions.put( ""+jsonObj.getString("label").toString(),""+jsonObj.getString("value").toString());
-//									list.add(jsonObj.getString("label").toString());
-//								}// for	
-//								
-//								  // Get a set of the entries
-//							      Set set = bandwidthOptions.entrySet();
-//							      // Get an iterator
-//							      Iterator i = set.iterator();
-//							      // Display elements
-//							      while(i.hasNext()) {
-//							         Map.Entry me = (Map.Entry)i.next();
-//							         System.out.print(me.getKey() + ": ");
-//							         System.out.println(me.getValue());
-//							      }  
-//							} catch (JSONException e) {
-//								// TODO Auto-generated catch block
-//								e.printStackTrace();
-//							}
-//							
-//							
-//					        spinner_changeto = (Spinner)viewgroup_modifyserviceview.findViewById(R.id.spinner_changeto);
-//							 
-//							dataAdapterSpinnerChangeTo = new ArrayAdapter<String>(Activity_SliderMenu.context, R.layout.modifyservice_spinner_item, list);
-//							dataAdapterSpinnerChangeTo.setDropDownViewResource(R.layout.spinner_layout);
-//							spinner_changeto.setAdapter(dataAdapterSpinnerChangeTo);
-//					        spinner_changeto.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//								@Override
-//								public void onItemSelected(AdapterView<?> parent, View view,
-//										int pos, long id) {
-//									// TODO Auto-generated method stub
-//									Toast.makeText(parent.getContext(), "Touch", Toast.LENGTH_SHORT).show();
-//									//txt_bundleid = spinner_changeto.getSelectedItem().toString();
-//									//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
-//									addItemsOnSpinner(spinner_changeto, prefs);
-//									dataAdapterSpinnerChangeTo.notifyDataSetChanged();
-//								}
-//
-//								@Override
-//								public void onNothingSelected(AdapterView<?> arg0) {
-//									// TODO Auto-generated method stub
-//									
-//								}
-//							});
-//				}
-//		 }		
-//	}
 }
