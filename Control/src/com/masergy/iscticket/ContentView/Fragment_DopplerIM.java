@@ -153,6 +153,32 @@ public class Fragment_DopplerIM extends Fragment {
 			@Override
 			public boolean onGroupClick(ExpandableListView parent, View v,
 					int groupPosition, long id) {
+				//=====Collapse all childs expect clicked one======
+				int c=listAdapter.getGroupCount();
+				for(int i=0;i<c;i++)
+				{
+					if(groupPosition!=i)
+					{
+						parent.collapseGroup(i);
+					}
+					
+					else {
+						if (parent.isGroupExpanded(groupPosition)) {
+							parent.collapseGroup(groupPosition);
+						}
+						else
+						{
+							parent.expandGroup(i);
+						}
+						
+					}
+				}
+				expListView.setSelectionFromTop(groupPosition, 0);
+				//=======================END========================
+				
+				
+				//expandbleLis.expandGroup(arg2);
+				
 				// Toast.makeText(getApplicationContext(),
 				// "Group Clicked " + listDataHeader.get(groupPosition),
 				// Toast.LENGTH_SHORT).show();
