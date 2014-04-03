@@ -35,7 +35,7 @@ public class ListFragment_ListMenu extends ListFragment {
 	
 //	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
 //	public static Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
-	public static List<String> menuListLabel=new ArrayList<String>();;
+	List<String> menuListLabel=new ArrayList<String>();;
 	public static List<Integer> menuListImages =new ArrayList<Integer>();;
 
 	

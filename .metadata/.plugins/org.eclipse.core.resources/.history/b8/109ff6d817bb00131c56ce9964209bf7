@@ -48,9 +48,6 @@ public class Activity_Home extends Activity {
 //		editor.putString("permViewServiceDetails", "true");
 //		editor.commit();
 ////===========================================================================================================================
-		//Reset
-		ListFragment_ListMenu.menuListLabel.clear();
-		ListFragment_ListMenu.menuListImages.clear();
 		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{
@@ -64,26 +61,26 @@ public class Activity_Home extends Activity {
 		{
 			menuListLabel.add("Modify Service");
 			menuListImages.add(R.drawable.ic_modifyservice);
-			ListFragment_ListMenu.menuListLabel.add("Modify Service");
-			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_modifyservice);
+			menuListLabel.add("Modify Service");
+			menuListImages.add(R.drawable.ic_modifyservice);
 		}
 		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
 		{
 			menuListLabel.add("Doppler IM");
 			menuListImages.add(R.drawable.ic_dopplerim);
-			ListFragment_ListMenu.menuListLabel.add("Doppler IM");
-			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_dopplerim);
+			menuListLabel.add("Doppler IM");
+			menuListImages.add(R.drawable.ic_dopplerim);
 		}
 		
 		menuListLabel.add("Contact us");
 		menuListImages.add(R.drawable.ic_contactus);
-		ListFragment_ListMenu.menuListLabel.add("Contact us");
-		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_contactus);
+		menuListLabel.add("Contact us");
+		menuListImages.add(R.drawable.ic_contactus);
 		
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);
-		ListFragment_ListMenu.menuListLabel.add("Logout");
-		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_logout);
+		menuListLabel.add("Logout");
+		menuListImages.add(R.drawable.ic_logout);
 		
 		//Create adaptor and set row title and icon
  		rowItems = new ArrayList<RowItem>();

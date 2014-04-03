@@ -48,9 +48,6 @@ public class Activity_Home extends Activity {
 //		editor.putString("permViewServiceDetails", "true");
 //		editor.commit();
 ////===========================================================================================================================
-		//Reset
-		ListFragment_ListMenu.menuListLabel.clear();
-		ListFragment_ListMenu.menuListImages.clear();
 		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{

@@ -35,8 +35,8 @@ public class ListFragment_ListMenu extends ListFragment {
 	
 //	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
 //	public static Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
-	public static List<String> menuListLabel=new ArrayList<String>();;
-	public static List<Integer> menuListImages =new ArrayList<Integer>();;
+	List<String> menuListLabel=new ArrayList<String>();;
+	public static List<Integer> menuListImages;
 
 	
 	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
@@ -63,33 +63,33 @@ public class ListFragment_ListMenu extends ListFragment {
  	   tv_listTitle.setGravity(Gravity.CENTER_HORIZONTAL);
  	   getListView().addHeaderView(tv_listTitle);
  	  
-//		menuListLabel = new ArrayList<String>();
-//		menuListImages = new ArrayList<Integer>();
+		menuListLabel = new ArrayList<String>();
+		menuListImages = new ArrayList<Integer>();
 		
-//		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences("Login", Activity_SliderMenu.context.MODE_PRIVATE);
-//		
-//		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
-//		{
-//			menuListLabel.add("Tickets");
-//			menuListImages.add(R.drawable.ic_tickets);
-//		}
-//		     
-//		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
-//		{
-//			menuListLabel.add("Modify Service");
-//			menuListImages.add(R.drawable.ic_modifyservice);
-//		}
-//		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
-//		{
-//			menuListLabel.add("Doppler IM");
-//			menuListImages.add(R.drawable.ic_dopplerim);
-//		}
-//		
-//		menuListLabel.add("Contact us");
-//		menuListImages.add(R.drawable.ic_contactus);
-//		
-//		menuListLabel.add("Logout");
-//		menuListImages.add(R.drawable.ic_logout);
+		SharedPreferences prefs = Activity_SliderMenu.context.getSharedPreferences("Login", Activity_SliderMenu.context.MODE_PRIVATE);
+		
+		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
+		{
+			menuListLabel.add("Tickets");
+			menuListImages.add(R.drawable.ic_tickets);
+		}
+		     
+		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
+		{
+			menuListLabel.add("Modify Service");
+			menuListImages.add(R.drawable.ic_modifyservice);
+		}
+		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
+		{
+			menuListLabel.add("Doppler IM");
+			menuListImages.add(R.drawable.ic_dopplerim);
+		}
+		
+		menuListLabel.add("Contact us");
+		menuListImages.add(R.drawable.ic_contactus);
+		
+		menuListLabel.add("Logout");
+		menuListImages.add(R.drawable.ic_logout);
 		
  		//Create adaptor and set row title and icon         
   		rowItems = new ArrayList<RowItem>();
