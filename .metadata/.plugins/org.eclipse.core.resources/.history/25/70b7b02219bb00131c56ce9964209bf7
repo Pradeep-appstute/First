@@ -808,10 +808,6 @@ public class Fragment_Tickets extends Fragment {
 					
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
-						
-						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-		                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-		               		    InputMethodManager.HIDE_NOT_ALWAYS);
 						tappedBundleSpinner = true;
 						addItemsOnSpinnerBundle(spinner_bundle, prefs, false);
 						dataAdapter_bundle_spinner.notifyDataSetChanged();
@@ -846,11 +842,6 @@ public class Fragment_Tickets extends Fragment {
 					
 					@Override
 					public boolean onTouch(View v, MotionEvent event) {
-						
-						InputMethodManager inputManager = (InputMethodManager) Activity_SliderMenu.context.getSystemService(Context.INPUT_METHOD_SERVICE); 
-		                inputManager.hideSoftInputFromWindow(lin_rootview.getWindowToken(),      
-		               		    InputMethodManager.HIDE_NOT_ALWAYS);
-		                
 						tappedSubjectSpinner = true;
 						addItemsOnSpinnerBundle(spinner_subject, prefs, false);
 						dataAdapter_subject_spinner.notifyDataSetChanged();
