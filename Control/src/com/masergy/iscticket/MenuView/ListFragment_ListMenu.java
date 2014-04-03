@@ -39,11 +39,11 @@ public class ListFragment_ListMenu extends ListFragment {
 	public static List<Integer> menuListImages;
 
 	
-	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus_b, R.drawable.ic_logout }));
-	public static final List<Integer> images_modifyserviceselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice_w, R.drawable.ic_dopplerim, R.drawable.ic_contactus_b, R.drawable.ic_logout }));
-	public static final List<Integer> images_dopplerimselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim_w, R.drawable.ic_contactus_b, R.drawable.ic_logout }));
+	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
+	public static final List<Integer> images_modifyserviceselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice_w, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
+	public static final List<Integer> images_dopplerimselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim_w, R.drawable.ic_contactus, R.drawable.ic_logout }));
 	public static final List<Integer> images_contactusselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus_w, R.drawable.ic_logout }));
-	public static final List<Integer> images_logoutselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus_b, R.drawable.ic_logout_w }));
+	public static final List<Integer> images_logoutselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout_w }));
 	List<RowItem> rowItems;
 	BaseAdapter_ListMenu listAdapter;
 	
@@ -86,7 +86,7 @@ public class ListFragment_ListMenu extends ListFragment {
 		}
 		
 		menuListLabel.add("Contact us");
-		menuListImages.add(R.drawable.ic_contactus_b);
+		menuListImages.add(R.drawable.ic_contactus);
 		
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);

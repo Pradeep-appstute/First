@@ -67,7 +67,7 @@ public class Activity_Home extends Activity {
 		}
 		
 		menuListLabel.add("Contact us");
-		menuListImages.add(R.drawable.ic_contactus_b);
+		menuListImages.add(R.drawable.ic_contactus);
 		
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);
