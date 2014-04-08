@@ -59,6 +59,7 @@ import com.masergy.iscticket.utility.Webservice_PostSubmitData;
 public class Fragment_Tickets extends Fragment {
 
 	// For  Spinner
+	int bundle_position, subject_position;
 	List<String> list_bundle_spinner,list_subject_spinner;
 	ArrayAdapter<String> dataAdapter_bundle_spinner, dataAdapter_subject_spinner;
     boolean tappedBundleSpinner=false, tappedSubjectSpinner=false;
@@ -107,6 +108,7 @@ public class Fragment_Tickets extends Fragment {
 
 		isSubmitTapped =false;
 		isTicketDetailsTapped=false;
+		bundle_position=subject_position=0;
 		// construct the RelativeLayout
 		lin_rootview = (LinearLayout) inflater.inflate(R.layout.fragment_tickets, container, false);
 		lin_rootview.setOnTouchListener(new OnTouchListener() {
@@ -810,6 +812,7 @@ public class Fragment_Tickets extends Fragment {
 						tappedBundleSpinner = true;
 						addItemsOnSpinnerBundle(spinner_bundle, prefs, false);
 						dataAdapter_bundle_spinner.notifyDataSetChanged();
+						spinner_bundle.setSelection(bundle_position);
 						return false;
 					}
 				});
@@ -821,7 +824,7 @@ public class Fragment_Tickets extends Fragment {
 							int pos, long id) {
 						// Remove select text from spinner
 //						addItemsOnSpinnerBundle(spinner_bundle, prefs, false);
-						
+						bundle_position=pos;
 						//Toast.makeText(parent.getContext(), "spinner Bundle", Toast.LENGTH_SHORT).show();
 						txt_bundleid = spinner_bundle.getSelectedItem().toString();
 						//Toast.makeText(parent.getContext(), "txt_bundleid="+txt_bundleid,Toast.LENGTH_SHORT).show();
@@ -849,6 +852,7 @@ public class Fragment_Tickets extends Fragment {
 						tappedSubjectSpinner = true;
 						addItemsOnSpinnerSubject(spinner_subject, prefs, false);
 						dataAdapter_subject_spinner.notifyDataSetChanged();
+						spinner_subject.setSelection(subject_position);
 						return false;
 					}
 				});
@@ -860,7 +864,7 @@ public class Fragment_Tickets extends Fragment {
 							int pos, long id) {
 						// Remove select text from spinner
 //						addItemsOnSpinnerBundle(spinner_subject, prefs, false);
-					
+						subject_position=pos;
 						//Toast.makeText(parent.getContext(), "spinner Subject",Toast.LENGTH_SHORT).show();
 						txt_subject = spinner_subject.getSelectedItem().toString();
 						//Toast.makeText(parent.getContext(), "txt_subject="+txt_subject,Toast.LENGTH_SHORT).show();
