@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;Masergy Control&apos;&#x0A;- Original project: &apos;Masergy Control&apos;&#x0A;- Original elements:&#x0A;     Masergy Control/gen/com.jeremyfeinstein.slidingmenu.lib&#x0A;     Masergy Control/gen/com.masergy.iscticket&#x0A;     Masergy Control/gen/in.appstute.androidlibrary" description="Delete elements" element1="/gen&lt;in.appstute.androidlibrary" element2="/gen&lt;in.appstute" element3="/gen&lt;in" element4="/gen&lt;com.masergy.iscticket" element5="/gen&lt;com.masergy" element6="/gen&lt;com.jeremyfeinstein.slidingmenu.lib" element7="/gen&lt;com.jeremyfeinstein.slidingmenu" element8="/gen&lt;com.jeremyfeinstein" element9="/gen&lt;com" elements="9" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1396951646816" subPackages="false" version="1.0"/>
+</session>
