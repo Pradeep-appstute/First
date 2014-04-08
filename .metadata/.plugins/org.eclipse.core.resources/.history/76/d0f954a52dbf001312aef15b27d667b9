@@ -93,11 +93,7 @@ public class Fragment_DopplerIM extends Fragment {
 		    @Override
 		    public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
 		        // When user changed the Text
-		        listAdapter.getFilter().filter(cs);
-				int c=listAdapter.getGroupCount();
-				for(int i=0;i<c;i++)
-					expListView.collapseGroup(i);
-			
+		        listAdapter.getFilter().filter(cs);  
 		    }
 		     
 		    @Override
