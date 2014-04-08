@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.masergy.iscticket.Activity_Home;
 import com.masergy.iscticket.Activity_SliderMenu;
 import com.masergy.iscticket.R;
 import com.masergy.iscticket.ContentView.Fragment_ContactUs;
@@ -36,15 +35,15 @@ public class ListFragment_ListMenu extends ListFragment {
 	
 //	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
 //	public static Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
-	public static List<String> menuListLabel=new ArrayList<String>();
-	public static List<Integer> menuListImages =new ArrayList<Integer>();
+	public static List<String> menuListLabel=new ArrayList<String>();;
+	public static List<Integer> menuListImages =new ArrayList<Integer>();;
 
 	
-//	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
-//	public static final List<Integer> images_modifyserviceselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice_w, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
-//	public static final List<Integer> images_dopplerimselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim_w, R.drawable.ic_contactus, R.drawable.ic_logout }));
-//	public static final List<Integer> images_contactusselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus_w, R.drawable.ic_logout }));
-//	public static final List<Integer> images_logoutselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout_w }));
+	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
+	public static final List<Integer> images_modifyserviceselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice_w, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
+	public static final List<Integer> images_dopplerimselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim_w, R.drawable.ic_contactus, R.drawable.ic_logout }));
+	public static final List<Integer> images_contactusselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus_w, R.drawable.ic_logout }));
+	public static final List<Integer> images_logoutselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout_w }));
 	List<RowItem> rowItems;
 	BaseAdapter_ListMenu listAdapter;
 	
@@ -95,7 +94,6 @@ public class ListFragment_ListMenu extends ListFragment {
  		//Create adaptor and set row title and icon         
   		rowItems = new ArrayList<RowItem>();
         for (int i = 0; i < menuListLabel.size(); i++) {
-//        	Log.d("tag", "imagesID="+menuListImages.get(i));
              RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
              rowItems.add(item);
         }
@@ -114,7 +112,7 @@ public class ListFragment_ListMenu extends ListFragment {
 		position--;
 		switch (position) {
 		case 0:{
-			menuListImages = Activity_Home.images_ticketsselected;
+			menuListImages = images_ticketsselected;
 	  		rowItems = new ArrayList<RowItem>();
 	        for (int i = 0; i < menuListLabel.size(); i++) {
 	             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
@@ -134,7 +132,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			break;
 		case 1:
 		{
-			menuListImages = Activity_Home.images_modifyserviceselected;
+			menuListImages = images_modifyserviceselected;
 	  		rowItems = new ArrayList<RowItem>();
 	        for (int i = 0; i < menuListLabel.size(); i++) {
 	             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
@@ -153,7 +151,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			   }
 			break;
 		case 2:{
-			menuListImages = Activity_Home.images_dopplerimselected;
+			menuListImages = images_dopplerimselected;
 	  		rowItems = new ArrayList<RowItem>();
 	        for (int i = 0; i < menuListLabel.size(); i++) {
 	             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
@@ -171,7 +169,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			   }
 			break;
 		case 3:{
-			menuListImages = Activity_Home.images_contactusselected;
+			menuListImages = images_contactusselected;
 	  		rowItems = new ArrayList<RowItem>();
 	        for (int i = 0; i < menuListLabel.size(); i++) {
 	             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
@@ -186,7 +184,7 @@ public class ListFragment_ListMenu extends ListFragment {
 			break;
 		case 4:{
 			//newContent = new Activity_Fragment(4);
-			menuListImages = Activity_Home.images_logoutselected;
+			menuListImages = images_logoutselected;
 	  		rowItems = new ArrayList<RowItem>();
 	        for (int i = 0; i < menuListLabel.size(); i++) {
 	             RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));

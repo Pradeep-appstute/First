@@ -56,73 +56,43 @@ public class Activity_Home extends Activity {
 //		editor.putString("permViewServiceDetails", "true");
 //		editor.commit();
 ////===========================================================================================================================
-//		//Reset
-//		ListFragment_ListMenu.menuListLabel.clear();
-//		ListFragment_ListMenu.menuListImages.clear();
+		//Reset
+		ListFragment_ListMenu.menuListLabel.clear();
+		ListFragment_ListMenu.menuListImages.clear();
 		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Tickets");
 			menuListImages.add(R.drawable.ic_tickets);
-			}
-			
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Tickets");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_tickets);
-			}
 		}
 		     
 		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Modify Service");
 			menuListImages.add(R.drawable.ic_modifyservice);
-			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Modify Service");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_modifyservice);
-			}
 		}
 		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Doppler IM");
 			menuListImages.add(R.drawable.ic_dopplerim);
-			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Doppler IM");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_dopplerim);
-			}
 		}
 		
-		if(menuListImages.size()<5)
-		{
 		menuListLabel.add("Contact us");
 		menuListImages.add(R.drawable.ic_contactus);
-		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
-		{
 		ListFragment_ListMenu.menuListLabel.add("Contact us");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_contactus);
-		}
 		
-		if(menuListImages.size()<5)
-		{
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);
-		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
-		{
 		ListFragment_ListMenu.menuListLabel.add("Logout");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_logout);
-		}
+		
 		//Create adaptor and set row title and icon
  		rowItems = new ArrayList<RowItem>();
         for (int i = 0; i < menuListLabel.size(); i++) {
@@ -139,7 +109,7 @@ public class Activity_Home extends Activity {
 			          int position, long id) {
 			    	  if(menuListLabel.get(position).equalsIgnoreCase("Tickets"))
 			    	  {
-			    		  ListFragment_ListMenu.menuListImages = images_ticketsselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_ticketsselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Tickets");
 			    		  startActivity(intent);
@@ -147,7 +117,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Modify Service"))
 			    	  {
-			    		  ListFragment_ListMenu.menuListImages = images_modifyserviceselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_modifyserviceselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Modify Service");
 			    		  startActivity(intent);
@@ -155,7 +125,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Doppler IM"))
 			    	  {
-			    		  ListFragment_ListMenu.menuListImages = images_dopplerimselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_dopplerimselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Doppler IM");
 			    		  startActivity(intent);
@@ -163,7 +133,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Contact us"))
 			    	  {
-			    		  ListFragment_ListMenu.menuListImages = images_contactusselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_contactusselected;
 			    		  Intent intent = new Intent(Activity_Home.this, Activity_SliderMenu.class);
 			    		  intent.putExtra("selectedlistitem", "Contact us");
 			    		  startActivity(intent);
@@ -171,7 +141,7 @@ public class Activity_Home extends Activity {
 			    	  }
 			    	  else if(menuListLabel.get(position).equalsIgnoreCase("Logout"))
 			    	  {
-			    		  ListFragment_ListMenu.menuListImages = images_logoutselected;
+			    		  ListFragment_ListMenu.menuListImages = ListFragment_ListMenu.images_logoutselected;
 			  		    Webservice_Logout instance = new Webservice_Logout(Activity_Home.this);
 					    instance.postData();
 			    	  }			    	  

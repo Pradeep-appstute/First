@@ -36,8 +36,8 @@ public class ListFragment_ListMenu extends ListFragment {
 	
 //	public final String[] titles = new String[] { "Tickets", "Modify Service", "Doppler IM", "Contact us", "Logout" };
 //	public static Integer[] images = { R.drawable.ic_tickets, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout };
-	public static List<String> menuListLabel=new ArrayList<String>();
-	public static List<Integer> menuListImages =new ArrayList<Integer>();
+	public static List<String> menuListLabel=new ArrayList<String>();;
+	public static List<Integer> menuListImages =new ArrayList<Integer>();;
 
 	
 //	public static final List<Integer> images_ticketsselected = new ArrayList<Integer>(Arrays.asList(new Integer[]{ R.drawable.ic_tickets_w, R.drawable.ic_modifyservice, R.drawable.ic_dopplerim, R.drawable.ic_contactus, R.drawable.ic_logout }));
@@ -95,7 +95,7 @@ public class ListFragment_ListMenu extends ListFragment {
  		//Create adaptor and set row title and icon         
   		rowItems = new ArrayList<RowItem>();
         for (int i = 0; i < menuListLabel.size(); i++) {
-//        	Log.d("tag", "imagesID="+menuListImages.get(i));
+        	Log.d("tag", "imagesID="+menuListImages.get(i));
              RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
              rowItems.add(item);
         }

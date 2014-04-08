@@ -95,7 +95,7 @@ public class ListFragment_ListMenu extends ListFragment {
  		//Create adaptor and set row title and icon         
   		rowItems = new ArrayList<RowItem>();
         for (int i = 0; i < menuListLabel.size(); i++) {
-//        	Log.d("tag", "imagesID="+menuListImages.get(i));
+        	Log.d("tag", "imagesID="+menuListImages.get(i));
              RowItem item = new RowItem(menuListImages.get(i), menuListLabel.get(i));
              rowItems.add(item);
         }

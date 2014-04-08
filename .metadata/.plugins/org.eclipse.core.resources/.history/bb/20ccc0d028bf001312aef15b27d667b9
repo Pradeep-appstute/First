@@ -45,8 +45,8 @@ public class Activity_Home extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_home);
 
-		menuListLabel = new ArrayList<String>();
-		menuListImages = new ArrayList<Integer>();
+//		menuListLabel = new ArrayList<String>();
+//		menuListImages = new ArrayList<Integer>();
 		SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
 ////=================================For testing purpose only==================================================================		
 //		SharedPreferences.Editor editor = prefs.edit();	
@@ -56,73 +56,43 @@ public class Activity_Home extends Activity {
 //		editor.putString("permViewServiceDetails", "true");
 //		editor.commit();
 ////===========================================================================================================================
-//		//Reset
-//		ListFragment_ListMenu.menuListLabel.clear();
-//		ListFragment_ListMenu.menuListImages.clear();
+		//Reset
+		ListFragment_ListMenu.menuListLabel.clear();
+		ListFragment_ListMenu.menuListImages.clear();
 		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Tickets");
 			menuListImages.add(R.drawable.ic_tickets);
-			}
-			
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Tickets");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_tickets);
-			}
 		}
 		     
 		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Modify Service");
 			menuListImages.add(R.drawable.ic_modifyservice);
-			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Modify Service");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_modifyservice);
-			}
 		}
 		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
-			{
 			menuListLabel.add("Doppler IM");
 			menuListImages.add(R.drawable.ic_dopplerim);
-			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
-			{
 			ListFragment_ListMenu.menuListLabel.add("Doppler IM");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_dopplerim);
-			}
 		}
 		
-		if(menuListImages.size()<5)
-		{
 		menuListLabel.add("Contact us");
 		menuListImages.add(R.drawable.ic_contactus);
-		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
-		{
 		ListFragment_ListMenu.menuListLabel.add("Contact us");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_contactus);
-		}
 		
-		if(menuListImages.size()<5)
-		{
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);
-		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
-		{
 		ListFragment_ListMenu.menuListLabel.add("Logout");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_logout);
-		}
+		
 		//Create adaptor and set row title and icon
  		rowItems = new ArrayList<RowItem>();
         for (int i = 0; i < menuListLabel.size(); i++) {

@@ -62,13 +62,13 @@ public class Activity_Home extends Activity {
 		
 		if(prefs.getString("permViewTicket", "true").equals("true") || prefs.getString("permSubmitTicket", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
+			if(menuListImages.size()==0)
 			{
 			menuListLabel.add("Tickets");
 			menuListImages.add(R.drawable.ic_tickets);
 			}
 			
-			if(ListFragment_ListMenu.menuListImages.size()<5)
+			if(ListFragment_ListMenu.menuListImages.size()==0)
 			{
 			ListFragment_ListMenu.menuListLabel.add("Tickets");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_tickets);
@@ -77,12 +77,12 @@ public class Activity_Home extends Activity {
 		     
 		if(prefs.getString("permModifyTierNetworkAccess", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
+			if(menuListImages.size()==0)
 			{
 			menuListLabel.add("Modify Service");
 			menuListImages.add(R.drawable.ic_modifyservice);
 			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
+			if(ListFragment_ListMenu.menuListImages.size()==0)
 			{
 			ListFragment_ListMenu.menuListLabel.add("Modify Service");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_modifyservice);
@@ -90,35 +90,35 @@ public class Activity_Home extends Activity {
 		}
 		if(prefs.getString("permViewServiceDetails", "true").equals("true"))
 		{
-			if(menuListImages.size()<5)
+			if(menuListImages.size()==0)
 			{
 			menuListLabel.add("Doppler IM");
 			menuListImages.add(R.drawable.ic_dopplerim);
 			}
-			if(ListFragment_ListMenu.menuListImages.size()<5)
+			if(ListFragment_ListMenu.menuListImages.size()==0)
 			{
 			ListFragment_ListMenu.menuListLabel.add("Doppler IM");
 			ListFragment_ListMenu.menuListImages.add(R.drawable.ic_dopplerim);
 			}
 		}
 		
-		if(menuListImages.size()<5)
+		if(menuListImages.size()==0)
 		{
 		menuListLabel.add("Contact us");
 		menuListImages.add(R.drawable.ic_contactus);
 		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
+		if(ListFragment_ListMenu.menuListImages.size()==0)
 		{
 		ListFragment_ListMenu.menuListLabel.add("Contact us");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_contactus);
 		}
 		
-		if(menuListImages.size()<5)
+		if(menuListImages.size()==0)
 		{
 		menuListLabel.add("Logout");
 		menuListImages.add(R.drawable.ic_logout);
 		}
-		if(ListFragment_ListMenu.menuListImages.size()<5)
+		if(ListFragment_ListMenu.menuListImages.size()==0)
 		{
 		ListFragment_ListMenu.menuListLabel.add("Logout");
 		ListFragment_ListMenu.menuListImages.add(R.drawable.ic_logout);
