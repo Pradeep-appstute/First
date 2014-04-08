@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="tappedSpinnerChangeTo" key="selection"/>
+		<item value="Finding dates of curent month" key="selection"/>
 		<list key="findhistory">
+			<item value="Finding dates of curent month"/>
+			<item value="Webservice"/>
+			<item value="setOnGroupClickListener"/>
+			<item value="expListView"/>
+			<item value="tappedBundleSpinner"/>
 			<item value="tappedSpinnerChangeTo"/>
 			<item value="Warning"/>
 			<item value="submit"/>
-			<item value="viewgroup_submitview"/>
-			<item value="addItemsOnSpinner"/>
-			<item value="addItemsOnSpinnerBundle"/>
-			<item value="list"/>
-			<item value="listView"/>
 		</list>
 		<list key="replacehistory">
 			<item value="=="/>

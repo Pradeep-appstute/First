@@ -104,12 +104,7 @@ public class Fragment_Tickets extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-				
 
-		
-		
-		
-		
 		isSubmitTapped =false;
 		isTicketDetailsTapped=false;
 		// construct the RelativeLayout
@@ -852,7 +847,7 @@ public class Fragment_Tickets extends Fragment {
 		               		    InputMethodManager.HIDE_NOT_ALWAYS);
 		                
 						tappedSubjectSpinner = true;
-						addItemsOnSpinnerBundle(spinner_subject, prefs, false);
+						addItemsOnSpinnerSubject(spinner_subject, prefs, false);
 						dataAdapter_subject_spinner.notifyDataSetChanged();
 						return false;
 					}

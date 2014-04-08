@@ -223,13 +223,13 @@ public class Webservice_GetTicketsList {
 
 						JSONObject jsonObj = jsonArray.getJSONObject(i);
 						Ticket ticket = new Ticket();
-						/*
-						 * Log.d("tag", "" + jsonObj.get("ticketId"));
-						 * Log.d("tag", "" + jsonObj.get("subject"));
-						 * Log.d("tag", "" + jsonObj.get("status"));
-						 * Log.d("tag", "" + jsonObj.get("createDate"));
-						 * Log.d("tag", "" + jsonObj.get("closeDate"));
-						 */
+//						/*
+//						 * Log.d("tag", "" + jsonObj.get("ticketId"));
+//						 * Log.d("tag", "" + jsonObj.get("subject"));
+//						 * Log.d("tag", "" + jsonObj.get("status"));
+//						 * Log.d("tag", "" + jsonObj.get("createDate"));
+//						 * Log.d("tag", "" + jsonObj.get("closeDate"));
+//						 */
 						if (!(jsonObj.get("ticketId").equals(JSONObject.NULL)))
 							ticket.ticketId = jsonObj.getString("ticketId");
 						else
@@ -383,13 +383,13 @@ public class Webservice_GetTicketsList {
 		c.setTime(todaysDate);
 		c.set(Calendar.DATE, 1);
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 30; i++) {
 			Log.d("Month", "Date=" + formatter.format(c.getTime()));
 			currentMonthList.add(c.getTime());
-			c.add(Calendar.DATE, 1);
+			c.add(Calendar.DATE, -1);
 
-			if (c.get(Calendar.DATE) == 1) // break if we reach next month
-				break;
+//			if (c.get(Calendar.DATE) == 1) // break if we reach next month
+//				break;
 		}
 		Log.d("TAG", "currentMonthList Size=" + currentMonthList.size());
 	}// fillUpDatesArray()
@@ -471,7 +471,7 @@ public class Webservice_GetTicketsList {
 			}//switch
 		}
 	}//filter(String string, Ticket ticket)
-
+	
 	private int filter(DateTime dateTime) {
 		//Log.d("tag", "Inside filter()");
 		//Log.d("tag", "ticket_createdDate="+dateTime);

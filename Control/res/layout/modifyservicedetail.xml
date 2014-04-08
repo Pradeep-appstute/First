@@ -92,7 +92,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/servicedetails_bandwidth"
                 android:textColor="#000"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                 />
 
             <LinearLayout
                 android:layout_width="fill_parent"
