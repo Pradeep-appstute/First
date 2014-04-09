@@ -8,11 +8,11 @@
 <stringAttribute key="com.android.ide.eclipse.adt.target" value="MANUAL"/>
 <booleanAttribute key="com.android.ide.eclipse.adt.wipedata" value="false"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/Masergy Control"/>
+<listEntry value="/Masergy ISC"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.ALLOW_TERMINATE" value="true"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Masergy Control"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Masergy ISC"/>
 </launchConfiguration>
