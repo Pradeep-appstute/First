@@ -129,7 +129,7 @@ public class Webservice_PostSubmitData {
 						}
 				StringEntity strEntity = new StringEntity(jsonObj.toString());
 				strEntity.setContentType("application/json");
-				// Add your data ( i.e. Set string entity)			
+				//Set string entity			
 				httppost.setEntity(strEntity);
 				
 				// Execute HTTP Post Request

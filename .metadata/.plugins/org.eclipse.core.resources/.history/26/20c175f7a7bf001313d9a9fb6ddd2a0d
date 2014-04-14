@@ -117,7 +117,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public Object getGroup(int groupPosition) {
-//		Log.i("Parent", groupPosition+"=  getGroup ");
+		Log.i("Parent", groupPosition+"=  getGroup ");
 		return this.filtered_dopplerIM_Parents.get(groupPosition);
 	}
 

@@ -21,7 +21,7 @@ import com.masergy.iscticket.R;
 
 public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 	
-//	DateTimeFormatter dateTimeFormatter;
+	DateTimeFormatter dateTimeFormatter;
 	private Context _context;
 	ArrayList<DopplerIM_Parent> original_dopplerIM_Parents;
 	public static ArrayList<DopplerIM_Parent> filtered_dopplerIM_Parents;
@@ -33,7 +33,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 		this.original_dopplerIM_Parents = dopplerIM_Parents ;
 		this.filtered_dopplerIM_Parents = dopplerIM_Parents ;
 		mInflater = LayoutInflater.from(context);
-//		dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+		dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 	}
 
 	public int getCount() {
@@ -117,7 +117,7 @@ public class DopplerIMListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public Object getGroup(int groupPosition) {
-//		Log.i("Parent", groupPosition+"=  getGroup ");
+		Log.i("Parent", groupPosition+"=  getGroup ");
 		return this.filtered_dopplerIM_Parents.get(groupPosition);
 	}
 
