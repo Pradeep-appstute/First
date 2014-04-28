@@ -1,0 +1,93 @@
+/*    */ package com.estimote.sdk.service;
+/*    */ 
+/*    */ import android.os.Parcel;
+/*    */ import android.os.Parcelable;
+/*    */ import android.os.Parcelable.Creator;
+/*    */ import com.estimote.sdk.Beacon;
+/*    */ import com.estimote.sdk.Region;
+/*    */ import com.estimote.sdk.Region.State;
+/*    */ import com.estimote.sdk.internal.Objects;
+/*    */ import com.estimote.sdk.internal.Objects.ToStringHelper;
+/*    */ import com.estimote.sdk.internal.Preconditions;
+/*    */ import java.util.ArrayList;
+/*    */ import java.util.Collection;
+/*    */ import java.util.List;
+/*    */ 
+/*    */ public class MonitoringResult
+/*    */   implements Parcelable
+/*    */ {
+/*    */   public final Region region;
+/*    */   public final Region.State state;
+/*    */   public final List<Beacon> beacons;
+/* 66 */   public static final Parcelable.Creator<MonitoringResult> CREATOR = new Parcelable.Creator()
+/*    */   {
+/*    */     public MonitoringResult createFromParcel(Parcel source)
+/*    */     {
+/* 70 */       ClassLoader classLoader = getClass().getClassLoader();
+/* 71 */       Region region = (Region)source.readParcelable(classLoader);
+/* 72 */       Region.State event = Region.State.values()[source.readInt()];
+/* 73 */       List beacons = source.readArrayList(classLoader);
+/* 74 */       return new MonitoringResult(region, event, beacons);
+/*    */     }
+/*    */ 
+/*    */     public MonitoringResult[] newArray(int size)
+/*    */     {
+/* 79 */       return new MonitoringResult[size];
+/*    */     }
+/* 66 */   };
+/*    */ 
+/*    */   public MonitoringResult(Region region, Region.State state, Collection<Beacon> collection)
+/*    */   {
+/* 30 */     this.region = ((Region)Preconditions.checkNotNull(region, "region cannot be null"));
+/* 31 */     this.state = ((Region.State)Preconditions.checkNotNull(state, "state cannot be null"));
+/* 32 */     this.beacons = new ArrayList(collection);
+/*    */   }
+			public MyMonitoringResult(Region region, Region.State state, List<Object> emptyList) {
+				// TODO Auto-generated constructor stub
+				this.region = ((Region)Preconditions.checkNotNull(region, "region cannot be null"));
+	/* 31 */     this.state = ((Region.State)Preconditions.checkNotNull(state, "state cannot be null"));
+	/* 32 */     this.beacons = new ArrayList(emptyList);
+			}
+/*    */ 
+/*    */   public boolean equals(Object o)
+/*    */   {
+/* 37 */     if (this == o) return true;
+/* 38 */     if ((o == null) || (getClass() != o.getClass())) return false;
+/*    */ 
+/* 40 */     MonitoringResult that = (MonitoringResult)o;
+/*    */ 
+/* 42 */     if (this.state != that.state) return false;
+/* 43 */     if (this.region != null ? !this.region.equals(that.region) : that.region != null) return false;
+/*    */ 
+/* 45 */     return true;
+/*    */   }
+/*    */ 
+/*    */   public int hashCode()
+/*    */   {
+/* 50 */     int result = this.region != null ? this.region.hashCode() : 0;
+/* 51 */     result = 31 * result + (this.state != null ? this.state.hashCode() : 0);
+/* 52 */     return result;
+/*    */   }
+/*    */ 
+/*    */   public String toString()
+/*    */   {
+/* 57 */     return Objects.toStringHelper(this).add("region", this.region).add("state", this.state.name()).add("beacons", this.beacons).toString();
+/*    */   }
+/*    */ 
+/*    */   public int describeContents()
+/*    */   {
+/* 85 */     return 0;
+/*    */   }
+/*    */ 
+/*    */   public void writeToParcel(Parcel dest, int flags)
+/*    */   {
+/* 90 */     dest.writeParcelable(this.region, flags);
+/* 91 */     dest.writeInt(this.state.ordinal());
+/* 92 */     dest.writeList(this.beacons);
+/*    */   }
+/*    */ }
+
+/* Location:           /Users/AppstuteMac5/Downloads/Android-SDK-master/EstimoteSDK/estimote-sdk-preview.jar
+ * Qualified Name:     com.estimote.sdk.service.MonitoringResult
+ * JD-Core Version:    0.6.2
+ */

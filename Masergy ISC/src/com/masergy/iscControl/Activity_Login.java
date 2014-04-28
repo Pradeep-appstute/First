@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ public class Activity_Login extends Activity {
 	TextView textViewForgotUserName, textViewForgotPassword;
 	
 	EditText edt_UserName, edt_Password;
-
+	public static String userAgentString;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,6 +47,11 @@ public class Activity_Login extends Activity {
 			}
 		});
 		
+		//Get User Agent String
+		WebView webView = new WebView(this);
+		userAgentString = webView.getSettings().getUserAgentString();
+		//Log.d("tag", "userAgentString = "+webView.getSettings().getUserAgentString());
+		webView = null;
 	}//onCreate()
 
 	public void loginButtonTapped(View v) {
