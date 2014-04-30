@@ -136,13 +136,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010002;
     }
     public static final class color {
-        public static final int black=0x7f080005;
-        public static final int black_overlay=0x7f080000;
-        public static final int blue=0x7f080003;
-        public static final int green=0x7f080002;
-        public static final int light_grey=0x7f080006;
-        public static final int red=0x7f080001;
-        public static final int white=0x7f080004;
+        public static final int black=0x7f060005;
+        public static final int black_overlay=0x7f060000;
+        public static final int blue=0x7f060003;
+        public static final int green=0x7f060002;
+        public static final int light_grey=0x7f060006;
+        public static final int red=0x7f060001;
+        public static final int white=0x7f060004;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -151,11 +151,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f090000;
-        public static final int activity_vertical_margin=0x7f090001;
-        public static final int list_padding=0x7f090004;
-        public static final int shadow_width=0x7f090003;
-        public static final int slidingmenu_offset=0x7f090002;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
+        public static final int list_padding=0x7f070004;
+        public static final int shadow_width=0x7f070003;
+        public static final int slidingmenu_offset=0x7f070002;
     }
     public static final class drawable {
         public static final int app_icon=0x7f020000;
@@ -171,125 +171,124 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_contactus_w=0x7f02000a;
         public static final int ic_dopplerim=0x7f02000b;
         public static final int ic_dopplerim_w=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int ic_logout=0x7f02000e;
-        public static final int ic_logout_w=0x7f02000f;
-        public static final int ic_modifyservice=0x7f020010;
-        public static final int ic_modifyservice_w=0x7f020011;
-        public static final int ic_tickets=0x7f020012;
-        public static final int ic_tickets_w=0x7f020013;
-        public static final int img_btnbackselected=0x7f020014;
-        public static final int img_btnbackunselected=0x7f020015;
-        public static final int img_btncancel=0x7f020016;
-        public static final int img_btncanel=0x7f020017;
-        public static final int img_btncreateticket=0x7f020018;
-        public static final int img_btnlogin=0x7f020019;
-        public static final int img_btnmclosed=0x7f02001a;
-        public static final int img_btnmclosedselected=0x7f02001b;
-        public static final int img_btnmmaint=0x7f02001c;
-        public static final int img_btnmmaintselected=0x7f02001d;
-        public static final int img_btnmopen=0x7f02001e;
-        public static final int img_btnmopenselected=0x7f02001f;
-        public static final int img_btnmsubmit=0x7f020020;
-        public static final int img_btnmsubmitselected=0x7f020021;
-        public static final int img_btnnextselected=0x7f020022;
-        public static final int img_btnnextunselected=0x7f020023;
-        public static final int img_btnprevselected=0x7f020024;
-        public static final int img_btnprevunselected=0x7f020025;
-        public static final int img_btnsubmit=0x7f020026;
-        public static final int img_headerview=0x7f020027;
-        public static final int img_logo_icon=0x7f020028;
-        public static final int img_logo_isc=0x7f020029;
-        public static final int img_menu=0x7f02002a;
-        public static final int img_menulistselected=0x7f02002b;
-        public static final int img_menulistunselected=0x7f02002c;
-        public static final int img_ticketlistsection=0x7f02002d;
-        public static final int img_tickettypebg=0x7f02002e;
-        public static final int img_tickitlistsection=0x7f02002f;
-        public static final int listview_bg=0x7f020030;
-        public static final int menulistbackground=0x7f020031;
-        public static final int shadow=0x7f020032;
-        public static final int shapeedittext=0x7f020033;
+        public static final int ic_logout=0x7f02000d;
+        public static final int ic_logout_w=0x7f02000e;
+        public static final int ic_modifyservice=0x7f02000f;
+        public static final int ic_modifyservice_w=0x7f020010;
+        public static final int ic_tickets=0x7f020011;
+        public static final int ic_tickets_w=0x7f020012;
+        public static final int img_btnbackselected=0x7f020013;
+        public static final int img_btnbackunselected=0x7f020014;
+        public static final int img_btncancel=0x7f020015;
+        public static final int img_btncanel=0x7f020016;
+        public static final int img_btncreateticket=0x7f020017;
+        public static final int img_btnlogin=0x7f020018;
+        public static final int img_btnmclosed=0x7f020019;
+        public static final int img_btnmclosedselected=0x7f02001a;
+        public static final int img_btnmmaint=0x7f02001b;
+        public static final int img_btnmmaintselected=0x7f02001c;
+        public static final int img_btnmopen=0x7f02001d;
+        public static final int img_btnmopenselected=0x7f02001e;
+        public static final int img_btnmsubmit=0x7f02001f;
+        public static final int img_btnmsubmitselected=0x7f020020;
+        public static final int img_btnnextselected=0x7f020021;
+        public static final int img_btnnextunselected=0x7f020022;
+        public static final int img_btnprevselected=0x7f020023;
+        public static final int img_btnprevunselected=0x7f020024;
+        public static final int img_btnsubmit=0x7f020025;
+        public static final int img_headerview=0x7f020026;
+        public static final int img_logo_icon=0x7f020027;
+        public static final int img_logo_isc=0x7f020028;
+        public static final int img_menu=0x7f020029;
+        public static final int img_menulistselected=0x7f02002a;
+        public static final int img_menulistunselected=0x7f02002b;
+        public static final int img_ticketlistsection=0x7f02002c;
+        public static final int img_tickettypebg=0x7f02002d;
+        public static final int img_tickitlistsection=0x7f02002e;
+        public static final int listview_bg=0x7f02002f;
+        public static final int menulistbackground=0x7f020030;
+        public static final int shadow=0x7f020031;
+        public static final int shapeedittext=0x7f020032;
     }
     public static final class id {
-        public static final int activity_main_content_button_menu=0x7f07001b;
-        public static final int activity_main_content_fragment=0x7f07000d;
-        public static final int activity_main_content_title=0x7f070005;
-        public static final int bt_cancel=0x7f070019;
-        public static final int bt_submit=0x7f07001a;
-        public static final int btnCreateTicket=0x7f07003e;
-        public static final int btn_back=0x7f070033;
-        public static final int btn_submit=0x7f070034;
-        public static final int buttonLogin=0x7f07000a;
-        public static final int editTextDescription=0x7f07003d;
-        public static final int editTextPassword=0x7f070009;
-        public static final int editTextUserName=0x7f070008;
-        public static final int edt_emailaddress=0x7f070018;
-        public static final int fullscreen=0x7f070003;
-        public static final int imageButton1=0x7f07000e;
-        public static final int imageViewMasergy=0x7f070007;
-        public static final int imgButtonClosed=0x7f070024;
-        public static final int imgButtonMaint=0x7f070025;
-        public static final int imgButtonOpen=0x7f070023;
-        public static final int imgButtonSubmit=0x7f070026;
-        public static final int inputSearch=0x7f07001f;
-        public static final int lblDateCreated=0x7f070029;
-        public static final int lblListHeader=0x7f070027;
-        public static final int lblSubject=0x7f07002a;
-        public static final int lblTicketNum=0x7f070028;
-        public static final int left=0x7f070000;
-        public static final int lin_fragment_dopplerim=0x7f07001d;
-        public static final int lin_fragment_modifyservicedetails=0x7f07002c;
-        public static final int lin_fragment_tickets=0x7f070021;
-        public static final int lin_headerview=0x7f070014;
-        public static final int lin_inputSearch=0x7f070022;
-        public static final int lin_topbar=0x7f07003f;
-        public static final int linbottombar=0x7f070046;
-        public static final int linlayout_menuview=0x7f07002b;
-        public static final int listView=0x7f070006;
-        public static final int listViewComment=0x7f070045;
-        public static final int lvExp=0x7f070020;
-        public static final int margin=0x7f070002;
-        public static final int pager=0x7f07001e;
-        public static final int rel_bottom=0x7f070044;
-        public static final int right=0x7f070001;
-        public static final int row_icon=0x7f070035;
-        public static final int row_title=0x7f070036;
-        public static final int selected_view=0x7f070004;
-        public static final int slidingmenumain=0x7f070037;
-        public static final int spinnerBundle=0x7f07003c;
-        public static final int spinnerSubject=0x7f07003b;
-        public static final int spinner_changeto=0x7f070032;
-        public static final int tableLayout=0x7f070040;
-        public static final int textView1=0x7f070015;
-        public static final int textView2=0x7f070016;
-        public static final int textView3=0x7f070017;
-        public static final int textViewEmailValue=0x7f070039;
-        public static final int textViewForgotPassword=0x7f07000c;
-        public static final int textViewForgotUserName=0x7f07000b;
-        public static final int textViewLastUpdatedValue=0x7f070043;
-        public static final int textViewNameValue=0x7f070038;
-        public static final int textViewPhoneValue=0x7f07003a;
-        public static final int textViewStatusValue=0x7f070048;
-        public static final int textViewSubjectValue=0x7f070041;
-        public static final int textViewSubmittedByValue=0x7f070042;
-        public static final int textViewticketsIdValue=0x7f070047;
-        public static final int text_child=0x7f070010;
-        public static final int text_childlabel=0x7f07000f;
-        public static final int text_view=0x7f070012;
-        public static final int ticketdetails_next=0x7f07004a;
-        public static final int ticketdetails_prev=0x7f070049;
-        public static final int txtVieTimeStamp=0x7f07004b;
-        public static final int txtViewDetails=0x7f07004d;
-        public static final int txtViewEmail=0x7f070013;
-        public static final int txtViewParent=0x7f070011;
-        public static final int txtViewUserName=0x7f07004c;
-        public static final int txtView_contract=0x7f070030;
-        public static final int txtView_current=0x7f070031;
-        public static final int txtview_bundleid=0x7f07002d;
-        public static final int txtview_services=0x7f07002e;
-        public static final int txtview_site=0x7f07002f;
-        public static final int webViewContactUs=0x7f07001c;
+        public static final int activity_main_content_button_menu=0x7f05001b;
+        public static final int activity_main_content_fragment=0x7f05000d;
+        public static final int activity_main_content_title=0x7f050005;
+        public static final int bt_cancel=0x7f050019;
+        public static final int bt_submit=0x7f05001a;
+        public static final int btnCreateTicket=0x7f05003e;
+        public static final int btn_back=0x7f050033;
+        public static final int btn_submit=0x7f050034;
+        public static final int buttonLogin=0x7f05000a;
+        public static final int editTextDescription=0x7f05003d;
+        public static final int editTextPassword=0x7f050009;
+        public static final int editTextUserName=0x7f050008;
+        public static final int edt_emailaddress=0x7f050018;
+        public static final int fullscreen=0x7f050003;
+        public static final int imageButton1=0x7f05000e;
+        public static final int imageViewMasergy=0x7f050007;
+        public static final int imgButtonClosed=0x7f050024;
+        public static final int imgButtonMaint=0x7f050025;
+        public static final int imgButtonOpen=0x7f050023;
+        public static final int imgButtonSubmit=0x7f050026;
+        public static final int inputSearch=0x7f05001f;
+        public static final int lblDateCreated=0x7f050029;
+        public static final int lblListHeader=0x7f050027;
+        public static final int lblSubject=0x7f05002a;
+        public static final int lblTicketNum=0x7f050028;
+        public static final int left=0x7f050000;
+        public static final int lin_fragment_dopplerim=0x7f05001d;
+        public static final int lin_fragment_modifyservicedetails=0x7f05002c;
+        public static final int lin_fragment_tickets=0x7f050021;
+        public static final int lin_headerview=0x7f050014;
+        public static final int lin_inputSearch=0x7f050022;
+        public static final int lin_topbar=0x7f05003f;
+        public static final int linbottombar=0x7f050046;
+        public static final int linlayout_menuview=0x7f05002b;
+        public static final int listView=0x7f050006;
+        public static final int listViewComment=0x7f050045;
+        public static final int lvExp=0x7f050020;
+        public static final int margin=0x7f050002;
+        public static final int pager=0x7f05001e;
+        public static final int rel_bottom=0x7f050044;
+        public static final int right=0x7f050001;
+        public static final int row_icon=0x7f050035;
+        public static final int row_title=0x7f050036;
+        public static final int selected_view=0x7f050004;
+        public static final int slidingmenumain=0x7f050037;
+        public static final int spinnerBundle=0x7f05003c;
+        public static final int spinnerSubject=0x7f05003b;
+        public static final int spinner_changeto=0x7f050032;
+        public static final int tableLayout=0x7f050040;
+        public static final int textView1=0x7f050015;
+        public static final int textView2=0x7f050016;
+        public static final int textView3=0x7f050017;
+        public static final int textViewEmailValue=0x7f050039;
+        public static final int textViewForgotPassword=0x7f05000c;
+        public static final int textViewForgotUserName=0x7f05000b;
+        public static final int textViewLastUpdatedValue=0x7f050043;
+        public static final int textViewNameValue=0x7f050038;
+        public static final int textViewPhoneValue=0x7f05003a;
+        public static final int textViewStatusValue=0x7f050048;
+        public static final int textViewSubjectValue=0x7f050041;
+        public static final int textViewSubmittedByValue=0x7f050042;
+        public static final int textViewticketsIdValue=0x7f050047;
+        public static final int text_child=0x7f050010;
+        public static final int text_childlabel=0x7f05000f;
+        public static final int text_view=0x7f050012;
+        public static final int ticketdetails_next=0x7f05004a;
+        public static final int ticketdetails_prev=0x7f050049;
+        public static final int txtVieTimeStamp=0x7f05004b;
+        public static final int txtViewDetails=0x7f05004d;
+        public static final int txtViewEmail=0x7f050013;
+        public static final int txtViewParent=0x7f050011;
+        public static final int txtViewUserName=0x7f05004c;
+        public static final int txtView_contract=0x7f050030;
+        public static final int txtView_current=0x7f050031;
+        public static final int txtview_bundleid=0x7f05002d;
+        public static final int txtview_services=0x7f05002e;
+        public static final int txtview_site=0x7f05002f;
+        public static final int webViewContactUs=0x7f05001c;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -321,57 +320,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ticketfragment=0x7f03001a;
     }
     public static final class string {
-        public static final int Login=0x7f050002;
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int bundle=0x7f05000e;
-        public static final int createticket=0x7f050010;
-        public static final int description=0x7f05000f;
+        public static final int Login=0x7f080002;
+        public static final int action_settings=0x7f080001;
+        public static final int app_name=0x7f080000;
+        public static final int bundle=0x7f08000e;
+        public static final int createticket=0x7f080010;
+        public static final int description=0x7f08000f;
         /**  Doppler IM Screen 
          */
-        public static final int dopplerim_headertitle=0x7f050025;
-        public static final int dopplerim_noresponsemessage=0x7f050026;
-        public static final int email=0x7f05000b;
+        public static final int dopplerim_headertitle=0x7f080025;
+        public static final int dopplerim_noresponsemessage=0x7f080026;
+        public static final int email=0x7f08000b;
         /**  Slider Menu 
          */
-        public static final int emptystring=0x7f050008;
-        public static final int forgotpassword=0x7f050004;
-        public static final int forgotusername=0x7f050003;
+        public static final int emptystring=0x7f080008;
+        public static final int forgotpassword=0x7f080004;
+        public static final int forgotusername=0x7f080003;
         /**  Submit Screen 
          */
-        public static final int name=0x7f05000a;
-        public static final int no=0x7f050007;
+        public static final int name=0x7f08000a;
+        public static final int no=0x7f080007;
         /**  AlertDialog 
          */
-        public static final int ok=0x7f050005;
-        public static final int phone=0x7f05000c;
-        public static final int servicedetails_back=0x7f050023;
-        public static final int servicedetails_bandwidth=0x7f05001e;
-        public static final int servicedetails_bundleid=0x7f05001b;
-        public static final int servicedetails_changeto=0x7f050021;
-        public static final int servicedetails_contract=0x7f05001f;
-        public static final int servicedetails_current=0x7f050020;
+        public static final int ok=0x7f080005;
+        public static final int phone=0x7f08000c;
+        public static final int servicedetails_back=0x7f080023;
+        public static final int servicedetails_bandwidth=0x7f08001e;
+        public static final int servicedetails_bundleid=0x7f08001b;
+        public static final int servicedetails_changeto=0x7f080021;
+        public static final int servicedetails_contract=0x7f08001f;
+        public static final int servicedetails_current=0x7f080020;
         /**  Service Detail Screen 
          */
-        public static final int servicedetails_headertitle=0x7f050019;
-        public static final int servicedetails_services=0x7f05001c;
-        public static final int servicedetails_site=0x7f05001d;
-        public static final int servicedetails_submit=0x7f050024;
-        public static final int servicedetails_title=0x7f05001a;
-        public static final int servicedetails_title2=0x7f050022;
-        public static final int subject=0x7f05000d;
-        public static final int textViewListHeaderMSG=0x7f050009;
-        public static final int ticketdetails_comments=0x7f050014;
-        public static final int ticketdetails_lastupdated=0x7f050013;
-        public static final int ticketdetails_next=0x7f050017;
-        public static final int ticketdetails_prev=0x7f050018;
-        public static final int ticketdetails_status=0x7f050016;
+        public static final int servicedetails_headertitle=0x7f080019;
+        public static final int servicedetails_services=0x7f08001c;
+        public static final int servicedetails_site=0x7f08001d;
+        public static final int servicedetails_submit=0x7f080024;
+        public static final int servicedetails_title=0x7f08001a;
+        public static final int servicedetails_title2=0x7f080022;
+        public static final int subject=0x7f08000d;
+        public static final int textViewListHeaderMSG=0x7f080009;
+        public static final int ticketdetails_comments=0x7f080014;
+        public static final int ticketdetails_lastupdated=0x7f080013;
+        public static final int ticketdetails_next=0x7f080017;
+        public static final int ticketdetails_prev=0x7f080018;
+        public static final int ticketdetails_status=0x7f080016;
         /**  Ticket Detail Screen 
          */
-        public static final int ticketdetails_subject=0x7f050011;
-        public static final int ticketdetails_submittedby=0x7f050012;
-        public static final int ticketdetails_ticketsId=0x7f050015;
-        public static final int yes=0x7f050006;
+        public static final int ticketdetails_subject=0x7f080011;
+        public static final int ticketdetails_submittedby=0x7f080012;
+        public static final int ticketdetails_ticketsId=0x7f080015;
+        public static final int yes=0x7f080006;
     }
     public static final class style {
         /** 
@@ -394,34 +393,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
-
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
- Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f090001;
     }
     public static final class styleable {
         /** 
