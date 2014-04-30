@@ -23,26 +23,16 @@ public final class R {
 		public static final int viewAbove = 0x7f010001;
 		public static final int viewBehind = 0x7f010002;
 	}
-	public static final class drawable {
-		public static final int ic_launcher = 0x7f02000d;
-	}
 	public static final class id {
-		public static final int fullscreen = 0x7f070003;
-		public static final int left = 0x7f070000;
-		public static final int margin = 0x7f070002;
-		public static final int right = 0x7f070001;
-		public static final int selected_view = 0x7f070004;
-		public static final int slidingmenumain = 0x7f070037;
+		public static final int fullscreen = 0x7f050003;
+		public static final int left = 0x7f050000;
+		public static final int margin = 0x7f050002;
+		public static final int right = 0x7f050001;
+		public static final int selected_view = 0x7f050004;
+		public static final int slidingmenumain = 0x7f050037;
 	}
 	public static final class layout {
 		public static final int slidingmenumain = 0x7f030015;
-	}
-	public static final class string {
-		public static final int app_name = 0x7f050000;
-	}
-	public static final class style {
-		public static final int AppBaseTheme = 0x7f060000;
-		public static final int AppTheme = 0x7f060001;
 	}
 	public static final class styleable {
 		public static final int[] SlidingMenu = { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d };
