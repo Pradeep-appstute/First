@@ -1,7 +1,0 @@
-package com.example.navigationdrawerdemo;
-
-import Fragment;
-
-public class HomeFragment extends Fragment {
-
-}

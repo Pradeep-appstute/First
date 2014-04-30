@@ -1,5 +1,0 @@
-package com.example.navigationdrawerdemo;
-
-public class PetFragment extends Fragment {
-
-}
